@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danilo Lazović - Operations & Optimization Projects</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #141824;
+            --bg-card: #1a1f2e;
+            --accent-blue: #4a9eff;
+            --accent-orange: #ff6b35;
+            --accent-green: #00d9a3;
+            --text-primary: #e8eaed;
+            --text-secondary: #9ca3af;
+            --border: rgba(74, 158, 255, 0.15);
+            --shadow: rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(74, 158, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(74, 158, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            padding: 4rem 0 3rem;
+            position: relative;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .header-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-green) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .header-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .link-btn:hover {
+            border-color: var(--accent-blue);
+            background: rgba(74, 158, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .link-btn.primary {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+            color: var(--bg-primary);
+            font-weight: 600;
+        }
+
+        .link-btn.primary:hover {
+            background: #3b8ae6;
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        .projects-section {
+            padding: 2rem 0 4rem;
+        }
+
+        .section-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 40px;
+            background: linear-gradient(180deg, var(--accent-blue), var(--accent-green));
+            border-radius: 2px;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.8s ease-out both;
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-blue);
+            box-shadow: 0 8px 24px var(--shadow);
+            transform: translateY(-4px);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .project-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-type {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            padding: 0.4rem 0.8rem;
+            background: rgba(74, 158, 255, 0.1);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--accent-blue);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border: 1px solid rgba(74, 158, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            border-color: var(--accent-blue);
+            background: rgba(74, 158, 255, 0.05);
+        }
+
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-green));
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--bg-primary);
+        }
+
+        .feature-text {
+            flex: 1;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+            font-size: 0.95rem;
+        }
+
+        .feature-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .tech-stack {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-orange);
+        }
+
+        .tech-stack-title {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-orange);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tech-list {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-item {
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 6px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+        }
+
+        .results-section {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(0, 217, 163, 0.05), rgba(74, 158, 255, 0.05));
+            border-radius: 8px;
+            border: 1px solid rgba(0, 217, 163, 0.2);
+        }
+
+        .results-title {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .result-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg-card);
+            border-radius: 6px;
+        }
+
+        .result-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-green);
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .result-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .github-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .github-btn:hover {
+            border-color: var(--accent-green);
+            background: rgba(0, 217, 163, 0.1);
+            transform: translateX(4px);
+        }
+
+        footer {
+            padding: 3rem 0 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .footer-links {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-green);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .project-card {
+                padding: 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="header-text">
+                    <h1>Danilo Lazović</h1>
+                    <p class="subtitle">Production Planner @ BOSCH | Operations Management Student @ FON</p>
+                    <div class="header-links">
+                        <a href="https://github.com/danilo-lazovic" class="link-btn primary" target="_blank">
+                            <span>→</span> GitHub
+                        </a>
+                        <a href="mailto:dobrilazovic@gmail.com" class="link-btn">
+                            <span>✉</span> Email
+                        </a>
+                        <a href="#" class="link-btn">
+                            <span>📄</span> Download CV
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="projects-section">
+            <h2 class="section-title">Featured Projects</h2>
+
+            <!-- Project 1: TSP -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div>
+                        <div class="project-type">Optimization · Algorithm Design</div>
+                        <h3 class="project-title">TSP Heuristic Optimization</h3>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">MATLAB</span>
+                        <span class="tag">Algorithms</span>
+                    </div>
+                </div>
+
+                <p class="project-description">
+                    Comprehensive implementation and comparison of four heuristic algorithms for solving the Traveling Salesman Problem (TSP). 
+                    Includes data collection via geocoding, algorithm implementations, and performance analysis across 17 European cities.
+                </p>
+
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">1</div>
+                        <div class="feature-text">
+                            <div class="feature-title">Nearest Neighbor</div>
+                            <div class="feature-desc">Greedy constructive heuristic</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">2</div>
+                        <div class="feature-text">
+                            <div class="feature-title">2-OPT Optimization</div>
+                            <div class="feature-desc">Local search improvement</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">3</div>
+                        <div class="feature-text">
+                            <div class="feature-title">Simulated Annealing</div>
+                            <div class="feature-desc">Metaheuristic with 50K iterations</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">4</div>
+                        <div class="feature-text">
+                            <div class="feature-title">Genetic Algorithm</div>
+                            <div class="feature-desc">Custom evolutionary approach</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tech-stack">
+                    <div class="tech-stack-title">Tech Stack</div>
+                    <div class="tech-list">
+                        <span class="tech-item">Python 3.x</span>
+                        <span class="tech-item">MATLAB R2020+</span>
+                        <span class="tech-item">GeoPy</span>
+                        <span class="tech-item">Pandas</span>
+                        <span class="tech-item">Excel</span>
+                    </div>
+                </div>
+
+                <div class="results-section">
+                    <div class="results-title">Key Achievements</div>
+                    <div class="results-grid">
+                        <div class="result-item">
+                            <div class="result-value">4</div>
+                            <div class="result-label">Algorithms Implemented</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-value">17</div>
+                            <div class="result-label">Cities Optimized</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-value">50K</div>
+                            <div class="result-label">SA Iterations</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-links">
+                    <a href="https://github.com/danilo-lazovic/tsp-optimization" class="github-btn" target="_blank">
+                        View on GitHub →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 2: Production Planning -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div>
+                        <div class="project-type">Production · Automation · Analytics</div>
+                        <h3 class="project-title">Automated Production Planning System</h3>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">MATLAB</span>
+                        <span class="tag">Excel</span>
+                        <span class="tag">Operations</span>
+                    </div>
+                </div>
+
+                <p class="project-description">
+                    Intelligent production scheduling system that optimizes manufacturing plans based on demand forecasts and capacity constraints. 
+                    Generates optimal production release schedules while minimizing backlog and avoiding excess inventory buildup.
+                </p>
+
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">📊</div>
+                        <div class="feature-text">
+                            <div class="feature-title">Dynamic Planning</div>
+                            <div class="feature-desc">Excel-based demand & capacity input</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">⚙️</div>
+                        <div class="feature-text">
+                            <div class="feature-title">Smart Scheduling</div>
+                            <div class="feature-desc">Automated release planning</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📈</div>
+                        <div class="feature-text">
+                            <div class="feature-title">Visual Analytics</div>
+                            <div class="feature-desc">Comprehensive dashboards</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🎯</div>
+                        <div class="feature-text">
+                            <div class="feature-title">Backlog Minimization</div>
+                            <div class="feature-desc">Real-time tracking & optimization</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tech-stack">
+                    <div class="tech-stack-title">Tech Stack</div>
+                    <div class="tech-list">
+                        <span class="tech-item">MATLAB R2020+</span>
+                        <span class="tech-item">Excel Integration</span>
+                        <span class="tech-item">Custom Algorithms</span>
+                        <span class="tech-item">Data Visualization</span>
+                    </div>
+                </div>
+
+                <div class="results-section">
+                    <div class="results-title">Dashboard Analytics</div>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                        System generates 9 comprehensive visualizations including capacity utilization, backlog analysis, 
+                        inventory tracking, top production items, and demand vs production trends.
+                    </p>
+                    <div class="results-grid">
+                        <div class="result-item">
+                            <div class="result-value">9</div>
+                            <div class="result-label">Analytics Charts</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-value">∞</div>
+                            <div class="result-label">Scalable Weeks</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-value">Real-time</div>
+                            <div class="result-label">Planning Updates</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-links">
+                    <a href="https://github.com/danilo-lazovic/production-planning" class="github-btn" target="_blank">
+                        View on GitHub →
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p class="footer-text">Built with passion for operations optimization and data-driven decision making.</p>
+            <div class="footer-links">
+                <a href="https://github.com/danilo-lazovic" class="footer-link">GitHub</a>
+                <a href="https://linkedin.com/in/danilo-lazovic" class="footer-link">LinkedIn</a>
+                <a href="mailto:dobrilazovic@gmail.com" class="footer-link">Email</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
