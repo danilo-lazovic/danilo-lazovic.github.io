@@ -11,7 +11,7 @@ index.html              all content, English and Serbian (elements tagged data-l
 assets/css/tokens.css   colour, type, spacing tokens from the design system (Papir and Noc themes)
 assets/css/ds.css       design system components (dn-*), copied from its bundle.css
 assets/css/site.css     page layout only
-assets/js/main.js       language and theme toggles, the ASCII flow animation in the hero
+assets/js/main.js       language and theme toggles, the ASCII street cat (hero) and bottleneck flow (info)
 assets/img/             favicon and social preview
 assets/Danilo_Lazovic_CV_EN.pdf
 ```
