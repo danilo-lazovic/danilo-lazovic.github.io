@@ -61,10 +61,10 @@
     start();
   }
 
-  /* Hero: the street cat, in the style of Danilo's drawing. A 16 second loop built from posed
+  /* Hero: the street cat, in the style of Danilo's drawing. An 18 second loop built from posed
      body parts (body, head, ears, four legs, a spiky tail) that blend from pose to pose:
-     sleeps and breathes (z z Z), lifts its head, stands, eyes go wide (!), crouches, hops,
-     lands, sits and licks its paw, lies down and falls asleep again.
+     sleeps and breathes (z z Z), lifts its head, sits up, eyes go wide (!), licks its paw,
+     sits a while looking around, lies down and falls asleep again.
      Each character cell is sampled 2 x 2: edges get shaped glyphs (/ \ ( ) _ ' ,), the inside is
      fur (# % @), the tail is spiky (*), and the face, whiskers and paws are drawn on top. */
   function makeCatLife(COLS, ROWS) {
@@ -78,24 +78,19 @@
       l: [19, G - 3, 18, G, 23, G - 3, 23, G, 31, G - 3, 31, G, 35, G - 3, 36, G],
       tx: 38, ty: G - 3, ta: -0.25, tl: 11, tc: 1.6, tw: 2.2 });
     var WAKE = Object.assign({}, SLEEP, { hy: G - 13, hx: 16, ear: 6.5, eye: 1 });
-    var WIDE = Object.assign({}, STAND, { eye: 1.75, ear: 9, hy: 22 });
-    var CROUCH = Object.assign({}, STAND, { cy: 37, hy: 28, eye: 1.3, ear: 7.5,
-      l: [19, 39, 16, G, 23, 39, 22, G, 31, 39, 32, G, 35, 39, 38, G], ta: -0.9 });
-    var HOP = Object.assign({}, STAND, { cy: 21, hy: 11, eye: 1.6, ear: 9,
-      l: [19, 23, 12, 35, 23, 23, 16, 34, 31, 23, 38, 33, 35, 23, 42, 31], ta: -0.4, tc: 0.2 });
     var SIT = P({ cx: 29, cy: 37, rx: 8, ry: 9.5, hx: 21, hy: 23, hr: 7.6, ear: 7, eye: 1,
       l: [23, 38, 22, G, 26, 38, 26, G, 33, 44, 30, G, 36, 44, 37, G],
       tx: 35, ty: G - 1, ta: -0.15, tl: 12, tc: -1.1, tw: 2.2 });
     var LICK = Object.assign({}, SIT, { hx: 21, hy: 26, eye: 0.35,
       l: [23, 35, 9.5, 30, 26, 38, 26, G, 33, 44, 30, G, 36, 44, 37, G] });
 
+    var SITWIDE = Object.assign({}, SIT, { eye: 1.75, ear: 9, hy: 22 });
     var KEYS = [
       [0, SLEEP], [3.6, SLEEP], [4.3, Object.assign({}, WAKE, { eye: 0 })], [4.9, WAKE],
-      [5.7, STAND], [6.0, WIDE], [6.8, WIDE], [7.1, CROUCH], [7.4, HOP], [7.7, CROUCH],
-      [8.0, STAND], [8.6, SIT], [9.0, LICK], [11.6, LICK], [12.0, SIT],
-      [12.8, Object.assign({}, WAKE, { eye: 0.4 })], [13.4, SLEEP], [16, SLEEP]
+      [5.9, SIT], [6.2, SITWIDE], [7.0, SITWIDE], [7.4, SIT], [7.9, LICK], [10.6, LICK],
+      [11.0, SIT], [12.9, SIT], [13.7, Object.assign({}, WAKE, { eye: 0.4 })], [14.3, SLEEP], [18, SLEEP]
     ];
-    var LOOP = 16;
+    var LOOP = 18;
 
     function ease(u) { return u * u * (3 - 2 * u); }
     function mix(a, b, u) {
@@ -132,15 +127,16 @@
     return function frame(time) {
       var t = time % LOOP;
       var p = poseAt(t);
-      var asleep = t < 4.0 || t > 13.2;
+      var asleep = t < 4.0 || t > 14.1;
       var breath = asleep ? Math.sin(time * 2.2) : 0;
       p.ry += breath * 0.45; p.hy += breath * 0.3;
-      var licking = t > 9.0 && t < 11.6;
+      var licking = t > 7.9 && t < 10.6;
       var lickPhase = Math.sin(time * 12);
       if (licking) { p.hy += lickPhase * 0.7; p.l[2] += lickPhase * 0.4; p.l[3] -= Math.abs(lickPhase) * 0.6; }
-      var awake = !asleep;
+      if (t > 11.0 && t < 12.9) p.hx += Math.sin((t - 11.0) * 2.4) * 0.9;
+    var awake = !asleep;
       var eye = p.eye;
-      var blinkAt = [5.25, 8.4, 12.2];
+      var blinkAt = [5.4, 11.5, 12.4];
       blinkAt.forEach(function (b) { if (t > b && t < b + 0.16) eye = Math.min(eye, 0); });
       var wag = awake && !licking ? Math.sin(time * 3.1) * 0.25 : licking ? Math.sin(time * 1.5) * 0.15 : Math.sin(time * 0.7) * 0.05;
 
@@ -239,7 +235,7 @@
           if (zr >= 0 && zc >= 0) marks.push([zr, zc, ph > 0.6 ? 'Z' : 'z']);
         }
       }
-      if (t > 6.0 && t < 6.9) marks.push([Math.max(0, Math.round((p.hy - p.hr - p.ear - 6) / 2)), Math.round(p.hx + 7), '!']);
+      if (t > 6.2 && t < 7.0) marks.push([Math.max(0, Math.round((p.hy - p.hr - p.ear - 6) / 2)), Math.round(p.hx + 7), '!']);
       marks.forEach(function (m) { if (grid[m[0]]) { grid[m[0]][m[1]] = m[2]; cls[m[0]][m[1]] = 'cut'; } });
       var html = grid.map(function (row, ri) {
         var out = '';
