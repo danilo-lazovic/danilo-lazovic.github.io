@@ -65,7 +65,8 @@
      body parts (body, head, ears, four legs, a spiky tail) that blend from pose to pose:
      sleeps and breathes (z z Z), lifts its head, stands, eyes go wide (!), crouches, hops,
      lands, sits and licks its paw, lies down and falls asleep again.
-     Each text row holds two vertical sub-pixels: ':' both filled, '.' bottom, "'" top. */
+     Each character cell is sampled 2 x 2: edges get shaped glyphs (/ \ ( ) _ ' ,), the inside is
+     fur (# % @), the tail is spiky (*), and the face, whiskers and paws are drawn on top. */
   function makeCatLife(COLS, ROWS) {
     var H = ROWS * 2, G = H - 3;                                  // ground (sub-pixel row)
     // A pose: body ellipse, head, ears, eyes, 4 legs (hip x,y / foot x,y), tail.
@@ -156,51 +157,79 @@
       var erx = 0.8 + 0.75 * eye, ery = 1.0 + 1.0 * eye;
       var tongue = licking && lickPhase > 0.2;
 
-      function body(x, y) {
-        if (inE(x, y, p.cx, p.cy, p.rx, p.ry)) return true;
-        if (inE(x, y, nx, ny, 4.6, 5.2)) return true;
-        if (inE(x, y, p.hx, p.hy, p.hr, p.hr * 0.88)) return true;
-        if (inE(x, y, p.hx, p.hy + 2.2, p.hr + 1.1, p.hr * 0.55)) return true;          // cheeks
-        if (inTri(x, y, [p.hx - p.hr + 0.6, p.hy - 2.5], [p.hx - 1.2, p.hy - p.hr + 0.8], [p.hx - p.hr + 0.2, p.hy - 3 - p.ear])) return true;
-        if (inTri(x, y, [p.hx + 1.2, p.hy - p.hr + 0.8], [p.hx + p.hr - 0.6, p.hy - 2.5], [p.hx + p.hr - 0.2, p.hy - 3 - p.ear])) return true;
+      // part label at a point: b body, h head, e ear, l leg, f foot, t tail, u tongue, '' empty
+      function part(x, y) {
+        if (tongue && inE(x, y, p.hx - p.hr - 0.9, p.hy + 3.4, 1.4, 1.0)) return 'u';
+        if (inE(x, y, p.hx, p.hy, p.hr, p.hr * 0.88)) return 'h';
+        if (inE(x, y, p.hx, p.hy + 2.2, p.hr + 1.1, p.hr * 0.55)) return 'h';
+        if (inTri(x, y, [p.hx - p.hr + 0.6, p.hy - 2.5], [p.hx - 1.2, p.hy - p.hr + 0.8], [p.hx - p.hr + 0.2, p.hy - 3 - p.ear])) return 'e';
+        if (inTri(x, y, [p.hx + 1.2, p.hy - p.hr + 0.8], [p.hx + p.hr - 0.6, p.hy - 2.5], [p.hx + p.hr - 0.2, p.hy - 3 - p.ear])) return 'e';
         for (var k = 0; k < 4; k++) {
           var L = p.l.slice(k * 4, k * 4 + 4);
-          if (seg(x, y, L[0], L[1], L[2], L[3]) <= 1.7) return true;
-          if (inE(x, y, L[2] + (k < 2 ? -0.7 : 0.7), L[3] - 0.4, 2.2, 1.3)) return true;
+          if (inE(x, y, L[2] + (k < 2 ? -0.7 : 0.7), L[3] - 0.4, 2.2, 1.3)) return 'f';
+          if (seg(x, y, L[0], L[1], L[2], L[3]) <= 1.7) return 'l';
         }
+        if (inE(x, y, p.cx, p.cy, p.rx, p.ry)) return 'b';
+        if (inE(x, y, nx, ny, 4.6, 5.2)) return 'b';
         for (var j = 0; j < tail.length; j++) {
-          var q = tail[j], dx = x - q[0], dy = y - q[1]; if (dx * dx + dy * dy <= q[2] * q[2]) return true;
+          var q = tail[j], dx = x - q[0], dy = y - q[1]; if (dx * dx + dy * dy <= q[2] * q[2]) return 't';
         }
-        if (tongue && inE(x, y, p.hx - p.hr - 0.9, p.hy + 3.4, 1.4, 1.0)) return true;
-        return false;
-      }
-      function filled(x, y) {
-        if (!body(x, y)) return false;
-        for (var side = -1; side <= 1; side += 2) {
-          var cxE = p.hx + side * ex;
-          if (eye < 0.25) { if (Math.abs(y - (eyeY + 0.6)) < 0.55 && Math.abs(x - cxE) < 1.6) return false; }
-          else if (inE(x, y, cxE, eyeY, erx, ery)) {
-            if (eye > 1.3 && inE(x, y, cxE, eyeY + 0.3, 0.6, 0.8)) return true;          // pupil when wide
-            return false;
-          }
-        }
-        return true;
+        return '';
       }
 
-      var grid = [];
+      // marching squares on a 2 x 2 sample per character cell: edges get shaped glyphs
+      var EDGE = { 1: '.', 2: ',', 3: '_', 4: '`', 5: '(', 6: '/', 7: '/', 8: "'", 9: '\\', 10: ')', 11: '\\', 12: '"', 13: '\\', 14: '/' };
+      function hash(a, b) { var h = Math.sin(a * 12.9898 + b * 78.233) * 43758.5453; return h - Math.floor(h); }
+      var ox = Math.round(p.cx), oy = Math.round(p.cy / 2);
+      var grid = [], cls = [];
       for (var r = 0; r < ROWS - 1; r++) {
-        var line = [];
+        var line = [], cl = [];
         for (var c = 0; c < COLS; c++) {
-          var a1 = filled(c + 0.5, 2 * r + 0.5), b1 = filled(c + 0.5, 2 * r + 1.5);
-          line.push(a1 && b1 ? ':' : b1 ? '.' : a1 ? "'" : ' ');
+          var s1 = part(c + 0.25, 2 * r + 0.5), s2 = part(c + 0.75, 2 * r + 0.5),
+              s3 = part(c + 0.25, 2 * r + 1.5), s4 = part(c + 0.75, 2 * r + 1.5);
+          var bits = (s1 ? 8 : 0) | (s2 ? 4 : 0) | (s3 ? 2 : 0) | (s4 ? 1 : 0);
+          var lab = s4 || s3 || s2 || s1, ch = ' ', k2 = '';
+          if (bits === 15) {
+            var hv = hash(c - ox, r - oy);
+            if (lab === 'u') { ch = 'u'; k2 = 'cut'; }
+            else if (lab === 't') ch = hv < 0.5 ? '%' : hv < 0.8 ? '#' : '*';
+            else if (lab === 'h' || lab === 'e') ch = hv < 0.82 ? '#' : '%';
+            else if (lab === 'f') ch = '#';
+            else ch = hv < 0.62 ? '#' : hv < 0.88 ? '%' : '@';
+          } else if (bits) {
+            ch = EDGE[bits] || '%';
+            if (lab === 't' && hash(c - ox, r) < 0.45) ch = '*';
+            if (lab === 'u') { ch = 'u'; k2 = 'cut'; }
+          }
+          line.push(ch); cl.push(k2);
         }
-        grid.push(line);
+        grid.push(line); cls.push(cl);
       }
+      function put(x, y, ch, k3, onlyEmpty) {
+        var cc = Math.floor(x), rr = Math.floor(y / 2);
+        if (rr < 0 || rr >= grid.length || cc < 0 || cc >= COLS) return;
+        if (onlyEmpty && grid[rr][cc] !== ' ') return;
+        grid[rr][cc] = ch; cls[rr][cc] = k3 || '';
+      }
+      // face
+      var eyeCh = eye < 0.25 ? '-' : eye < 0.7 ? '=' : eye > 1.3 ? 'O' : 'o';
+      put(p.hx - ex + 0.5, eyeY + 0.5, eyeCh, 'eye');
+      put(p.hx + ex + 0.5, eyeY + 0.5, eyeCh, 'eye');
+      put(p.hx + 0.5, p.hy + 2.6, 'v', 'eye');
+      var wy = p.hy + 2.8, wl = p.hx - p.hr - 1.1, wr = p.hx + p.hr + 1.1;
+      put(wl - 0.6, wy, '=', '', true); put(wl - 1.6, wy, '-', '', true);
+      put(wr + 0.6, wy, '=', '', true); put(wr + 1.6, wy, '-', '', true);
+      // paws with toes
+      for (var k4 = 0; k4 < 4; k4++) {
+        var F = p.l.slice(k4 * 4, k4 * 4 + 4);
+        if (F[3] > G - 1.5) put(F[2] + (k4 < 2 ? -0.7 : 0.7) + 0.5, F[3] - 0.2, 'm');
+      }
+
       // shadow: shrinks when the cat is in the air
       var lift = Math.max(0, (STAND.cy - p.cy)) / 12, half = Math.round(14 - lift * 6), mid = Math.round(p.cx - 1);
       var sh = [];
       for (var c2 = 0; c2 < COLS; c2++) { var d = Math.abs(c2 - mid); sh.push(d > half ? ' ' : d > half - 3 ? '-' : '='); }
-      grid.push(sh);
+      grid.push(sh); cls.push(sh.map(function () { return ''; }));
       // overlays: z's while asleep, ! when the eyes go wide
       var marks = [];
       if (asleep) {
@@ -211,14 +240,14 @@
         }
       }
       if (t > 6.0 && t < 6.9) marks.push([Math.max(0, Math.round((p.hy - p.hr - p.ear - 6) / 2)), Math.round(p.hx + 7), '!']);
+      marks.forEach(function (m) { if (grid[m[0]]) { grid[m[0]][m[1]] = m[2]; cls[m[0]][m[1]] = 'cut'; } });
       var html = grid.map(function (row, ri) {
         var out = '';
         for (var ci = 0; ci < row.length; ci++) {
-          var m = null;
-          for (var mi = 0; mi < marks.length; mi++) if (marks[mi][0] === ri && marks[mi][1] === ci) m = marks[mi][2];
-          out += m ? '<b class="cut">' + m + '</b>' : row[ci];
+          var ch = row[ci] === '<' ? '&lt;' : row[ci] === '>' ? '&gt;' : row[ci] === '&' ? '&amp;' : row[ci];
+          out += cls[ri][ci] ? '<b class="' + cls[ri][ci] + '">' + ch + '</b>' : ch;
         }
-        return out;
+        return out.replace(/\s+$/, '');
       });
       return html.join('\n');
     };

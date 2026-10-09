@@ -37,7 +37,9 @@ body { margin: 0; background: var(--paper); }
 .hero-art .cut { color: var(--coral-ink); }
 .hero-art .wall { opacity: 0.5; }
 .hero-art { cursor: pointer; }
-.hero-art .cat-ascii { font-size: min(13px, calc(100cqw / 29)); font-weight: 700; width: fit-content; margin: 0 auto; }
+.hero-art .cat-ascii { font-size: min(13px, calc(100cqw / 29)); font-weight: 400; width: fit-content; margin: 0 auto; }
+.hero-art .cat-ascii b { font-weight: 700; }
+.hero-art .cat-ascii .eye { color: var(--ink); }
 .flow-box { margin-top: var(--space-6); }
 .hero-art .dn-note { position: absolute; right: var(--space-4); top: calc(var(--space-3) * -1.6); color: var(--ink); }
 @media (max-width: 900px) {
