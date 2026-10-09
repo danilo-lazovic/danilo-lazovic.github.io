@@ -22,9 +22,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/tokens.css?v=8">
-  <link rel="stylesheet" href="assets/css/ds.css?v=8">
-  <link rel="stylesheet" href="assets/css/site.css?v=8">
+  <link rel="stylesheet" href="assets/css/tokens.css?v=9">
+  <link rel="stylesheet" href="assets/css/ds.css?v=9">
+  <link rel="stylesheet" href="assets/css/site.css?v=9">
   <script>
     (function () {
       try {
@@ -369,12 +369,14 @@
       <div class="case-text">
         <p class="dn-card__meta">#01 · 2026 · <span data-l="en">graphs</span><span data-l="sr">grafovi</span></p>
         <h2 class="dn-heading">Brain bottlenecks</h2>
-        <p class="lead" data-l="en">In 2026 the full wiring of a male fruit fly's nervous system was published: 174,386 neurons and 25.8 million connections. I wanted to know where the path from a sense to a movement gets squeezed. It's the same question I ask about a production line.</p>
-        <p class="lead" data-l="sr">Ove godine je objavljena kompletna mapa nervnog sistema mužjaka vinske mušice: 174.386 neurona i 25,8 miliona veza. Hteo sam da znam gde se put od čula do pokreta sužava. Isto pitanje postavljam i za proizvodnu liniju.</p>
-        <p data-l="en">I treated the connectome as a flow network and ran max-flow and min-cut between sensory neurons and the neurons that drive movement. Cutting a sense off from every motor output told me nothing. The fly is shallow, about two hops from sense to muscle, so the cut was just the first layer. Aiming at one behaviour at a time worked. For the escape from a looming shadow, the cut was led by LPLC2 and LC4, the same cells biologists already tie to that escape. The graph found them from the wiring alone.</p>
-        <p data-l="sr">Konektom sam posmatrao kao mrežu protoka i tražio max-flow i min-cut između čulnih neurona i neurona koji pokreću telo. Kad sam čulo odsekao od svih motornih izlaza, nisam dobio ništa korisno. Mušica je plitka, oko dva koraka od čula do mišića, pa je presek bio samo prvi sloj. Kad sam ciljao jedno ponašanje, proradilo je. Za bekstvo od senke koja se približava, presek su predvodili LPLC2 i LC4, upravo ćelije koje biolozi već vezuju za to bekstvo. Graf ih je našao samo iz veza.</p>
-        <p data-l="en">Then I tested the prediction. I rewrote a whole-brain spiking model in numba and silenced the 34 neurons in the cut between taste and the proboscis. Its motor neuron dropped from 107.7 Hz to 0.38 Hz. Silencing 34 random neurons on the same paths changed nothing, and the best centrality measure only cut it by about half.</p>
-        <p data-l="sr">Onda sam predikciju proverio. Prepisao sam spajking model celog mozga u numbi i utišao 34 neurona iz preseka između ukusa i surle. Njen motorni neuron je pao sa 107,7 Hz na 0,38 Hz. Kad sam utišao 34 nasumična neurona na istim putevima, ništa se nije promenilo, a najbolja mera centralnosti ga je oborila tek na pola.</p>
+        <p class="lead" data-l="en">This one started as a question I couldn't let go of. In 2026 the full wiring diagram of a male fruit fly's nervous system came out, 174,386 neurons and about 25.8 million connections, and I wanted to see if the tools I use for production flows would say anything about a brain.</p>
+        <p class="lead" data-l="sr">Ovo je počelo kao pitanje koje nisam mogao da pustim. Ove godine je objavljena kompletna mapa nervnog sistema mužjaka vinske mušice, 174.386 neurona i oko 25,8 miliona veza, i hteo sam da vidim da li alati koje koristim za protok u proizvodnji mogu nešto da kažu o mozgu.</p>
+        <p data-l="en">I treated the connectome as a flow network and ran max-flow / min-cut from the sensory neurons to the neurons that drive movement. My first try was useless. If you cut a sense off from every motor output at once, the cut is simply the first layer of neurons after that sense, because the fly's nervous system is very shallow, about two steps from sense to muscle. So I went one behaviour at a time. For escaping a looming shadow, most of the cut landed on LPLC2 and LC4, which are the cells biologists already link to that escape. I never told the algorithm anything about them.</p>
+        <p data-l="sr">Konektom sam posmatrao kao mrežu protoka i tražio max-flow / min-cut od čulnih neurona do neurona koji pokreću telo. Prvi pokušaj nije vredeo ništa. Kad čulo odsečeš od svih motornih izlaza odjednom, presek je samo prvi sloj neurona posle tog čula, jer je nervni sistem mušice jako plitak, oko dva koraka od čula do mišića. Zato sam išao ponašanje po ponašanje. Za bekstvo od senke koja se približava, najveći deo preseka je pao na LPLC2 i LC4, upravo ćelije koje biolozi već vezuju za to bekstvo. Algoritmu nisam rekao ništa o njima.</p>
+        <p data-l="en">Next I wanted to know if the cut actually matters, which meant simulating the whole brain. The published model runs on Brian2, and Brian2 needs a C compiler on Windows, so I rewrote the model in numba instead. All of it had to fit in the 16 GB of RAM on my home PC. When I silenced the 34 neurons in the cut between taste and the proboscis, its motor neuron went from 107.7 Hz to 0.38 Hz. Silencing 34 random neurons on the same paths did nothing, and the best centrality measure only took it down to about half.</p>
+        <p data-l="sr">Onda sam hteo da vidim da li presek stvarno nešto znači, a za to je trebala simulacija celog mozga. Objavljeni model radi na Brian2, a Brian2 na Windowsu traži C kompajler, pa sam model prepisao u numbi. Sve je moralo da stane u 16 GB RAM-a na kućnom računaru. Kad sam utišao 34 neurona iz preseka između ukusa i surle, njen motorni neuron je pao sa 107,7 Hz na 0,38 Hz. Utišavanje 34 nasumična neurona na istim putevima nije uradilo ništa, a najbolja mera centralnosti ga je spustila tek na pola.</p>
+        <p data-l="en">Vision is still open. Every photoreceptor in the fly is histaminergic, and a model that only knows "excite" and "inhibit" can't treat them fairly. That, the 3D pictures and a proper write-up are next.</p>
+        <p data-l="sr">Vid je i dalje otvoren. Svi fotoreceptori kod mušice su histaminergični, a model koji zna samo za „pobudi“ i „koči“ ne može pošteno da ih predstavi. To, 3D slike i pravi tekst o svemu su sledeći.</p>
       </div>
       <div class="case-side">
         <div class="dn-frame">
@@ -428,12 +430,14 @@
       <div class="case-text">
         <p class="dn-card__meta">#02 · 2026 · Kafeterija</p>
         <h2 class="dn-heading">Review engine</h2>
-        <p class="lead" data-l="en">Kafeterija has 70 cafés, and each one has its own Google profile. Reviews piled up across all of them, replies were typed by hand, and a manager needed Google access just to thank a guest.</p>
-        <p class="lead" data-l="sr">Kafeterija ima 70 kafića i svaki ima svoj Google profil. Recenzije su se gomilale po svima njima, odgovori su se kucali ručno, a menadžer je morao da ima Google pristup samo da bi zahvalio gostu.</p>
-        <p data-l="en">It started as one Python script that pulled reviews into a spreadsheet. Today it's a FastAPI and Next.js app. It syncs all 47,000 reviews going back to 2016, puts the new ones in a single inbox and publishes replies straight to Google in the company's name. Managers sign in with their email and only see their own cafés.</p>
-        <p data-l="sr">Počelo je kao jedna Python skripta koja je vukla recenzije u tabelu. Danas je to FastAPI i Next.js aplikacija. Sinhronizuje svih 47.000 recenzija unazad do 2016, nove stavlja u jedno sanduče i odgovore objavljuje direktno na Google u ime firme. Menadžeri se prijavljuju mejlom i vide samo svoje kafiće.</p>
-        <p data-l="en">My favourite part is the reply drafts. Claude writes a suggestion, and with it I send a few of that manager's own earlier replies, so the draft sounds like them. They read it, fix what they want and send it. Once a week the app also builds the Excel report the team used to fill in by hand, in exactly the same format, so nobody had to change how they work.</p>
-        <p data-l="sr">Najdraži deo su mi predlozi odgovora. Claude piše predlog, a uz njega šaljem nekoliko ranijih odgovora tog menadžera, pa predlog zvuči kao on. Menadžer pročita, ispravi šta hoće i pošalje. Jednom nedeljno aplikacija pravi i Excel izveštaj koji je tim ranije popunjavao ručno, u potpuno istom formatu, pa niko nije morao da menja način rada.</p>
+        <p class="lead" data-l="en">Kafeterija has 70 cafés and every one has its own Google profile. When I started, replies were typed by hand, and a manager needed access to Google just to thank a guest.</p>
+        <p class="lead" data-l="sr">Kafeterija ima 70 kafića i svaki ima svoj Google profil. Kad sam počeo, odgovori su se kucali ručno, a menadžeru je trebao pristup Googleu samo da bi zahvalio gostu.</p>
+        <p data-l="en">It began as one Python script that pulled the reviews into a spreadsheet, and even that took a while. Google gave my project a quota of zero for the Business Profile APIs, so I filed a request and waited for approval before I could pull a single review. After that the login kept expiring every seven days, until I moved the app out of Google's testing mode.</p>
+        <p data-l="sr">Počelo je kao jedna Python skripta koja je vukla recenzije u tabelu, i čak je i to potrajalo. Google je mom projektu dao kvotu nula za Business Profile API, pa sam podneo zahtev i čekao odobrenje pre nego što sam mogao da povučem ijednu recenziju. Posle toga je prijava isticala na svakih sedam dana, sve dok aplikaciju nisam izvukao iz Googleovog test režima.</p>
+        <p data-l="en">Today it's a FastAPI and Next.js app with all 47,000 reviews back to 2016. New ones land in one inbox and replies go straight to Google in the company's name. Managers sign in with their email and only see their own cafés. Claude drafts each reply, and I send it a few of that manager's older replies along with the review, so the draft sounds like the person who will send it. At one point I put Haiku and Sonnet side by side on real reviews to see which one writes better replies.</p>
+        <p data-l="sr">Danas je to FastAPI i Next.js aplikacija sa svih 47.000 recenzija unazad do 2016. Nove stižu u jedno sanduče, a odgovori idu direktno na Google u ime firme. Menadžeri se prijavljuju mejlom i vide samo svoje kafiće. Claude piše predlog za svaki odgovor, a uz recenziju mu šaljem i nekoliko starijih odgovora tog menadžera, pa predlog zvuči kao osoba koja će ga poslati. U jednom trenutku sam stavio Haiku i Sonnet jedan pored drugog na pravim recenzijama da vidim koji piše bolje odgovore.</p>
+        <p data-l="en">The weekly Excel report the team used to fill in by hand now comes out of the app, in exactly the same format, so nobody had to change how they work.</p>
+        <p data-l="sr">Nedeljni Excel izveštaj koji je tim ranije popunjavao ručno sada izlazi iz aplikacije, u potpuno istom formatu, pa niko nije morao da menja način rada.</p>
       </div>
       <div class="case-side">
         <div class="dn-frame">
@@ -483,12 +487,12 @@
       <div class="case-text">
         <p class="dn-card__meta">#03 · 2026 · Kafeterija</p>
         <h2 class="dn-heading">Café portal</h2>
-        <p class="lead" data-l="en">Sales lived in the registers, delivery numbers in the Wolt and Glovo dashboards, and reviews in my other app. Nobody could see a whole day in one place.</p>
-        <p class="lead" data-l="sr">Prodaja je živela u kasama, brojke dostave na Wolt i Glovo portalima, a recenzije u mojoj drugoj aplikaciji. Niko nije mogao da vidi ceo dan na jednom mestu.</p>
-        <p data-l="en">So I'm building an internal portal that pulls everything into one Postgres database. Small workers do the pulling: register orders every minute, platform exports every morning, reviews from the review engine. The portal only ever reads our own database, so when Wolt is down, sales from the registers still load.</p>
-        <p data-l="sr">Zato pravim interni portal koji sve sliva u jednu Postgres bazu. Mali workeri povlače podatke: porudžbine sa kasa svakog minuta, izvoze sa platformi svako jutro, recenzije iz mog drugog alata. Portal čita samo našu bazu, pa kad Wolt ne radi, prodaja sa kasa se i dalje učitava.</p>
-        <p data-l="en">Every day is compared with the same weekday over the last four weeks. If a café drops by 70%, the portal says it stopped. If a whole channel drops, it says that too. I drew every screen first, with fake numbers clearly marked as fake, and now I build it one module at a time.</p>
-        <p data-l="sr">Svaki dan se poredi sa istim danom u prethodne četiri nedelje. Ako kafić padne za 70%, portal kaže da je stao. Ako padne ceo kanal, kaže i to. Prvo sam nacrtao svaki ekran, sa izmišljenim brojkama jasno označenim, a sada ga gradim modul po modul.</p>
+        <p class="lead" data-l="en">Sales live in the registers, delivery numbers in the Wolt and Glovo dashboards, and reviews in my other app. I'm building one internal portal that shows all of it.</p>
+        <p class="lead" data-l="sr">Prodaja živi u kasama, brojke dostave na Wolt i Glovo portalima, a recenzije u mojoj drugoj aplikaciji. Pravim jedan interni portal koji sve to prikazuje.</p>
+        <p data-l="en">Small workers pull everything into our own Postgres database: register orders every minute, Wolt and Glovo exports every morning, reviews from the review engine. The portal only ever reads that database, so if Wolt is down, the register numbers still load. Each day gets compared with the same weekday over the last four weeks, and if a café drops by 70% the portal says it has stopped.</p>
+        <p data-l="sr">Mali workeri sve slivaju u našu Postgres bazu: porudžbine sa kasa svakog minuta, Wolt i Glovo izvoze svako jutro, recenzije iz drugog alata. Portal čita samo tu bazu, pa kad Wolt ne radi, brojke sa kasa se i dalje učitavaju. Svaki dan se poredi sa istim danom u prethodne četiri nedelje, i ako kafić padne za 70%, portal kaže da je stao.</p>
+        <p data-l="en">The register API hasn't arrived yet, so the live sales screen runs on fake orders for now. Every fake row is marked as fake, and the worker refuses to mix fake and real ones.</p>
+        <p data-l="sr">API kase još nije stigao, pa ekran prodaje uživo za sada radi na izmišljenim porudžbinama. Svaki takav red je označen, a worker odbija da pomeša izmišljene i prave.</p>
       </div>
       <div class="case-side">
         <div class="dn-frame">
@@ -533,18 +537,10 @@
       <div class="case-text">
         <p class="dn-card__meta">#04 · 2026 · Kafeterija</p>
         <h2 class="dn-heading">Morning agents</h2>
-        <p class="lead" data-l="en">Most of my reports began the same way: log in to Wolt, log in to Glovo, download yesterday, move the files, import them.</p>
-        <p class="lead" data-l="sr">Većina mojih izveštaja je počinjala isto: uloguj se na Wolt, uloguj se na Glovo, skini jučerašnji dan, premesti fajlove, uvezi ih.</p>
-        <p data-l="en">Now a scheduled Claude agent does it at eight every morning, in the browser, and leaves the exports where the portal picks them up. It never types a password. If a session has expired, it stops and asks me. Other agents fill in the weekly Google reviews report, the monthly Power BI numbers and the Glovo promo plan for marketing.</p>
-        <p data-l="sr">Sada to radi zakazani Claude agent svako jutro u osam, u pretraživaču, i ostavlja izvoze tamo gde ih portal pokupi. Nikad ne kuca lozinku. Ako je sesija istekla, stane i pita mene. Drugi agenti popunjavaju nedeljni izveštaj Google recenzija, mesečne brojke iz Power BI-ja i plan Glovo akcija za marketing.</p>
-        <p data-l="en">Under it sits the reporting model in Power BI and Excel. It has three layers (dimensions, raw data, report), so a new month is a data drop and not a rebuild. It follows ad spend per channel and sorts the menu into a BCG matrix: what sells and earns, and what only takes up space.</p>
-        <p data-l="sr">Ispod stoji model za izveštavanje u Power BI-ju i Excelu. Ima tri sloja (dimenzije, sirovi podaci, izveštaj), pa je novi mesec samo ubacivanje podataka, a ne pravljenje ispočetka. Prati ulaganje u oglase po kanalu i deli meni u BCG matricu: šta se prodaje i zarađuje, a šta samo zauzima mesto.</p>
-      </div>
-      <div class="case-side">
-        <div class="dn-frame">
-          <p class="frame-k">stack</p>
-          <p>Claude Cowork, Power BI, Power Query, Excel, Python</p>
-        </div>
+        <p class="lead" data-l="en">My reports used to start the same way every day: log in to Wolt, log in to Glovo, download yesterday, move the files.</p>
+        <p class="lead" data-l="sr">Moji izveštaji su svakog dana počinjali isto: uloguj se na Wolt, uloguj se na Glovo, skini jučerašnji dan, premesti fajlove.</p>
+        <p data-l="en">Now a scheduled Claude agent does that around eight in the morning, in the browser, and leaves the files where the portal picks them up. It never types a password, and if a session has expired it stops and tells me. It only runs while the Claude app is open. Other agents fill in the weekly reviews report, the monthly Power BI numbers and the Glovo promo plan. Underneath sits a Power BI and Excel model in three layers (dimensions, raw data, report), with ad spend per channel and a BCG matrix of the menu.</p>
+        <p data-l="sr">Sada to radi zakazani Claude agent oko osam ujutru, u pretraživaču, i ostavlja fajlove tamo gde ih portal pokupi. Nikad ne kuca lozinku, a ako je sesija istekla, stane i javi mi. Radi samo dok je Claude aplikacija otvorena. Drugi agenti popunjavaju nedeljni izveštaj recenzija, mesečne brojke iz Power BI-ja i plan Glovo akcija. Ispod svega je Power BI i Excel model u tri sloja (dimenzije, sirovi podaci, izveštaj), sa ulaganjem u oglase po kanalu i BCG matricom menija.</p>
       </div>
     </article>
 
@@ -588,12 +584,12 @@
       <div class="case-text">
         <p class="dn-card__meta">#05 · 2025, 2026 · <span data-l="en">operations</span><span data-l="sr">operacije</span></p>
         <h2 class="dn-heading">Production planning</h2>
-        <p class="lead" data-l="en">Demand goes up and down every week, capacity doesn't. A plan has to decide what gets made now and what can wait.</p>
-        <p class="lead" data-l="sr">Tražnja svake nedelje ide gore i dole, kapacitet ne. Plan mora da odluči šta se pravi sada, a šta može da sačeka.</p>
-        <p data-l="en">At university I built a planner in MATLAB. It reads weekly demand and daily capacity from Excel, releases production so the backlog is cleared first, avoids making stock too early, and draws nine charts that show what happened. The drawing is one of them: stock above the line, backlog below it.</p>
-        <p data-l="sr">Na fakultetu sam napravio planer u MATLAB-u. Čita nedeljnu tražnju i dnevni kapacitet iz Excela, pušta proizvodnju tako da se prvo skine backlog, ne pravi zalihe prerano i crta devet grafika koji pokazuju šta se desilo. Crtež je jedan od njih: zalihe iznad linije, backlog ispod.</p>
-        <p data-l="en">At Bosch I did it for real. I planned and ordered production materials in SAP, and next to that I built a desktop app in Python and PyQt5 that plans more than 800 SKUs over 52 weeks, a VBA tool that splits capacity in Excel, and Power Query automation that feeds Power BI.</p>
-        <p data-l="sr">U Boschu sam to radio zaista. Planirao sam i naručivao materijal u SAP-u, a pored toga napravio desktop aplikaciju u Pythonu i PyQt5 koja planira više od 800 artikala na 52 nedelje, VBA alat koji deli kapacitet u Excelu i Power Query automatizaciju za Power BI.</p>
+        <p class="lead" data-l="en">This is where coding stopped being a school subject for me.</p>
+        <p class="lead" data-l="sr">Ovde je kodiranje za mene prestalo da bude predmet na faksu.</p>
+        <p data-l="en">At uni I wrote a planner in MATLAB: weekly demand and daily capacity go in, a release plan comes out, the backlog gets cleared first, and nine charts show what happened. It worked, but it was a university project.</p>
+        <p data-l="sr">Na fakultetu sam napisao planer u MATLAB-u: unese se nedeljna tražnja i dnevni kapacitet, izađe plan puštanja, prvo se skida backlog, a devet grafika pokazuje šta se desilo. Radilo je, ali je bio fakultetski projekat.</p>
+        <p data-l="en">At Bosch I planned and ordered production materials in SAP and Excel, and a lot of that work was the same boring steps every week. So I started learning properly, mostly to get rid of them. What came out was a desktop app in Python and PyQt5 that plans more than 800 SKUs over 52 weeks, a VBA tool that splits capacity in Excel, and Power Query that feeds Power BI without anyone copying numbers around.</p>
+        <p data-l="sr">U Boschu sam planirao i naručivao materijal u SAP-u i Excelu, i dobar deo tog posla su bili isti dosadni koraci svake nedelje. Zato sam počeo ozbiljno da učim, uglavnom da bih ih se rešio. Od toga je nastala desktop aplikacija u Pythonu i PyQt5 koja planira više od 800 artikala na 52 nedelje, VBA alat koji deli kapacitet u Excelu i Power Query koji puni Power BI, a da niko ne prepisuje brojke.</p>
       </div>
       <div class="case-side">
         <div class="dn-frame">
@@ -644,10 +640,12 @@
       <div class="case-text">
         <p class="dn-card__meta">#06 · 2026 · <span data-l="en">game</span><span data-l="sr">igra</span></p>
         <h2 class="dn-heading">Colossus</h2>
-        <p class="lead" data-l="en">A game about climbing giants in an empty land. I'm the creative director, and the rest of the studio is a team of Claude agents.</p>
-        <p class="lead" data-l="sr">Igra o penjanju na džinove u praznoj zemlji. Ja sam kreativni direktor, a ostatak studija je tim Claude agenata.</p>
-        <p data-l="en">There's a programmer, a tech artist, a 3D artist, a 2D artist and a playtester. Each one works in Unity or Blender directly. I write a brief, they build it on a branch, the playtester plays it and sends me screenshots, and I decide. Every phase has one question, and we don't move on until the answer is yes. Right now the question is whether it's fun to hold on to something that is trying to shake you off.</p>
-        <p data-l="sr">Tu su programer, tehnički umetnik, 3D umetnik, 2D umetnik i tester. Svaki radi direktno u Unity-ju ili Blenderu. Ja napišem brief, oni ga naprave na posebnoj grani, tester ga odigra i pošalje mi screenshotove, a ja odlučim. Svaka faza ima jedno pitanje i ne idemo dalje dok odgovor nije da. Trenutno je pitanje da li je zabavno držati se za nešto što pokušava da te strese.</p>
+        <p class="lead" data-l="en">A game about climbing giants in an empty land. I'm the creative director, and everyone else in the studio is a Claude agent.</p>
+        <p class="lead" data-l="sr">Igra o penjanju na džinove u praznoj zemlji. Ja sam kreativni direktor, a svi ostali u studiju su Claude agenti.</p>
+        <p data-l="en">There's a programmer, a tech artist, a 3D artist, a 2D artist and a playtester, each working in Unity or Blender directly. I write a brief, they build it, the playtester plays it and sends me screenshots, and I write back what I think. Each phase has one question. Right now it's whether holding on to something that's trying to shake you off is actually fun.</p>
+        <p data-l="sr">Tu su programer, tehnički umetnik, 3D umetnik, 2D umetnik i tester, i svaki radi direktno u Unity-ju ili Blenderu. Ja napišem brief, oni ga naprave, tester ga odigra i pošalje mi screenshotove, a ja napišem šta mislim. Svaka faza ima jedno pitanje. Sada je to da li je stvarno zabavno držati se za nešto što pokušava da te strese.</p>
+        <p data-l="en">My verdicts so far, as I wrote them: running around "feels okay for now", climbing the tower is "okay, a bit clunky, I like it for now", and the moving colossus "feels okay". Okay isn't fun yet, so we keep going.</p>
+        <p data-l="sr">Moje ocene do sada, kako sam ih napisao: kretanje „deluje okej za sad“, penjanje po kuli „okej je osećaj, malo clunky, sviđa mi se za sad“, a kolos koji se kreće „deluje okej“. Okej još nije zabavno, pa idemo dalje.</p>
         <p data-l="en">This is how I described the feeling in the design doc:</p>
         <p data-l="sr">Ovako sam opisao osećaj u dizajn dokumentu:</p>
         <blockquote data-l="en">"Like coming back to your hometown after a while, and everything that was supposed to wait for you is gone."</blockquote>
@@ -707,18 +705,13 @@
       <div class="case-text">
         <p class="dn-card__meta">#07 · 2025 · <span data-l="en">heuristics</span><span data-l="sr">heuristike</span></p>
         <h2 class="dn-heading">Travelling salesman</h2>
-        <p class="lead" data-l="en">Seventeen cities, from Kosjerić to Minsk. Which order is the shortest?</p>
-        <p class="lead" data-l="sr">Sedamnaest gradova, od Kosjerića do Minska. Koji redosled je najkraći?</p>
-        <p data-l="en">I geocoded the cities in Python and wrote four heuristics in MATLAB: nearest neighbour, 2-opt, simulated annealing with 50,000 iterations, and a genetic algorithm with order crossover. I expected the genetic algorithm to win. It didn't. Plain 2-opt found the shortest tour, 68.46 against 74.92 for the genetic algorithm and 79.75 for nearest neighbour. On a problem this size, a simple local search was enough.</p>
-        <p data-l="sr">Gradove sam geokodirao u Pythonu i napisao četiri heuristike u MATLAB-u: najbližeg suseda, 2-opt, simulirano kaljenje sa 50.000 iteracija i genetski algoritam sa order crossoverom. Očekivao sam da pobedi genetski. Nije. Obični 2-opt je našao najkraću turu, 68,46 prema 74,92 za genetski i 79,75 za najbližeg suseda. Na ovoliko malom problemu, jednostavna lokalna pretraga je bila dovoljna.</p>
+        <p class="lead" data-l="en">Seventeen cities from Kosjerić to Minsk, four heuristics.</p>
+        <p class="lead" data-l="sr">Sedamnaest gradova od Kosjerića do Minska, četiri heuristike.</p>
+        <p data-l="en">I was sure the genetic algorithm would win. Plain 2-opt found a shorter tour (68.46 against 74.92), simulated annealing landed in between, and nearest neighbour came last at 79.75.</p>
+        <p data-l="sr">Bio sam siguran da će pobediti genetski algoritam. Obični 2-opt je našao kraću turu (68,46 prema 74,92), simulirano kaljenje je bilo između, a najbliži sused poslednji sa 79,75.</p>
       </div>
       <div class="case-side">
-        <div class="dn-frame">
-          <p class="frame-k"><span data-l="en">tour length</span><span data-l="sr">dužina ture</span></p>
-          <p class="mono" data-l="en">2-opt 68.46 · genetic 74.92 · annealing 75.12 · nearest neighbour 79.75</p>
-          <p class="mono" data-l="sr">2-opt 68,46 · genetski 74,92 · kaljenje 75,12 · najbliži sused 79,75</p>
-          <div class="frame-links"><a class="dn-btn" href="https://github.com/danilo-lazovic/tsp-optimization" target="_blank" rel="noopener"><span data-l="en">code on github</span><span data-l="sr">kod na githubu</span></a></div>
-        </div>
+        <div class="frame-links" style="margin-top:0"><a class="dn-btn" href="https://github.com/danilo-lazovic/tsp-optimization" target="_blank" rel="noopener"><span data-l="en">code on github</span><span data-l="sr">kod na githubu</span></a></div>
       </div>
     </article>
 
@@ -731,10 +724,8 @@
         <div>
           <p class="lead" style="margin-top:0" data-l="en">I'm Danilo. I grew up in Čačak and live in Belgrade, where I study operations management at FON and work at Kafeterija on everything that has to do with data: sales, delivery platforms, reviews, and the agents that connect them.</p>
           <p class="lead" style="margin-top:0" data-l="sr">Ja sam Danilo. Odrastao sam u Čačku, a živim u Beogradu, gde studiram menadžment operacija na FON-u i radim u Kafeteriji na svemu što ima veze sa podacima: prodaji, platformama za dostavu, recenzijama i agentima koji ih povezuju.</p>
-          <p data-l="en">The moment I like most in any project is when a messy process turns into one clear picture, and you can finally point at the spot where it gets stuck. I've chased that on a shop floor in Čačak, in Bosch's material plans, in the delivery numbers of 70 cafés and in the brain of a fly.</p>
-          <p data-l="sr">Najviše volim trenutak kad neuredan proces postane jedna jasna slika i kad konačno možeš da pokažeš mesto gde se zaglavljuje. To sam tražio u pogonu u Čačku, u planovima materijala u Boschu, u brojkama dostave 70 kafića i u mozgu mušice.</p>
-          <p data-l="en">A few rules I keep. A number always comes with what it's compared to. Fake data never mixes with real data. And I don't move on until the current question has an answer.</p>
-          <p data-l="sr">Imam nekoliko pravila. Brojka uvek ide uz ono sa čim se poredi. Lažni podaci se nikad ne mešaju sa pravim. I ne idem dalje dok trenutno pitanje nema odgovor.</p>
+          <p data-l="en">I didn't really start coding until Bosch. I'd done some MATLAB and Python at uni, but at work I was spending hours on the same boring steps in SAP and Excel, so I started teaching myself how to make them go away. That turned into a planning app, and I've kept doing the same thing at Kafeterija ever since: find the part of the day that's tedious or stuck, and build something so nobody has to do it by hand.</p>
+          <p data-l="sr">Ozbiljnije sam počeo da kodiram tek u Boschu. Na faksu sam radio nešto MATLAB-a i Pythona, ali na poslu sam provodio sate na istim dosadnim koracima u SAP-u i Excelu, pa sam sam počeo da učim kako da ih se rešim. Od toga je nastala aplikacija za planiranje, i od tada isto radim i u Kafeteriji: nađem deo dana koji je dosadan ili zapinje i napravim nešto da to niko više ne radi ručno.</p>
           <p data-l="en">Away from the screen I follow basketball and football, and I like helping people learn. I spent a semester mentoring students at FON.</p>
           <p data-l="sr">Van ekrana pratim košarku i fudbal i volim da pomognem drugima da nauče. Semestar sam bio mentor studentima na FON-u.</p>
           <div class="hero-art flow-box">
@@ -795,6 +786,6 @@
   <div class="dn-divider dn-divider--dots" role="separator" style="margin:0"></div>
   <footer><p>:/ danilo · <span data-l="en">belgrade</span><span data-l="sr">beograd</span> · <span data-year>2026</span></p></footer>
 </div>
-<script src="assets/js/main.js?v=8" defer></script>
+<script src="assets/js/main.js?v=9" defer></script>
 </body>
 </html>
