@@ -36,6 +36,7 @@ body { margin: 0; background: var(--paper); }
 }
 .hero-art .cut { color: var(--coral-ink); }
 .hero-art .wall { opacity: 0.5; }
+.hero-art { cursor: pointer; }
 .hero-art .cat-ascii { font-size: min(13px, calc(100cqw / 26.6)); font-weight: 700; width: fit-content; margin: 0 auto; }
 .flow-box { margin-top: var(--space-6); }
 .hero-art .dn-note { position: absolute; right: var(--space-4); top: calc(var(--space-3) * -1.6); color: var(--ink); }
