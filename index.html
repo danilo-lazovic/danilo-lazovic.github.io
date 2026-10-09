@@ -1,665 +1,775 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en" class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danilo Lazović - Operations & Optimization Projects</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-primary: #0a0e17;
-            --bg-secondary: #141824;
-            --bg-card: #1a1f2e;
-            --accent-blue: #4a9eff;
-            --accent-orange: #ff6b35;
-            --accent-green: #00d9a3;
-            --text-primary: #e8eaed;
-            --text-secondary: #9ca3af;
-            --border: rgba(74, 158, 255, 0.15);
-            --shadow: rgba(0, 0, 0, 0.4);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Danilo Lazović — Operations, data and AI systems</title>
+  <meta name="x-title-en" content="Danilo Lazović — Operations, data and AI systems">
+  <meta name="x-title-sr" content="Danilo Lazović — Operacije, podaci i AI sistemi">
+  <meta name="description" content="Digital Operations & Data Engineer at Kafeterija, Operations Management student at FON Belgrade. I build data platforms, AI automations and optimization models, and I look for the bottleneck in everything.">
+  <meta name="author" content="Danilo Lazović">
+  <meta name="theme-color" content="#f3f1ea" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e0f11" media="(prefers-color-scheme: dark)">
+  <link rel="canonical" href="https://danilo-lazovic.github.io/">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Danilo Lazović — Operations, data and AI systems">
+  <meta property="og:description" content="Full-stack data platforms for an 80+ location café chain, production planning at Bosch, and a min-cut analysis of the fruit fly brain.">
+  <meta property="og:url" content="https://danilo-lazovic.github.io/">
+  <meta property="og:image" content="https://danilo-lazovic.github.io/assets/img/og.png">
+  <meta name="twitter:card" content="summary_large_image">
 
-        body {
-            font-family: 'Manrope', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 
-        .bg-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                linear-gradient(rgba(74, 158, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(74, 158, 255, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-            pointer-events: none;
-            z-index: 0;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 1;
-        }
+  <script>
+    // Apply saved theme/language before paint to avoid a flash
+    (function () {
+      try {
+        var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t);
+        var l = localStorage.getItem('lang');
+        if (!l && /^(sr|hr|bs|me|sh)/i.test(navigator.language || '')) l = 'sr';
+        if (l) document.documentElement.setAttribute('data-lang', l);
+      } catch (e) {}
+    })();
+  </script>
 
-        header {
-            padding: 4rem 0 3rem;
-            position: relative;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .header-text {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        h1 {
-            font-family: 'DM Serif Display', serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            line-height: 1.1;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-green) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
-        }
-
-        .header-links {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease-out 0.4s both;
-        }
-
-        .link-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            color: var(--text-primary);
-            text-decoration: none;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.9rem;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-        }
-
-        .link-btn:hover {
-            border-color: var(--accent-blue);
-            background: rgba(74, 158, 255, 0.1);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px var(--shadow);
-        }
-
-        .link-btn.primary {
-            background: var(--accent-blue);
-            border-color: var(--accent-blue);
-            color: var(--bg-primary);
-            font-weight: 600;
-        }
-
-        .link-btn.primary:hover {
-            background: #3b8ae6;
-            transform: translateY(-2px) scale(1.02);
-        }
-
-        .projects-section {
-            padding: 2rem 0 4rem;
-        }
-
-        .section-title {
-            font-family: 'DM Serif Display', serif;
-            font-size: 2rem;
-            margin-bottom: 2.5rem;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .section-title::before {
-            content: '';
-            width: 4px;
-            height: 40px;
-            background: linear-gradient(180deg, var(--accent-blue), var(--accent-green));
-            border-radius: 2px;
-        }
-
-        .project-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2.5rem;
-            margin-bottom: 2.5rem;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            animation: fadeInUp 0.8s ease-out both;
-        }
-
-        .project-card:nth-child(1) { animation-delay: 0.1s; }
-        .project-card:nth-child(2) { animation-delay: 0.2s; }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-
-        .project-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .project-card:hover {
-            border-color: var(--accent-blue);
-            box-shadow: 0 8px 24px var(--shadow);
-            transform: translateY(-4px);
-        }
-
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .project-title {
-            font-family: 'DM Serif Display', serif;
-            font-size: 1.8rem;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .project-type {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--accent-blue);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .project-tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            padding: 0.4rem 0.8rem;
-            background: rgba(74, 158, 255, 0.1);
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-family: 'IBM Plex Mono', monospace;
-            color: var(--accent-blue);
-        }
-
-        .project-description {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-            line-height: 1.7;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            padding: 1rem;
-            background: var(--bg-secondary);
-            border-radius: 8px;
-            border: 1px solid rgba(74, 158, 255, 0.08);
-            transition: all 0.3s ease;
-        }
-
-        .feature-item:hover {
-            border-color: var(--accent-blue);
-            background: rgba(74, 158, 255, 0.05);
-        }
-
-        .feature-icon {
-            width: 24px;
-            height: 24px;
-            border-radius: 4px;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-green));
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: var(--bg-primary);
-        }
-
-        .feature-text {
-            flex: 1;
-        }
-
-        .feature-title {
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.25rem;
-            font-size: 0.95rem;
-        }
-
-        .feature-desc {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .tech-stack {
-            margin: 1.5rem 0;
-            padding: 1.5rem;
-            background: var(--bg-secondary);
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-orange);
-        }
-
-        .tech-stack-title {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.9rem;
-            color: var(--accent-orange);
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .tech-list {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-
-        .tech-item {
-            padding: 0.5rem 1rem;
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 107, 53, 0.2);
-            border-radius: 6px;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--text-primary);
-        }
-
-        .results-section {
-            margin: 1.5rem 0;
-            padding: 1.5rem;
-            background: linear-gradient(135deg, rgba(0, 217, 163, 0.05), rgba(74, 158, 255, 0.05));
-            border-radius: 8px;
-            border: 1px solid rgba(0, 217, 163, 0.2);
-        }
-
-        .results-title {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.9rem;
-            color: var(--accent-green);
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        .result-item {
-            text-align: center;
-            padding: 1rem;
-            background: var(--bg-card);
-            border-radius: 6px;
-        }
-
-        .result-value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--accent-green);
-            font-family: 'IBM Plex Mono', monospace;
-        }
-
-        .result-label {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-top: 0.25rem;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .github-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            color: var(--text-primary);
-            text-decoration: none;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.9rem;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-        }
-
-        .github-btn:hover {
-            border-color: var(--accent-green);
-            background: rgba(0, 217, 163, 0.1);
-            transform: translateX(4px);
-        }
-
-        footer {
-            padding: 3rem 0 2rem;
-            text-align: center;
-            border-top: 1px solid var(--border);
-            margin-top: 4rem;
-        }
-
-        .footer-text {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        .footer-links {
-            margin-top: 1rem;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-link {
-            color: var(--accent-blue);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-link:hover {
-            color: var(--accent-green);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .project-card {
-                padding: 1.5rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Danilo Lazović",
+    "jobTitle": "Digital Operations & Data Engineer",
+    "worksFor": { "@type": "Organization", "name": "Kafeterija" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Faculty of Organizational Sciences, University of Belgrade" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Belgrade", "addressCountry": "RS" },
+    "email": "mailto:dobrilazovic@gmail.com",
+    "url": "https://danilo-lazovic.github.io/",
+    "sameAs": ["https://github.com/danilo-lazovic", "https://linkedin.com/in/danilo-lazovic"]
+  }
+  </script>
 </head>
 <body>
-    <div class="bg-grid"></div>
 
-    <div class="container">
-        <header>
-            <div class="header-content">
-                <div class="header-text">
-                    <h1>Danilo Lazović</h1>
-                    <p class="subtitle">Production Planner @ BOSCH | Operations Management Student @ FON</p>
-                    <div class="header-links">
-                        <a href="https://github.com/danilo-lazovic" class="link-btn primary" target="_blank">
-                            <span>→</span> GitHub
-                        </a>
-                        <a href="mailto:dobrilazovic@gmail.com" class="link-btn">
-                            <span>✉</span> Email
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <section class="projects-section">
-            <h2 class="section-title">Featured Projects</h2>
-
-            <!-- Project 1: TSP -->
-            <div class="project-card">
-                <div class="project-header">
-                    <div>
-                        <div class="project-type">Optimization · Algorithm Design</div>
-                        <h3 class="project-title">TSP Heuristic Optimization</h3>
-                    </div>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">MATLAB</span>
-                        <span class="tag">Algorithms</span>
-                    </div>
-                </div>
-
-                <p class="project-description">
-                    Comprehensive implementation and comparison of four heuristic algorithms for solving the Traveling Salesman Problem (TSP). 
-                    Includes data collection via geocoding, algorithm implementations, and performance analysis across 17 European cities.
-                </p>
-
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <div class="feature-icon">1</div>
-                        <div class="feature-text">
-                            <div class="feature-title">Nearest Neighbor</div>
-                            <div class="feature-desc">Greedy constructive heuristic</div>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">2</div>
-                        <div class="feature-text">
-                            <div class="feature-title">2-OPT Optimization</div>
-                            <div class="feature-desc">Local search improvement</div>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">3</div>
-                        <div class="feature-text">
-                            <div class="feature-title">Simulated Annealing</div>
-                            <div class="feature-desc">Metaheuristic with 50K iterations</div>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">4</div>
-                        <div class="feature-text">
-                            <div class="feature-title">Genetic Algorithm</div>
-                            <div class="feature-desc">Custom evolutionary approach</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tech-stack">
-                    <div class="tech-stack-title">Tech Stack</div>
-                    <div class="tech-list">
-                        <span class="tech-item">Python 3.x</span>
-                        <span class="tech-item">MATLAB R2020+</span>
-                        <span class="tech-item">GeoPy</span>
-                        <span class="tech-item">Pandas</span>
-                        <span class="tech-item">Excel</span>
-                    </div>
-                </div>
-
-                <div class="results-section">
-                    <div class="results-title">Key Achievements</div>
-                    <div class="results-grid">
-                        <div class="result-item">
-                            <div class="result-value">4</div>
-                            <div class="result-label">Algorithms Implemented</div>
-                        </div>
-                        <div class="result-item">
-                            <div class="result-value">17</div>
-                            <div class="result-label">Cities Optimized</div>
-                        </div>
-                        <div class="result-item">
-                            <div class="result-value">50K</div>
-                            <div class="result-label">SA Iterations</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-links">
-                    <a href="https://github.com/danilo-lazovic/tsp-optimization" class="github-btn" target="_blank">
-                        View on GitHub →
-                    </a>
-                </div>
-            </div>
-
-            <!-- Project 2: Production Planning -->
-            <div class="project-card">
-                <div class="project-header">
-                    <div>
-                        <div class="project-type">Production · Automation · Analytics</div>
-                        <h3 class="project-title">Automated Production Planning System</h3>
-                    </div>
-                    <div class="project-tags">
-                        <span class="tag">MATLAB</span>
-                        <span class="tag">Excel</span>
-                        <span class="tag">Operations</span>
-                    </div>
-                </div>
-
-                <p class="project-description">
-                    Intelligent production scheduling system that optimizes manufacturing plans based on demand forecasts and capacity constraints. 
-                    Generates optimal production release schedules while minimizing backlog and avoiding excess inventory buildup.
-                </p>
-
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <div class="feature-icon">📊</div>
-                        <div class="feature-text">
-                            <div class="feature-title">Dynamic Planning</div>
-                            <div class="feature-desc">Excel-based demand & capacity input</div>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">⚙️</div>
-                        <div class="feature-text">
-                            <div class="feature-title">Smart Scheduling</div>
-                            <div class="feature-desc">Automated release planning</div>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">📈</div>
-                        <div class="feature-text">
-                            <div class="feature-title">Visual Analytics</div>
-                            <div class="feature-desc">Comprehensive dashboards</div>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">🎯</div>
-                        <div class="feature-text">
-                            <div class="feature-title">Backlog Minimization</div>
-                            <div class="feature-desc">Real-time tracking & optimization</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tech-stack">
-                    <div class="tech-stack-title">Tech Stack</div>
-                    <div class="tech-list">
-                        <span class="tech-item">MATLAB R2020+</span>
-                        <span class="tech-item">Excel Integration</span>
-                        <span class="tech-item">Custom Algorithms</span>
-                        <span class="tech-item">Data Visualization</span>
-                    </div>
-                </div>
-
-                <div class="results-section">
-                    <div class="results-title">Dashboard Analytics</div>
-                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">
-                        System generates 9 comprehensive visualizations including capacity utilization, backlog analysis, 
-                        inventory tracking, top production items, and demand vs production trends.
-                    </p>
-                    <div class="results-grid">
-                        <div class="result-item">
-                            <div class="result-value">9</div>
-                            <div class="result-label">Analytics Charts</div>
-                        </div>
-                        <div class="result-item">
-                            <div class="result-value">∞</div>
-                            <div class="result-label">Scalable Weeks</div>
-                        </div>
-                        <div class="result-item">
-                            <div class="result-value">Real-time</div>
-                            <div class="result-label">Planning Updates</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-links">
-                    <a href="https://github.com/danilo-lazovic/production-planning" class="github-btn" target="_blank">
-                        View on GitHub →
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <p class="footer-text">Built with passion for operations optimization and data-driven decision making.</p>
-            <div class="footer-links">
-                <a href="https://github.com/danilo-lazovic" class="footer-link">GitHub</a>
-                <a href="https://linkedin.com/in/danilo-lazovic" class="footer-link">LinkedIn</a>
-                <a href="mailto:dobrilazovic@gmail.com" class="footer-link">Email</a>
-            </div>
-        </footer>
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="logo" aria-label="Danilo Lazović, home">DL<i>.</i></a>
+    <nav aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="#now"><span data-l="en">Now</span><span data-l="sr">Sada</span></a></li>
+        <li><a href="#work"><span data-l="en">Work</span><span data-l="sr">Radovi</span></a></li>
+        <li><a href="#experience"><span data-l="en">Experience</span><span data-l="sr">Iskustvo</span></a></li>
+        <li><a href="#skills"><span data-l="en">Skills</span><span data-l="sr">Veštine</span></a></li>
+        <li><a href="#beyond"><span data-l="en">Off the CV</span><span data-l="sr">Van CV-ja</span></a></li>
+        <li><a href="#contact"><span data-l="en">Contact</span><span data-l="sr">Kontakt</span></a></li>
+      </ul>
+    </nav>
+    <div class="nav-tools">
+      <button class="chip-btn lang-btn" type="button" aria-label="Switch language / Promeni jezik">
+        <span class="l-en">EN</span>/<span class="l-sr">SR</span>
+      </button>
+      <button class="chip-btn theme-btn" type="button" aria-label="Toggle dark mode">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
     </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <canvas class="hero-canvas" aria-hidden="true"></canvas>
+  <div class="hero-fade" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span>
+      <span data-l="en">Digital Operations &amp; Data Engineer @ Kafeterija</span>
+      <span data-l="sr">Digital Operations &amp; Data Engineer @ Kafeterija</span>
+    </span>
+
+    <h1>
+      <span data-l="en">Every system has a <em>bottleneck.</em> I find it.</span>
+      <span data-l="sr">Svaki sistem ima <em>usko grlo.</em> Ja ga nađem.</span>
+    </h1>
+
+    <p class="hero-sub" data-l="en">
+      I'm <strong>Danilo Lazović</strong>, an operations engineer who writes code. I've looked for bottlenecks
+      on a <strong>Bosch</strong> production line, in the delivery channels of an <strong>80+ location café chain</strong>,
+      and in the <strong>brain of a fruit fly</strong>.
+    </p>
+    <p class="hero-sub" data-l="sr">
+      Ja sam <strong>Danilo Lazović</strong>, inženjer operacija koji piše kod. Uska grla sam tražio
+      u proizvodnji u <strong>Boschu</strong>, u kanalima dostave <strong>lanca od 80+ kafeterija</strong>
+      i u <strong>mozgu vinske mušice</strong>.
+    </p>
+
+    <div class="hero-ctas">
+      <a class="btn primary" href="#work">
+        <span data-l="en">See the work</span><span data-l="sr">Pogledaj radove</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </a>
+      <a class="btn" href="assets/Danilo_Lazovic_CV_EN.pdf" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M12 12v6M9 15l3 3 3-3"/></svg>
+        <span data-l="en">Download CV</span><span data-l="sr">Preuzmi CV</span>
+      </a>
+      <a class="btn" href="https://github.com/danilo-lazovic" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg>
+        GitHub
+      </a>
+    </div>
+
+    <div class="hero-meta">
+      <span>📍 <span data-l="en">Belgrade, Serbia</span><span data-l="sr">Beograd, Srbija</span></span>
+      <span>FON · <span data-l="en">Operations Management</span><span data-l="sr">Menadžment operacija</span></span>
+      <span>Python · SQL · FastAPI · Next.js · Power BI · OR</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ STATS ============ -->
+<div class="wrap">
+  <div class="stats rv">
+    <div class="stat">
+      <div class="stat-v num">80<sup>+</sup></div>
+      <div class="stat-l" data-l="en">café locations whose Wolt, Glovo, in-house app and Google data I bring together</div>
+      <div class="stat-l" data-l="sr">lokala čije podatke sa Wolta, Glova, naše aplikacije i Googlea objedinjujem</div>
+    </div>
+    <div class="stat">
+      <div class="stat-v num">47k<sup>+</sup></div>
+      <div class="stat-l" data-l="en">Google reviews synced, with AI-drafted replies published from one inbox</div>
+      <div class="stat-l" data-l="sr">Google recenzija sinhronizovano, sa AI odgovorima objavljenim iz jednog sandučeta</div>
+    </div>
+    <div class="stat">
+      <div class="stat-v num">174k</div>
+      <div class="stat-l" data-l="en">neurons in my whole-brain spiking simulation of the fruit fly</div>
+      <div class="stat-l" data-l="sr">neurona u mojoj simulaciji celog mozga vinske mušice</div>
+    </div>
+    <div class="stat">
+      <div class="stat-v num">800<sup>+</sup></div>
+      <div class="stat-l" data-l="en">SKUs on a 52-week horizon in the planning app I built at Bosch</div>
+      <div class="stat-l" data-l="sr">artikala na horizontu od 52 nedelje u aplikaciji za planiranje u Boschu</div>
+    </div>
+    <div class="stat">
+      <div class="stat-v num">1<sup>st</sup></div>
+      <div class="stat-l" data-l="en">place, Belgrade Engineering Days case study (BEST, 2025)</div>
+      <div class="stat-l" data-l="sr">mesto na case study takmičenju Belgrade Engineering Days (BEST, 2025)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ NOW ============ -->
+<section id="now">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-k"><span data-l="en">00 — Now</span><span data-l="sr">00 — Sada</span></div>
+      <h2><span data-l="en">What I'm working on <em>this month</em></span><span data-l="sr">Na čemu radim <em>ovog meseca</em></span></h2>
+    </div>
+    <div class="now-grid">
+      <article class="now-card rv">
+        <div class="now-verb"><span class="dot"></span><span data-l="en">Building</span><span data-l="sr">Gradim</span></div>
+        <h3 data-l="en">Kafeterija Portal</h3><h3 data-l="sr">Kafeterija portal</h3>
+        <p data-l="en">One internal portal for live sales from every register, Wolt, Glovo, our app and reviews. It also raises alarms when a location goes quiet.</p>
+        <p data-l="sr">Jedan interni portal za prodaju uživo sa svake kase, Wolta, Glova, naše aplikacije i za recenzije, sa alarmima kad neki lokal utihne.</p>
+      </article>
+      <article class="now-card rv">
+        <div class="now-verb"><span class="dot"></span><span data-l="en">Writing</span><span data-l="sr">Pišem</span></div>
+        <h3 data-l="en">Fly brain write-up</h3><h3 data-l="sr">Rad o mozgu mušice</h3>
+        <p data-l="en">The analysis and simulation are done. Next are the 3D visualisation of the bottleneck neurons and a short paper-style write-up.</p>
+        <p data-l="sr">Analiza i simulacija su gotove. Sledi 3D vizualizacija neurona uskog grla i kratak rad.</p>
+      </article>
+      <article class="now-card rv">
+        <div class="now-verb"><span class="dot"></span><span data-l="en">Playtesting</span><span data-l="sr">Testiram</span></div>
+        <h3>Colossus</h3>
+        <p data-l="en">A climbing prototype for my game. You hold on to a giant that tries to shake you off. Right now it's "okay, a bit clunky", and I'm iterating until it's fun.</p>
+        <p data-l="sr">Prototip penjanja za moju igru: držiš se za džina koji pokušava da te strese. Trenutno je „okej, malo clunky“, pa iteriram dok ne postane zabavno.</p>
+      </article>
+      <article class="now-card rv">
+        <div class="now-verb"><span class="dot"></span><span data-l="en">Studying</span><span data-l="sr">Studiram</span></div>
+        <h3 data-l="en">Operations Management, FON</h3><h3 data-l="sr">Menadžment operacija, FON</h3>
+        <p data-l="en">Management &amp; Organisation at the University of Belgrade, with optimisation models, heuristics and DEA as the toolkit.</p>
+        <p data-l="sr">Menadžment i organizacija na Univerzitetu u Beogradu, sa optimizacionim modelima, heuristikama i DEA kao alatom.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORK ============ -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-k"><span data-l="en">01 — Selected work</span><span data-l="sr">01 — Izabrani radovi</span></div>
+      <h2><span data-l="en">Things I built, <em>and what they changed</em></span><span data-l="sr">Šta sam napravio <em>i šta je promenilo</em></span></h2>
+      <p data-l="en">Some of it is on my CV. A lot of it isn't, and those parts are marked <span class="tag off">Off-CV</span>. Internal company tools are described without their code or internal figures.</p>
+      <p data-l="sr">Deo je na CV-ju, a dosta nije. To je označeno sa <span class="tag off">Van CV-ja</span>. Interni alati firme su opisani bez koda i internih brojki.</p>
+    </div>
+
+    <!-- Case: Reviews platform -->
+    <article class="case rv">
+      <div>
+        <div class="case-meta">
+          <span class="tag where">Kafeterija · 2026</span>
+          <span class="tag live"><span data-l="en">In production</span><span data-l="sr">U produkciji</span></span>
+        </div>
+        <h3 data-l="en">Google reviews command center for an 80+ location chain</h3>
+        <h3 data-l="sr">Centar za Google recenzije lanca od 80+ lokala</h3>
+        <p class="lede" data-l="en">Reviews were spread across dozens of Google profiles. Replies were written by hand, and managers needed Google access just to answer a guest. I turned that into one inbox.</p>
+        <p class="lede" data-l="sr">Recenzije su bile rasute po desetinama Google profila, odgovori su se pisali ručno, a menadžeri su morali da imaju Google pristup samo da bi odgovorili gostu. Od toga sam napravio jedno sanduče.</p>
+        <ul class="points" data-l="en">
+          <li><b>Full sync from 2016 onwards</b> through three Google Business Profile APIs, with throttling, exponential backoff and per-location fault isolation, so one bad profile never stops the run.</li>
+          <li><b>AI reply drafts (Claude API)</b> that learn each manager's own voice. Their past replies go into the prompt as examples, after filtering out templates and near-duplicates. Prompt caching keeps the cost low.</li>
+          <li><b>One-click publishing to Google</b> on behalf of the company. Managers log in with email only, see only their own locations, and every reply is audited.</li>
+          <li><b>Stats by manager and store format</b>, a map of the chain, and a weekly Excel report in exactly the format the team used before.</li>
+          <li>Started as a single Python script and is now FastAPI + Next.js, Dockerised behind Caddy with automated backups and a test suite.</li>
+        </ul>
+        <ul class="points" data-l="sr">
+          <li><b>Kompletan sync od 2016.</b> kroz tri Google Business Profile API-ja, sa throttlingom, exponential backoffom i izolacijom grešaka po lokaciji: jedan loš profil nikad ne obori ceo prolaz.</li>
+          <li><b>AI predlozi odgovora (Claude API)</b> koji uče stil svakog menadžera: njegovi raniji odgovori idu u prompt kao primeri (bez šablona i duplikata), a keširanje prompta drži cenu nisko.</li>
+          <li><b>Objava na Google jednim klikom</b> u ime firme. Menadžeri se prijavljuju samo mejlom, vide samo svoje lokale, a svaki odgovor ostaje u audit logu.</li>
+          <li><b>Statistika po menadžeru i formatu lokala</b>, mapa lanca i nedeljni Excel izveštaj tačno u formatu koji je tim ranije vodio ručno.</li>
+          <li>Počelo je kao jedna Python skripta, a danas je FastAPI + Next.js, u Dockeru iza Caddyja, sa automatskim backupom i testovima.</li>
+        </ul>
+        <div class="stack"><span>FastAPI</span><span>Next.js</span><span>TypeScript</span><span>Google Cloud / OAuth</span><span>Claude API</span><span>Docker</span><span>Caddy</span><span>pytest</span></div>
+        <div class="case-links">
+          <span class="link-arrow private">🔒 <span data-l="en">Private repo, demo on request</span><span data-l="sr">Privatni repo, demo na zahtev</span></span>
+        </div>
+      </div>
+      <div class="case-side">
+        <div class="kpis">
+          <div class="kpi"><b class="num">47k+</b><span data-l="en">reviews synced</span><span data-l="sr">recenzija u bazi</span></div>
+          <div class="kpi"><b class="num">80+</b><span data-l="en">locations</span><span data-l="sr">lokala</span></div>
+          <div class="kpi"><b class="num">1</b><span data-l="en">inbox for all</span><span data-l="sr">sanduče za sve</span></div>
+        </div>
+        <div class="panel">
+          <div class="panel-t"><span data-l="en">How a reply travels</span><span data-l="sr">Put jednog odgovora</span></div>
+          <div class="flow">
+            <div class="flow-row"><div class="flow-k">Google</div><div class="flow-v"><span class="node">Account Mgmt</span><span class="node">Business Info</span><span class="node">Reviews v4</span></div></div>
+            <div class="flow-arrow"><svg viewBox="0 0 12 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 0v13M1 8l5 5 5-5"/></svg></div>
+            <div class="flow-row"><div class="flow-k">Sync</div><div class="flow-v"><span class="node">FastAPI</span><span class="node">backoff · QPS</span><span class="node">SQL</span></div></div>
+            <div class="flow-arrow"><svg viewBox="0 0 12 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 0v13M1 8l5 5 5-5"/></svg></div>
+            <div class="flow-row"><div class="flow-k">AI</div><div class="flow-v"><span class="node hot">Claude</span><span class="node"><span data-l="en">manager's style</span><span data-l="sr">stil menadžera</span></span><span class="node"><span data-l="en">tags &amp; themes</span><span data-l="sr">teme</span></span></div></div>
+            <div class="flow-arrow"><svg viewBox="0 0 12 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 0v13M1 8l5 5 5-5"/></svg></div>
+            <div class="flow-row"><div class="flow-k"><span data-l="en">Human</span><span data-l="sr">Čovek</span></div><div class="flow-v"><span class="node"><span data-l="en">manager edits</span><span data-l="sr">menadžer doradi</span></span><span class="node ok"><span data-l="en">publish to Google</span><span data-l="sr">objava na Google</span></span></div></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Case: Portal (off CV) -->
+    <article class="case rv">
+      <div>
+        <div class="case-meta">
+          <span class="tag where">Kafeterija · 2026</span>
+          <span class="tag off"><span data-l="en">Off-CV</span><span data-l="sr">Van CV-ja</span></span>
+          <span class="tag"><span data-l="en">in development</span><span data-l="sr">u razvoju</span></span>
+        </div>
+        <h3 data-l="en">Kafeterija Portal: one screen for every channel</h3>
+        <h3 data-l="sr">Kafeterija portal: jedan ekran za sve kanale</h3>
+        <p class="lede" data-l="en">Sales lived in the POS, delivery numbers in the Wolt and Glovo dashboards, and reviews in my other tool. I'm building the internal portal that pulls all of it into one database, with roles and alarms on top.</p>
+        <p class="lede" data-l="sr">Prodaja je živela u kasi, dostava na Wolt i Glovo portalima, a recenzije u mom drugom alatu. Pravim interni portal koji sve to sliva u jednu bazu, sa ulogama i alarmima.</p>
+        <ul class="points" data-l="en">
+          <li><b>Workers, not live calls.</b> A POS sync pulls orders every 60 s with a 3-hour lookback for late voids and a nightly reconciliation of the full previous day. The portal only ever reads our own Postgres.</li>
+          <li><b>Automatic anomaly alarms.</b> Each day is compared with the same weekday over the previous four weeks. A location that drops 70% raises "location stopped", and a channel that falls 15–20% raises "channel drop". The thresholds are editable by admins.</li>
+          <li><b>Honest numbers:</b> like-for-like comparisons only, partial days compared to the same hour last week, and figures cut off at the last successful sync when data is late.</li>
+          <li><b>Four roles</b> (admin, management, marketing, store manager), enforced in the API rather than by hiding things in the UI. An audit log records everything that leaves the portal.</li>
+          <li>Designed first as a full design system with mock screens for desktop and mobile, then built module by module.</li>
+        </ul>
+        <ul class="points" data-l="sr">
+          <li><b>Workeri, ne direktni pozivi.</b> POS sync povlači porudžbine na 60 s, sa lookbackom od 3 sata za kasne storne i noćnom rekoncilijacijom celog prethodnog dana. Portal čita samo iz naše Postgres baze.</li>
+          <li><b>Automatski alarmi za anomalije.</b> Svaki dan se poredi sa istim danom u prethodne četiri nedelje: pad lokala od 70% daje „lokal stao“, a pad kanala od 15–20% daje „pad kanala“. Pragove menja admin.</li>
+          <li><b>Poštene brojke:</b> samo like-for-like poređenja, delimičan dan prema istom satu prošle nedelje, a kad podaci kasne, sve se seče na poslednji uspešan sync.</li>
+          <li><b>Četiri uloge</b> (admin, uprava, marketing, menadžer lokala) koje se sprovode u API-ju, a ne sakrivanjem u UI-ju. Sve što izlazi iz portala ide u audit log.</li>
+          <li>Prvo je dizajniran ceo dizajn sistem sa mock ekranima za desktop i telefon, pa građen modul po modul.</li>
+        </ul>
+        <div class="stack"><span>FastAPI</span><span>SQLAlchemy</span><span>Alembic</span><span>PostgreSQL</span><span>Next.js</span><span>Recharts</span><span>Leaflet</span><span>Docker Compose</span><span>Playwright</span></div>
+      </div>
+      <div class="case-side">
+        <div class="panel">
+          <div class="panel-t"><span data-l="en">Architecture: four layers</span><span data-l="sr">Arhitektura: četiri sloja</span></div>
+          <div class="flow">
+            <div class="flow-row"><div class="flow-k"><span data-l="en">Sources</span><span data-l="sr">Izvori</span></div><div class="flow-v"><span class="node">POS</span><span class="node">Wolt</span><span class="node">Glovo</span><span class="node"><span data-l="en">Our app</span><span data-l="sr">Naša app</span></span><span class="node">Google</span></div></div>
+            <div class="flow-arrow"><svg viewBox="0 0 12 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 0v13M1 8l5 5 5-5"/></svg></div>
+            <div class="flow-row"><div class="flow-k">Workers</div><div class="flow-v"><span class="node">pos_sync · 60s</span><span class="node">platform_sync</span><span class="node">gbp_sync</span></div></div>
+            <div class="flow-arrow"><svg viewBox="0 0 12 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 0v13M1 8l5 5 5-5"/></svg></div>
+            <div class="flow-row"><div class="flow-k"><span data-l="en">Data</span><span data-l="sr">Podaci</span></div><div class="flow-v"><span class="node ok">PostgreSQL</span><span class="node hot"><span data-l="en">alarms</span><span data-l="sr">alarmi</span></span><span class="node">audit log</span></div></div>
+            <div class="flow-arrow"><svg viewBox="0 0 12 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 0v13M1 8l5 5 5-5"/></svg></div>
+            <div class="flow-row"><div class="flow-k">Portal</div><div class="flow-v"><span class="node"><span data-l="en">Live sales</span><span data-l="sr">Prodaja uživo</span></span><span class="node">Digital</span><span class="node"><span data-l="en">Reviews</span><span data-l="sr">Recenzije</span></span><span class="node">Admin</span></div></div>
+            <div class="flow-arrow"><svg viewBox="0 0 12 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 0v13M1 8l5 5 5-5"/></svg></div>
+            <div class="flow-row"><div class="flow-k"><span data-l="en">Next</span><span data-l="sr">Sledeće</span></div><div class="flow-v"><span class="node"><span data-l="en">AI agents via MCP</span><span data-l="sr">AI agenti preko MCP-a</span></span><span class="node"><span data-l="en">knowledge vault</span><span data-l="sr">baza znanja</span></span></div></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-t"><span data-l="en">Alarm rules (vs same weekday, last 4 weeks)</span><span data-l="sr">Pravila alarma (vs isti dan, prethodne 4 nedelje)</span></div>
+          <div class="bars">
+            <div class="bar hl"><span class="bar-l"><span data-l="en">Location stopped</span><span data-l="sr">Lokal stao</span></span><span class="bar-t"><span class="bar-f" style="--w:70%"></span></span><span class="bar-v">−70%</span></div>
+            <div class="bar"><span class="bar-l"><span data-l="en">Glovo channel drop</span><span data-l="sr">Pad kanala Glovo</span></span><span class="bar-t"><span class="bar-f" style="--w:20%"></span></span><span class="bar-v">−20%</span></div>
+            <div class="bar"><span class="bar-l"><span data-l="en">Wolt channel drop</span><span data-l="sr">Pad kanala Wolt</span></span><span class="bar-t"><span class="bar-f" style="--w:15%"></span></span><span class="bar-v">−15%</span></div>
+            <div class="bar"><span class="bar-l"><span data-l="en">Fewer active locations</span><span data-l="sr">Manje aktivnih lokala</span></span><span class="bar-t"><span class="bar-f" style="--w:12%"></span></span><span class="bar-v">−12%</span></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Case: Digital reporting + AI automations -->
+    <article class="case rv">
+      <div>
+        <div class="case-meta">
+          <span class="tag where">Kafeterija · 2026</span>
+          <span class="tag off"><span data-l="en">Partly off-CV</span><span data-l="sr">Delom van CV-ja</span></span>
+        </div>
+        <h3 data-l="en">Digital channels reporting, run by AI agents</h3>
+        <h3 data-l="sr">Izveštavanje za digitalne kanale koje vode AI agenti</h3>
+        <p class="lede" data-l="en">Kafeterija sells through Wolt, Glovo and its own commission-free delivery app. I built the reporting that shows which channel, location and menu item actually earns, and then automated the boring parts so the reports fill themselves in.</p>
+        <p class="lede" data-l="sr">Kafeterija prodaje preko Wolta, Glova i sopstvene aplikacije za dostavu bez provizije. Napravio sam izveštavanje koje pokazuje koji kanal, lokal i artikal stvarno zarađuje, pa automatizovao dosadne delove tako da se izveštaji sami pune.</p>
+        <ul class="points" data-l="en">
+          <li><b>Unified Power BI / Excel model</b> with a three-layer DIM → RAW → IZV (report) architecture, so a new month is a data drop, not a rebuild.</li>
+          <li><b>Ad-spend and ROAS tracking</b> per channel, plus <b>BCG-matrix menu analysis</b> that sorts items into stars, cash cows, puzzles and dogs.</li>
+          <li><b>Scheduled AI agents</b> (Claude Cowork) that log into the Wolt and Glovo portals every morning, download yesterday's exports and drop them into the portal's import folder. They never handle passwords and ask for a human when a session expires.</li>
+          <li>Agents also fill in the weekly Google-reviews report, the monthly Power BI data, and the monthly Glovo promo plan for the marketing sheet.</li>
+          <li>Coordination with Wolt, Glovo and external integrators, and tracking the growth of our own delivery app.</li>
+        </ul>
+        <ul class="points" data-l="sr">
+          <li><b>Objedinjen Power BI / Excel model</b> sa troslojnom arhitekturom DIM → RAW → IZV, tako da je novi mesec samo ubacivanje podataka, a ne pravljenje ispočetka.</li>
+          <li><b>Praćenje ulaganja u oglase i ROAS-a</b> po kanalu, i <b>BCG analiza menija</b> koja deli artikle na zvezde, krave muzare, upitnike i pse.</li>
+          <li><b>Zakazani AI agenti</b> (Claude Cowork) se svako jutro uloguju na Wolt i Glovo portale, skinu jučerašnje izvoze i ubace ih u folder za uvoz u portal. Lozinke ne diraju, a kad sesija istekne, traže čoveka.</li>
+          <li>Agenti popunjavaju i nedeljni izveštaj Google recenzija, mesečne Power BI podatke i mesečni plan Glovo akcija u marketing tabeli.</li>
+          <li>Koordinacija sa Woltom, Glovom i spoljnim integratorima, i praćenje rasta naše aplikacije za dostavu.</li>
+        </ul>
+        <div class="stack"><span>Power BI</span><span>Power Query</span><span>Excel</span><span>Claude Cowork</span><span>Python</span><span>Playwright</span></div>
+      </div>
+      <div class="case-side">
+        <div class="panel">
+          <div class="panel-t"><span data-l="en">A morning, automated</span><span data-l="sr">Jedno jutro, automatizovano</span></div>
+          <div class="flow">
+            <div class="flow-row"><div class="flow-k">08:00</div><div class="flow-v"><span class="node hot"><span data-l="en">agent wakes up</span><span data-l="sr">agent se budi</span></span></div></div>
+            <div class="flow-row"><div class="flow-k">08:02</div><div class="flow-v"><span class="node">Glovo · Performance CSV</span><span class="node">Wolt · Purchase data</span></div></div>
+            <div class="flow-row"><div class="flow-k">08:05</div><div class="flow-v"><span class="node"><span data-l="en">import ≤ 30 s</span><span data-l="sr">uvoz ≤ 30 s</span></span><span class="node"><span data-l="en">VAT &amp; brand cleanup</span><span data-l="sr">PDV i brendovi</span></span></div></div>
+            <div class="flow-row"><div class="flow-k">08:06</div><div class="flow-v"><span class="node ok"><span data-l="en">alarms computed</span><span data-l="sr">alarmi izračunati</span></span><span class="node ok"><span data-l="en">dashboards fresh</span><span data-l="sr">dashboardi sveži</span></span></div></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-t"><span data-l="en">BCG menu matrix</span><span data-l="sr">BCG matrica menija</span></div>
+          <svg viewBox="0 0 320 170" class="tsp-map bcg" role="img" aria-label="BCG matrix: popularity versus margin, four quadrants">
+            <line x1="160" y1="8" x2="160" y2="150" stroke="currentColor" stroke-opacity=".25"/>
+            <line x1="20" y1="80" x2="310" y2="80" stroke="currentColor" stroke-opacity=".25"/>
+            <text x="300" y="22" text-anchor="end">STARS ★</text>
+            <text x="28" y="22">PUZZLES ?</text>
+            <text x="300" y="142" text-anchor="end">CASH COWS</text>
+            <text x="28" y="142">DOGS</text>
+            <g>
+              <circle cx="232" cy="44" r="7" style="fill:var(--accent)"/><circle cx="262" cy="56" r="5" style="fill:var(--accent)"/><circle cx="205" cy="62" r="4" style="fill:var(--accent)"/>
+              <circle cx="96" cy="40" r="5"/><circle cx="122" cy="60" r="4"/>
+              <circle cx="240" cy="108" r="6" style="fill:var(--green)"/><circle cx="198" cy="118" r="4" style="fill:var(--green)"/>
+              <circle cx="80" cy="116" r="3" opacity=".5"/><circle cx="110" cy="104" r="3.5" opacity=".5"/>
+            </g>
+            <text x="165" y="165" text-anchor="middle">popularity →</text>
+            <text x="10" y="80" transform="rotate(-90 10 80)" text-anchor="middle">margin →</text>
+          </svg>
+          <p class="note" data-l="en">Illustrative layout. The real matrix runs on internal data.</p>
+          <p class="note" data-l="sr">Ilustracija rasporeda. Prava matrica radi na internim podacima.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Case: Fly brain -->
+    <article class="case rv">
+      <div>
+        <div class="case-meta">
+          <span class="tag where"><span data-l="en">Research · 2026</span><span data-l="sr">Istraživanje · 2026</span></span>
+          <span class="tag"><span data-l="en">ongoing</span><span data-l="sr">u toku</span></span>
+        </div>
+        <h3 data-l="en">Bottlenecks of the fly brain</h3>
+        <h3 data-l="sr">Uska grla u mozgu mušice</h3>
+        <p class="lede" data-l="en">The male <i>Drosophila</i> connectome, released in 2026, has 174,386 neurons and 25.8 million synaptic edges. I asked an operations question: which neurons are the structural bottleneck between a sense and a movement? Then I tested the answer in simulation.</p>
+        <p class="lede" data-l="sr">Konektom mužjaka <i>Drosophile</i>, objavljen 2026, ima 174.386 neurona i 25,8 miliona sinaptičkih veza. Postavio sam pitanje iz operacija: koji neuroni su strukturno usko grlo između čula i pokreta? Odgovor sam onda proverio u simulaciji.</p>
+        <ul class="points" data-l="en">
+          <li><b>Hypothesis → prediction → test.</b> Max-flow / min-cut gives the prediction, and in-silico ablation in a whole-brain spiking (LIF) model tests it.</li>
+          <li><b>Finding 1:</b> cutting a sense off from <i>all</i> descending neurons just returns its first relay layer. The fly CNS is shallow, with a median of 2 hops from sense to motor. So I targeted specific behaviours instead.</li>
+          <li><b>Vision → giant fiber:</b> the full-graph cut is dominated by LPLC2 and LC4, the neurons experiments already link to looming escape. The cut found them from wiring alone, without being told what to look for.</li>
+          <li><b>Taste → MN9 (proboscis):</b> silencing the 34-neuron min-cut drops the motor neuron to <b>0.4%</b> of its firing rate. The same number of random neurons changes nothing.</li>
+          <li>Re-implemented the Shiu et al. 2024 LIF model in numba with exact integration, cross-checked three max-flow solvers, and wrote unit tests for the simulator.</li>
+        </ul>
+        <ul class="points" data-l="sr">
+          <li><b>Hipoteza → predikcija → test.</b> Max-flow / min-cut daje predikciju, a in-silico ablacija u spajking (LIF) modelu celog mozga je testira.</li>
+          <li><b>Nalaz 1:</b> kad se čulo odseče od <i>svih</i> silaznih neurona, dobije se samo prvi sloj releja. Nervni sistem mušice je plitak (medijana 2 skoka od čula do motorike), pa sam ciljao konkretna ponašanja.</li>
+          <li><b>Vid → giant fiber:</b> presek na celom grafu predvode LPLC2 i LC4, upravo neuroni koje eksperimenti već vezuju za bekstvo od pretnje. Presek ih je našao samo iz veza, bez ikakvog nagoveštaja šta da traži.</li>
+          <li><b>Ukus → MN9 (proboscis):</b> utišavanje min-cut skupa od 34 neurona obara motorni neuron na <b>0,4%</b> frekvencije. Isti broj nasumičnih neurona ne menja ništa.</li>
+          <li>LIF model iz Shiu et al. 2024 sam ponovo implementirao u numbi sa egzaktnom integracijom, uporedio tri max-flow solvera i napisao testove za simulator.</li>
+        </ul>
+        <div class="stack"><span>Python</span><span>OR-Tools</span><span>igraph</span><span>SciPy</span><span>numba</span><span>neuPrint</span><span>parquet</span><span>plotly</span></div>
+        <div class="case-links">
+          <a class="link-arrow" href="https://github.com/danilo-lazovic/fly-bottlenecks" target="_blank" rel="noopener"><span data-l="en">Code &amp; results on GitHub</span><span data-l="sr">Kod i rezultati na GitHubu</span> →</a>
+        </div>
+      </div>
+      <div class="case-side">
+        <div class="kpis">
+          <div class="kpi"><b class="num">174k</b><span data-l="en">neurons</span><span data-l="sr">neurona</span></div>
+          <div class="kpi"><b class="num"><span data-l="en">25.8M</span><span data-l="sr">25,8M</span></b><span data-l="en">synaptic edges</span><span data-l="sr">sinaptičkih veza</span></div>
+          <div class="kpi"><b class="num"><span data-l="en">0.4%</span><span data-l="sr">0,4%</span></b><span data-l="en">firing left after the cut</span><span data-l="sr">aktivnosti posle preseka</span></div>
+        </div>
+        <div class="panel reveal-bars">
+          <div class="panel-t"><span data-l="en">MN9 firing rate after silencing 34 neurons (Hz)</span><span data-l="sr">Frekvencija MN9 posle utišavanja 34 neurona (Hz)</span></div>
+          <div class="bars">
+            <div class="bar base"><span class="bar-l"><span data-l="en">Intact brain</span><span data-l="sr">Netaknut mozak</span></span><span class="bar-t"><span class="bar-f" style="--w:91.3%"></span></span><span class="bar-v">107.7</span></div>
+            <div class="bar"><span class="bar-l"><span data-l="en">Out-strength top-34</span><span data-l="sr">Out-strength top-34</span></span><span class="bar-t"><span class="bar-f" style="--w:100%"></span></span><span class="bar-v">118.0</span></div>
+            <div class="bar"><span class="bar-l">PageRank top-34</span><span class="bar-t"><span class="bar-f" style="--w:91.4%"></span></span><span class="bar-v">107.8</span></div>
+            <div class="bar"><span class="bar-l"><span data-l="en">Random on-path (×20)</span><span data-l="sr">Nasumični na putu (×20)</span></span><span class="bar-t"><span class="bar-f" style="--w:90.9%"></span></span><span class="bar-v">107.3</span></div>
+            <div class="bar"><span class="bar-l"><span data-l="en">Path betweenness top-34</span><span data-l="sr">Path betweenness top-34</span></span><span class="bar-t"><span class="bar-f" style="--w:37.5%"></span></span><span class="bar-v">44.3</span></div>
+            <div class="bar hl"><span class="bar-l"><span data-l="en">Min-cut (mine)</span><span data-l="sr">Min-cut (moj)</span></span><span class="bar-t"><span class="bar-f" style="--w:0.6%"></span></span><span class="bar-v">0.38</span></div>
+          </div>
+          <p class="note" data-l="en">Mean of both MN9 cells, 30 trials × 1 s. Caveats are in the repo: the random baseline is weak, so the real comparison is with betweenness.</p>
+          <p class="note" data-l="sr">Prosek obe MN9 ćelije, 30 pokušaja × 1 s. Ograde su u repou: nasumična osnova je slaba, pa je pravo poređenje sa betweenness-om.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Case: Bosch -->
+    <article class="case rv">
+      <div>
+        <div class="case-meta">
+          <span class="tag where">BOSCH · Šimanovci · 2026</span>
+        </div>
+        <h3 data-l="en">800+ SKUs, 52 weeks, one planning app</h3>
+        <h3 data-l="sr">800+ artikala, 52 nedelje, jedna aplikacija za planiranje</h3>
+        <p class="lede" data-l="en">As a Production Planner in Logistics I planned and procured materials in SAP and Excel. Alongside the day-to-day work I built tools to automate the planning itself.</p>
+        <p class="lede" data-l="sr">Kao planer proizvodnje u logistici planirao sam i nabavljao materijal u SAP-u i Excelu. Pored svakodnevnog posla napravio sam alate koji automatizuju samo planiranje.</p>
+        <ul class="points" data-l="en">
+          <li><b>Standalone desktop app (Python / PyQt5)</b> that plans <b>800+ SKUs across a 52-week horizon</b> against demand, capacity and inventory.</li>
+          <li><b>VBA capacity-allocation tool</b> in Excel, plus <b>Power Query automation</b> feeding Power BI reports.</li>
+          <li>Supplier delivery-performance monitoring and delay reports. I also created and maintained material master data in SAP.</li>
+        </ul>
+        <ul class="points" data-l="sr">
+          <li><b>Samostalna desktop aplikacija (Python / PyQt5)</b> koja planira <b>800+ artikala na horizontu od 52 nedelje</b> prema tražnji, kapacitetu i zalihama.</li>
+          <li><b>VBA alat za alokaciju kapaciteta</b> u Excelu i <b>Power Query automatizacija</b> za Power BI izveštaje.</li>
+          <li>Praćenje isporuka dobavljača i izveštaji o kašnjenjima. Pravio sam i održavao matične podatke materijala u SAP-u.</li>
+        </ul>
+        <div class="stack"><span>Python</span><span>PyQt5</span><span>VBA</span><span>Power Query</span><span>Power BI</span><span>SAP</span></div>
+      </div>
+      <div class="case-side">
+        <div class="kpis">
+          <div class="kpi"><b class="num">800+</b><span>SKUs</span></div>
+          <div class="kpi"><b class="num">52</b><span data-l="en">week horizon</span><span data-l="sr">nedelje horizont</span></div>
+          <div class="kpi"><b class="num">3</b><span data-l="en">tools shipped</span><span data-l="sr">alata</span></div>
+        </div>
+        <div class="panel">
+          <div class="panel-t"><span data-l="en">The planning loop</span><span data-l="sr">Petlja planiranja</span></div>
+          <div class="flow">
+            <div class="flow-row"><div class="flow-k"><span data-l="en">Input</span><span data-l="sr">Ulaz</span></div><div class="flow-v"><span class="node"><span data-l="en">customer demand</span><span data-l="sr">tražnja kupaca</span></span><span class="node"><span data-l="en">capacity</span><span data-l="sr">kapacitet</span></span><span class="node"><span data-l="en">stock</span><span data-l="sr">zalihe</span></span></div></div>
+            <div class="flow-arrow"><svg viewBox="0 0 12 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 0v13M1 8l5 5 5-5"/></svg></div>
+            <div class="flow-row"><div class="flow-k"><span data-l="en">Plan</span><span data-l="sr">Plan</span></div><div class="flow-v"><span class="node hot">PyQt5 app</span><span class="node">VBA <span data-l="en">allocation</span><span data-l="sr">alokacija</span></span></div></div>
+            <div class="flow-arrow"><svg viewBox="0 0 12 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 0v13M1 8l5 5 5-5"/></svg></div>
+            <div class="flow-row"><div class="flow-k"><span data-l="en">Execute</span><span data-l="sr">Izvršenje</span></div><div class="flow-v"><span class="node">SAP</span><span class="node"><span data-l="en">supplier follow-up</span><span data-l="sr">praćenje dobavljača</span></span></div></div>
+            <div class="flow-arrow"><svg viewBox="0 0 12 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 0v13M1 8l5 5 5-5"/></svg></div>
+            <div class="flow-row"><div class="flow-k"><span data-l="en">Report</span><span data-l="sr">Izveštaj</span></div><div class="flow-v"><span class="node ok">Power Query → Power BI</span></div></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Case: Colossus (off CV) -->
+    <article class="case rv">
+      <div>
+        <div class="case-meta">
+          <span class="tag where"><span data-l="en">Personal · 2026</span><span data-l="sr">Lični projekat · 2026</span></span>
+          <span class="tag off"><span data-l="en">Off-CV</span><span data-l="sr">Van CV-ja</span></span>
+        </div>
+        <h3 data-l="en">Colossus: directing a game studio made of AI agents</h3>
+        <h3 data-l="sr">Colossus: režiram studio za igre sastavljen od AI agenata</h3>
+        <p class="lede" data-l="en">A 3D game in the spirit of <i>Shadow of the Colossus</i>, built in Unity 6. I'm the Creative Director. The programmer, tech artist, 3D artist, 2D artist and playtester are Claude agents that control Unity and Blender directly over MCP.</p>
+        <p class="lede" data-l="sr">3D igra u duhu <i>Shadow of the Colossus</i>, u Unity 6. Ja sam kreativni direktor, a programer, tehnički umetnik, 3D i 2D umetnik i tester su Claude agenti koji preko MCP-a direktno upravljaju Unity-jem i Blenderom.</p>
+        <ul class="points" data-l="en">
+          <li><b>Every phase answers one question</b>, and I don't move on until the answer is yes. "Is it pleasant to run on empty terrain?" "Is grip and stamina tense?" "Is it fun to hold on to something that's trying to shake you off?"</li>
+          <li><b>Done so far:</b> third-person movement with a Cinemachine camera, a world from CC0 assets, grip-and-stamina climbing on a 36 m tower, and climbing a moving, shaking colossus (the core test).</li>
+          <li>Every task is a written brief → a feature branch → a playtest report with screenshots → my review. The agents may not invent design decisions, so anything open stays marked for me.</li>
+        </ul>
+        <ul class="points" data-l="sr">
+          <li><b>Svaka faza odgovara na jedno pitanje</b> i ne idem dalje dok odgovor nije „da“. „Da li je prijatno trčati po praznom terenu?“ „Da li su grip i stamina napeti?“ „Da li je zabavno držati se za nešto što pokušava da te strese?“</li>
+          <li><b>Urađeno:</b> kretanje iz trećeg lica sa Cinemachine kamerom, svet od CC0 asseta, penjanje sa gripom i staminom po kuli od 36 m i penjanje po kolosu koji se kreće i trese (core test).</li>
+          <li>Svaki zadatak ide ovim putem: pisani brief → feature grana → izveštaj sa playtesta sa screenshotovima → moj review. Agenti ne smeju da izmišljaju dizajnerske odluke, pa sve otvoreno ostaje označeno za mene.</li>
+        </ul>
+        <blockquote class="quote" data-l="en">
+          “It should feel like coming back to your hometown after a while, and everything that was supposed to wait for you is gone.”
+          <cite>— from my game design doc, on the tone</cite>
+        </blockquote>
+        <blockquote class="quote" data-l="sr">
+          „Kao kad se vratiš u rodni grad posle izvesnog vremena i imaš osećaj da nema ničega, jer sve što je trebalo da te sačeka fali.“
+          <cite>— iz mog dizajn dokumenta, o tonu igre</cite>
+        </blockquote>
+        <div class="stack"><span>Unity 6 (URP)</span><span>C#</span><span>Cinemachine</span><span>Blender</span><span>Claude Code</span><span>MCP</span><span>Git LFS</span></div>
+      </div>
+      <div class="case-side">
+        <div class="gallery">
+          <figure class="tall"><img src="assets/img/colossus-concept.webp" alt="Concept art of the first colossus, a tall creature covered in dry moss" loading="lazy" width="531" height="830"><figcaption>concept</figcaption></figure>
+          <figure><img src="assets/img/colossus-spawn.webp" alt="Prototype: the player stands in an empty plain, the colossus and a ruined tower in the distance" loading="lazy" width="640" height="360"><figcaption>brief 005 · spawn</figcaption></figure>
+          <figure><img src="assets/img/colossus-shoulder.webp" alt="Prototype: the player climbing on the colossus's shoulder" loading="lazy" width="640" height="360"><figcaption>brief 005 · shoulder</figcaption></figure>
+        </div>
+        <figure class="shot"><img src="assets/img/colossus-blockout.webp" alt="Blender blockout of the colossus from the front, side and back" loading="lazy" width="640" height="320"><figcaption>Blender blockout v2</figcaption></figure>
+        <div class="panel">
+          <div class="panel-t"><span data-l="en">Design pillars</span><span data-l="sr">Stubovi dizajna</span></div>
+          <div class="pillars">
+            <div class="pillar"><b data-l="en">Scale</b><b data-l="sr">Skala</b><span data-l="en">You are small. Everything else is huge.</span><span data-l="sr">Ti si mali, sve ostalo je ogromno.</span></div>
+            <div class="pillar"><b data-l="en">Silence</b><b data-l="sr">Tišina</b><span data-l="en">The empty space is the experience.</span><span data-l="sr">Praznina je deo iskustva.</span></div>
+            <div class="pillar"><b data-l="en">Fight = puzzle</b><b data-l="sr">Borba = zagonetka</b><span data-l="en">Won by understanding, not stats.</span><span data-l="sr">Pobeđuje se razumevanjem, ne statovima.</span></div>
+            <div class="pillar"><b data-l="en">Longing</b><b data-l="sr">Čežnja</b><span data-l="en">Personal, not cosmic, emptiness.</span><span data-l="sr">Praznina lična, ne kosmička.</span></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Smaller projects -->
+    <div class="minis">
+      <article class="mini rv">
+        <div class="case-meta" style="margin:0"><span class="tag where">2025</span><span class="tag">MATLAB · Excel</span></div>
+        <h4 data-l="en">Automated production planning</h4><h4 data-l="sr">Automatsko planiranje proizvodnje</h4>
+        <p data-l="en">A scheduler that turns weekly demand forecasts and daily capacity into release plans. It clears backlog first, avoids building stock early, and draws 9 analytics charts.</p>
+        <p data-l="sr">Planer koji nedeljne prognoze tražnje i dnevne kapacitete pretvara u plan puštanja u proizvodnju. Prvo smanjuje backlog, izbegava prerano gomilanje zaliha i crta 9 analitičkih grafika.</p>
+        <div class="viz reveal-bars">
+          <div class="panel-t" style="margin-bottom:10px"><span data-l="en">Algorithm priorities</span><span data-l="sr">Prioriteti algoritma</span></div>
+          <div class="bars">
+            <div class="bar hl"><span class="bar-l"><span data-l="en">Clear backlog</span><span data-l="sr">Skini backlog</span></span><span class="bar-t"><span class="bar-f" style="--w:100%"></span></span><span class="bar-v">1</span></div>
+            <div class="bar"><span class="bar-l"><span data-l="en">Respect capacity</span><span data-l="sr">Poštuj kapacitet</span></span><span class="bar-t"><span class="bar-f" style="--w:75%"></span></span><span class="bar-v">2</span></div>
+            <div class="bar"><span class="bar-l"><span data-l="en">Minimise WIP</span><span data-l="sr">Minimalan WIP</span></span><span class="bar-t"><span class="bar-f" style="--w:50%"></span></span><span class="bar-v">3</span></div>
+          </div>
+        </div>
+        <div class="case-links"><a class="link-arrow" href="https://github.com/danilo-lazovic/production-planning" target="_blank" rel="noopener">GitHub →</a></div>
+      </article>
+
+      <article class="mini rv">
+        <div class="case-meta" style="margin:0"><span class="tag where">2025</span><span class="tag">Python · MATLAB</span></div>
+        <h4 data-l="en">TSP heuristics, head to head</h4><h4 data-l="sr">TSP heuristike, jedna protiv druge</h4>
+        <p data-l="en">Nearest Neighbour, 2-OPT, Simulated Annealing (50k iterations) and a custom Genetic Algorithm on 17 European cities, with coordinates geocoded in Python. At this size, plain 2-OPT local search beat both metaheuristics.</p>
+        <p data-l="sr">Nearest Neighbour, 2-OPT, simulirano kaljenje (50k iteracija) i sopstveni genetski algoritam na 17 evropskih gradova, sa koordinatama dobijenim geokodiranjem u Pythonu. Na ovoj veličini je obična 2-OPT lokalna pretraga pobedila obe metaheuristike.</p>
+        <div class="viz tsp-wrap">
+          <svg class="tsp-map" viewBox="0 0 530 260" role="img" aria-label="Map of the 17-city tour after 2-OPT, from Paris and Amsterdam to Minsk and Sofia">
+            <path class="route" d="M368.1,200.3 L357.6,215.8 L366.0,217.8 L376.7,215.5 L395.4,228.6 L422.5,240.4 L503.0,27.6 L72.5,56.7 L24.0,123.4 L125.4,195.4 L272.7,157.4 L290.5,135.7 L341.1,149.2 L353.0,175.8 L342.5,182.0 L356.2,191.6 L366.6,189.4 Z"/>
+            <g>
+              <circle cx="368.1" cy="200.3" r="7" style="fill:var(--accent)"/>
+              <circle cx="356.2" cy="191.6" r="4"/><circle cx="395.4" cy="228.6" r="4"/><circle cx="376.7" cy="215.5" r="4"/>
+              <circle cx="353.0" cy="175.8" r="4"/><circle cx="366.6" cy="189.4" r="4"/><circle cx="366.0" cy="217.8" r="4"/>
+              <circle cx="342.5" cy="182.0" r="4"/><circle cx="341.1" cy="149.2" r="4"/><circle cx="422.5" cy="240.4" r="4"/>
+              <circle cx="290.5" cy="135.7" r="4"/><circle cx="357.6" cy="215.8" r="4"/><circle cx="272.7" cy="157.4" r="4"/>
+              <circle cx="24.0" cy="123.4" r="4"/><circle cx="72.5" cy="56.7" r="4"/><circle cx="125.4" cy="195.4" r="4"/>
+              <circle cx="503.0" cy="27.6" r="4"/>
+            </g>
+            <text x="384" y="196">Belgrade</text>
+            <text x="34" y="128">Paris</text>
+            <text x="82" y="52">Amsterdam</text>
+            <text x="134" y="218">Torino</text>
+            <text x="452" y="24">Minsk</text>
+            <text x="432" y="236">Sofia</text>
+            <text x="222" y="130">Vienna</text>
+          </svg>
+          <div class="bars" style="margin-top:12px">
+            <div class="bar"><span class="bar-l">Nearest Neighbour</span><span class="bar-t"><span class="bar-f" style="--w:100%"></span></span><span class="bar-v">79.75</span></div>
+            <div class="bar"><span class="bar-l">Simulated Annealing</span><span class="bar-t"><span class="bar-f" style="--w:94.2%"></span></span><span class="bar-v">75.12</span></div>
+            <div class="bar"><span class="bar-l">Genetic Algorithm</span><span class="bar-t"><span class="bar-f" style="--w:93.9%"></span></span><span class="bar-v">74.92</span></div>
+            <div class="bar hl"><span class="bar-l">2-OPT</span><span class="bar-t"><span class="bar-f" style="--w:85.8%"></span></span><span class="bar-v">68.46</span></div>
+          </div>
+          <p class="note" data-l="en">Tour length in coordinate units (shorter is better).</p>
+          <p class="note" data-l="sr">Dužina ture u koordinatnim jedinicama (kraće je bolje).</p>
+        </div>
+        <div class="case-links"><a class="link-arrow" href="https://github.com/danilo-lazovic/tsp-optimization" target="_blank" rel="noopener">GitHub →</a></div>
+      </article>
+
+      <article class="mini rv">
+        <div class="case-meta" style="margin:0"><span class="tag where">BEST Belgrade · 2025</span></div>
+        <div class="trophy">1<small>st</small></div>
+        <h4 data-l="en">Belgrade Engineering Days case study</h4><h4 data-l="sr">Belgrade Engineering Days, case study</h4>
+        <p data-l="en">Team challenge: a sustainable plan to decentralise Belgrade by optimising residential construction costs in suburban municipalities. An expert jury ranked our solution the most effective and awarded it first place.</p>
+        <p data-l="sr">Timski izazov: održivo rešenje za decentralizaciju Beograda kroz optimizaciju troškova stambene gradnje u prigradskim opštinama. Stručni žiri je naše rešenje ocenio kao najefikasnije i dodelio mu prvo mesto.</p>
+        <div class="stack"><span data-l="en">optimisation</span><span data-l="sr">optimizacija</span><span data-l="en">urban planning</span><span data-l="sr">urbanizam</span><span data-l="en">teamwork</span><span data-l="sr">timski rad</span><span data-l="en">pitching</span><span data-l="sr">prezentacija</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-k"><span data-l="en">02 — Experience</span><span data-l="sr">02 — Iskustvo</span></div>
+      <h2><span data-l="en">From the assembly line <em>to the data layer</em></span><span data-l="sr">Od proizvodne trake <em>do sloja podataka</em></span></h2>
+    </div>
+    <div class="timeline">
+      <div class="job rv">
+        <div class="job-when"><span class="cur"><span class="dot"></span><span data-l="en">Jul 2026 — now</span><span data-l="sr">jul 2026 — danas</span></span><br><span data-l="en">Belgrade</span><span data-l="sr">Beograd</span></div>
+        <div><h3>Digital Operations &amp; Data Engineer</h3><div class="org">Kafeterija</div></div>
+        <ul data-l="en">
+          <li>Built AI systems from scratch for sales and performance tracking across <b>Wolt, Glovo, our app and Google reviews</b> for 80+ locations.</li>
+          <li>Full-stack review platform: <b>47,000+ reviews</b>, AI reply suggestions, direct publishing to Google.</li>
+          <li>Unified Power BI / Excel reporting (DIM/RAW/IZV), ad-spend tracking, BCG menu analysis.</li>
+          <li>Coordination with Wolt, Glovo and external integrators, and growth tracking for our commission-free delivery app.</li>
+        </ul>
+        <ul data-l="sr">
+          <li>Od nule napravio AI sisteme za praćenje prodaje i učinka kroz <b>Wolt, Glovo, našu aplikaciju i Google recenzije</b> za 80+ lokala.</li>
+          <li>Full-stack platforma za recenzije: <b>47.000+ recenzija</b>, AI predlozi odgovora, direktna objava na Google.</li>
+          <li>Objedinjeno Power BI / Excel izveštavanje (DIM/RAW/IZV), praćenje oglasa, BCG analiza menija.</li>
+          <li>Koordinacija sa Woltom, Glovom i spoljnim integratorima, i praćenje rasta naše aplikacije za dostavu bez provizije.</li>
+        </ul>
+      </div>
+      <div class="job rv">
+        <div class="job-when"><span data-l="en">Jan 2026 — Jun 2026</span><span data-l="sr">jan 2026 — jun 2026</span><br>Šimanovci</div>
+        <div><h3 data-l="en">Production Planner in Logistics</h3><h3 data-l="sr">Planer proizvodnje u logistici</h3><div class="org">BOSCH</div></div>
+        <ul data-l="en">
+          <li>Planned and procured production materials against quantities, deadlines and inventory in <b>SAP</b> and Excel.</li>
+          <li>Built a <b>Python/PyQt5 planning app (800+ SKUs, 52 weeks)</b>, a VBA capacity-allocation tool and Power Query automation for Power BI.</li>
+          <li>Monitored supplier delivery performance, wrote delay reports and maintained material master data.</li>
+        </ul>
+        <ul data-l="sr">
+          <li>Planiranje i nabavka materijala za proizvodnju prema količinama, rokovima i zalihama u <b>SAP-u</b> i Excelu.</li>
+          <li>Napravio <b>Python/PyQt5 aplikaciju za planiranje (800+ artikala, 52 nedelje)</b>, VBA alat za alokaciju kapaciteta i Power Query automatizaciju za Power BI.</li>
+          <li>Praćenje isporuka dobavljača, izveštaji o kašnjenjima, održavanje matičnih podataka materijala.</li>
+        </ul>
+      </div>
+      <div class="job rv">
+        <div class="job-when"><span data-l="en">May 2025 — Jun 2025</span><span data-l="sr">maj 2025 — jun 2025</span><br><span data-l="en">Belgrade</span><span data-l="sr">Beograd</span></div>
+        <div><h3 data-l="en">Input-Output Center, Production Department</h3><h3 data-l="sr">Ulazno-izlazni centar, sektor proizvodnje</h3><div class="org">UNIQA Insurance</div></div>
+        <ul data-l="en"><li>Worked with data in Excel and internal <b>SQL</b> databases, and processed and verified documentation in production processes.</li><li>Kept information flowing between departments.</li></ul>
+        <ul data-l="sr"><li>Rad sa podacima u Excelu i internim <b>SQL</b> bazama, obrada i provera dokumentacije u procesima proizvodnje.</li><li>Održavanje protoka informacija između sektora.</li></ul>
+      </div>
+      <div class="job rv">
+        <div class="job-when"><span data-l="en">Dec 2024 — Mar 2025</span><span data-l="sr">dec 2024 — mar 2025</span><br><span data-l="en">Belgrade</span><span data-l="sr">Beograd</span></div>
+        <div><h3 data-l="en">Administrative Support in Accounting</h3><h3 data-l="sr">Administrativna podrška u računovodstvu</h3><div class="org">ProCredit Bank</div></div>
+        <ul data-l="en"><li>Open Item Statements, data updates and verification in line with internal procedures.</li><li>Reconciled discrepancies with other departments.</li></ul>
+        <ul data-l="sr"><li>Rad sa otvorenim stavkama (OIS), ažuriranje i provera podataka po internim procedurama.</li><li>Usaglašavanje neslaganja sa drugim sektorima.</li></ul>
+      </div>
+      <div class="job rv">
+        <div class="job-when"><span data-l="en">Oct 2024 — Mar 2025</span><span data-l="sr">okt 2024 — mar 2025</span><br><span data-l="en">Belgrade</span><span data-l="sr">Beograd</span></div>
+        <div><h3 data-l="en">Student Mentor</h3><h3 data-l="sr">Student mentor</h3><div class="org" data-l="en">Faculty of Organisational Sciences</div><div class="org" data-l="sr">Fakultet organizacionih nauka</div></div>
+        <ul data-l="en"><li>Helped students through their academic and professional development and the rough patches of studying.</li><li>Mentoring, active listening, and explaining hard things simply.</li></ul>
+        <ul data-l="sr"><li>Pomagao studentima u akademskom i profesionalnom razvoju i kroz teže periode studija.</li><li>Mentorstvo, aktivno slušanje i objašnjavanje teških stvari jednostavno.</li></ul>
+      </div>
+      <div class="job rv">
+        <div class="job-when"><span data-l="en">Oct 2021 — Feb 2022</span><span data-l="sr">okt 2021 — feb 2022</span><br><span data-l="en">Čačak</span><span data-l="sr">Čačak</span></div>
+        <div><h3 data-l="en">Production Support</h3><h3 data-l="sr">Podrška u proizvodnji</h3><div class="org">Del Trade</div></div>
+        <ul data-l="en"><li>Assembly, quality control and inventory on the shop floor. This is where I first saw what a bottleneck looks like in real life.</li></ul>
+        <ul data-l="sr"><li>Montaža, kontrola kvaliteta i zalihe u pogonu. Tu sam prvi put video kako usko grlo izgleda uživo.</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-k"><span data-l="en">03 — Toolbox</span><span data-l="sr">03 — Alati</span></div>
+      <h2><span data-l="en">What I reach for</span><span data-l="sr">Šta koristim</span></h2>
+    </div>
+    <div class="skills">
+      <div class="skill-g rv"><h3><span data-l="en">Programming &amp; data</span><span data-l="sr">Programiranje i podaci</span></h3>
+        <div class="pills"><span>Python</span><span>SQL</span><span>PostgreSQL</span><span>MATLAB</span><span>VBA</span><span>pandas</span><span>numba</span><span>parquet</span><span>TypeScript</span></div></div>
+      <div class="skill-g rv"><h3><span data-l="en">Web &amp; systems</span><span data-l="sr">Web i sistemi</span></h3>
+        <div class="pills"><span>FastAPI</span><span>Next.js</span><span>SQLAlchemy</span><span>Docker</span><span>Caddy</span><span>Google Cloud / OAuth</span><span>REST APIs</span><span>PyQt5</span><span>Playwright</span></div></div>
+      <div class="skill-g rv"><h3><span data-l="en">AI &amp; automation</span><span data-l="sr">AI i automatizacija</span></h3>
+        <div class="pills"><span>Claude API</span><span>Claude Code</span><span>Cowork agents</span><span>MCP</span><span data-l="en">prompt caching</span><span data-l="sr">keširanje prompta</span><span data-l="en">multi-agent workflows</span><span data-l="sr">multi-agent tokovi</span></div></div>
+      <div class="skill-g rv"><h3><span data-l="en">BI &amp; reporting</span><span data-l="sr">BI i izveštavanje</span></h3>
+        <div class="pills"><span>Power BI</span><span>Power Query</span><span>Excel (SUMIFS, Tables)</span><span>SAP</span><span>Recharts</span><span>plotly</span></div></div>
+      <div class="skill-g rv"><h3><span data-l="en">Operations research</span><span data-l="sr">Operaciona istraživanja</span></h3>
+        <div class="pills"><span>Pyomo</span><span>AMPL / HiGHS</span><span>OR-Tools</span><span>max-flow / min-cut</span><span data-l="en">heuristics &amp; metaheuristics</span><span data-l="sr">heuristike i metaheuristike</span><span>DEA</span><span data-l="en">graph analysis</span><span data-l="sr">analiza grafova</span></div></div>
+      <div class="skill-g rv"><h3><span data-l="en">Creative &amp; languages</span><span data-l="sr">Kreativno i jezici</span></h3>
+        <div class="pills"><span>Unity 6</span><span>C#</span><span>Blender</span><span data-l="en">Serbian, native</span><span data-l="sr">srpski, maternji</span><span data-l="en">English, fluent</span><span data-l="sr">engleski, tečno</span></div></div>
+    </div>
+    <div class="edu">
+      <div class="edu-c rv"><div class="ico">F</div><div>
+        <h3 data-l="en">Management &amp; Organisation, Operations Management</h3><h3 data-l="sr">Menadžment i organizacija, Menadžment operacija</h3>
+        <p data-l="en">Faculty of Organisational Sciences (FON), University of Belgrade</p><p data-l="sr">Fakultet organizacionih nauka (FON), Univerzitet u Beogradu</p>
+      </div></div>
+      <div class="edu-c rv"><div class="ico">G</div><div>
+        <h3 data-l="en">Grammar School (Gimnazija)</h3><h3 data-l="sr">Gimnazija u Čačku</h3>
+        <p data-l="en">Čačak, Serbia</p><p data-l="sr">Čačak, Srbija</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BEYOND ============ -->
+<section id="beyond">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-k"><span data-l="en">04 — Off the CV</span><span data-l="sr">04 — Van CV-ja</span></div>
+      <h2><span data-l="en">How I work, <em>and what else I care about</em></span><span data-l="sr">Kako radim <em>i do čega mi je još stalo</em></span></h2>
+    </div>
+    <div class="beyond">
+      <div class="b-card dark span3 full-m rv">
+        <div class="b-k"><span data-l="en">Principles I actually write into my projects</span><span data-l="sr">Principi koje stvarno upisujem u projekte</span></div>
+        <ol class="principles" data-l="en">
+          <li><div>Report every number with the base it's measured against.<span>If a result is within noise of the random baseline, say so.</span></div></li>
+          <li><div>Mock data and real data never mix.<span>Every row carries its source, and switching to real data isolates the fake rows.</span></div></li>
+          <li><div>Hypothesis → prediction → test.<span>The graph predicts and the simulation decides, and the same goes for a sales alarm.</span></div></li>
+          <li><div>One phase, one question.<span>Don't move on until the answer is "yes".</span></div></li>
+          <li><div>Don't invent what you don't know.<span>Open decisions stay visibly open, for me and for the agents.</span></div></li>
+        </ol>
+        <ol class="principles" data-l="sr">
+          <li><div>Svaku brojku prijavi uz osnovu prema kojoj je merena.<span>Ako je rezultat u šumu nasumične osnove, reci to.</span></div></li>
+          <li><div>Mock i pravi podaci se nikad ne mešaju.<span>Svaki red nosi izvor, a prelazak na prave podatke izoluje lažne.</span></div></li>
+          <li><div>Hipoteza → predikcija → test.<span>Graf predviđa, a simulacija presuđuje. Isto važi i za alarm prodaje.</span></div></li>
+          <li><div>Jedna faza, jedno pitanje.<span>Ne ide se dalje dok odgovor nije „da“.</span></div></li>
+          <li><div>Ne izmišljaj ono što ne znaš.<span>Otvorene odluke ostaju vidljivo otvorene, i za mene i za agente.</span></div></li>
+        </ol>
+      </div>
+      <div class="b-card span3 rv">
+        <div class="b-k"><span data-l="en">AI-native</span><span data-l="sr">AI-native</span></div>
+        <h3 data-l="en">I build with a team of agents</h3><h3 data-l="sr">Gradim sa timom agenata</h3>
+        <p data-l="en">A lot of what's on this page was built together with Claude: as a pair programmer on the portal, as scheduled agents that pull reports every morning, and as a whole "studio" of specialised agents on my game. My job is the part that doesn't automate: deciding what's worth building, writing a clear brief, and reviewing the result honestly.</p>
+        <p data-l="sr">Dosta toga na ovoj strani napravljeno je zajedno sa Claudeom: kao pair programmer na portalu, kao zakazani agenti koji svako jutro skidaju izveštaje i kao ceo „studio“ specijalizovanih agenata na igri. Moj posao je deo koji se ne automatizuje: odlučiti šta vredi praviti, napisati jasan brief i pošteno pregledati rezultat.</p>
+        <div class="agents stack" style="margin-top:6px"><span>orchestrator</span><span>programmer</span><span>tech-artist</span><span>artist-3d</span><span>artist-2d</span><span>playtester</span></div>
+      </div>
+      <div class="b-card rv">
+        <div class="b-k"><span data-l="en">Sports</span><span data-l="sr">Sport</span></div>
+        <h3 data-l="en">Basketball &amp; football</h3><h3 data-l="sr">Košarka i fudbal</h3>
+        <p data-l="en">I follow both closely, and I like the analytics side as much as the game itself: why a system works, and which player is the bottleneck.</p>
+        <p data-l="sr">Pratim oba sporta pažljivo, i analitika me zanima koliko i sama igra: zašto neki sistem radi i koji igrač je usko grlo.</p>
+      </div>
+      <div class="b-card rv">
+        <div class="b-k"><span data-l="en">Marketing &amp; content</span><span data-l="sr">Marketing i sadržaj</span></div>
+        <h3 data-l="en">Numbers that people read</h3><h3 data-l="sr">Brojke koje ljudi čitaju</h3>
+        <p data-l="en">I come from a marketing background: understanding audiences, writing the message, reading trends. That's why I care whether a dashboard actually gets read.</p>
+        <p data-l="sr">Dolazim i iz marketinga: razumevanje publike, pisanje poruke, čitanje trendova. Zato mi je bitno da dashboard neko stvarno pročita.</p>
+      </div>
+      <div class="b-card rv">
+        <div class="b-k"><span data-l="en">Teaching</span><span data-l="sr">Predavanje</span></div>
+        <h3 data-l="en">Explaining it simply</h3><h3 data-l="sr">Objasniti jednostavno</h3>
+        <p data-l="en">From mentoring students at FON to writing docs that agents and colleagues can follow: if I can't explain it, I don't understand it yet.</p>
+        <p data-l="sr">Od mentorstva studentima na FON-u do dokumentacije koju mogu da prate i agenti i kolege: ako ne umem da objasnim, još ne razumem.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="contact-box rv">
+      <h2><span data-l="en">Got a <em>bottleneck?</em></span><span data-l="sr">Imaš <em>usko grlo?</em></span></h2>
+      <p data-l="en">I'm interested in operations, data and AI-automation work, and in interesting problems in general. Write to me, I reply.</p>
+      <p data-l="sr">Zanimaju me operacije, podaci i AI automatizacija, i zanimljivi problemi uopšte. Piši mi, odgovaram.</p>
+      <a class="mail-big" href="mailto:dobrilazovic@gmail.com">dobrilazovic@gmail.com</a>
+      <div class="contact-links">
+        <a class="btn primary" href="mailto:dobrilazovic@gmail.com"><span data-l="en">Send an email</span><span data-l="sr">Pošalji mejl</span></a>
+        <a class="btn" href="https://linkedin.com/in/danilo-lazovic" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/danilo-lazovic" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="assets/Danilo_Lazovic_CV_EN.pdf" download>CV (PDF)</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span data-year>2026</span> Danilo Lazović · <span data-l="en">Belgrade</span><span data-l="sr">Beograd</span></span>
+    <span data-l="en">Hand-built HTML/CSS/JS, no framework. The network in the header has one bottleneck. Spot it.</span>
+    <span data-l="sr">Ručno pisan HTML/CSS/JS, bez frameworka. Mreža u zaglavlju ima jedno usko grlo. Nađi ga.</span>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
 </body>
 </html>
