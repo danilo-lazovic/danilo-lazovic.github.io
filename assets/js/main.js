@@ -40,19 +40,20 @@
 
   document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
 
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* Runs draw(t) about every `ms` while the element is on screen; once if motion is reduced. */
+  /* Runs draw(t) about every `ms` while the element is on screen.
+     The animations always move (Danilo's choice); a click or tap on one pauses or resumes it. */
   function animate(el, ms, draw) {
     draw(0);
-    if (reduce) return;
-    var visible = true, last = 0, running = false;
+    var visible = true, paused = false, last = 0, running = false;
     function loop(now) {
-      if (!visible || document.hidden) { running = false; return; }
+      if (!visible || paused || document.hidden) { running = false; return; }
       if (now - last > ms) { draw(now / 1000); last = now; }
       requestAnimationFrame(loop);
     }
     function start() { if (!running) { running = true; requestAnimationFrame(loop); } }
+    var box = el.parentElement;
+    box.setAttribute('title', 'click to pause / klik za pauzu');
+    box.addEventListener('click', function () { paused = !paused; if (!paused) start(); });
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (e) { visible = e[0].isIntersecting; if (visible) start(); }).observe(el);
     }
