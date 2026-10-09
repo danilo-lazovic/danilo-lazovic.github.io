@@ -1,665 +1,796 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danilo Lazović - Operations & Optimization Projects</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-primary: #0a0e17;
-            --bg-secondary: #141824;
-            --bg-card: #1a1f2e;
-            --accent-blue: #4a9eff;
-            --accent-orange: #ff6b35;
-            --accent-green: #00d9a3;
-            --text-primary: #e8eaed;
-            --text-secondary: #9ca3af;
-            --border: rgba(74, 158, 255, 0.15);
-            --shadow: rgba(0, 0, 0, 0.4);
-        }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Danilo Lazović :/ portfolio</title>
+  <meta name="x-title-en" content="Danilo Lazović :/ portfolio">
+  <meta name="x-title-sr" content="Danilo Lazović :/ portfolio">
+  <meta name="description" content="Projects by Danilo Lazović: a min-cut through the fruit fly brain, a review engine and data portal for a 70 café chain, morning AI agents, production planning, and a game about climbing giants.">
+  <meta name="author" content="Danilo Lazović">
+  <meta name="theme-color" content="#ece8be" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#17160f" media="(prefers-color-scheme: dark)">
+  <link rel="canonical" href="https://danilo-lazovic.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Danilo Lazović :/ portfolio">
+  <meta property="og:description" content="Brain bottlenecks, a review engine, a café data portal, morning agents, production planning and a game about climbing giants.">
+  <meta property="og:url" content="https://danilo-lazovic.github.io/">
+  <meta property="og:image" content="https://danilo-lazovic.github.io/assets/img/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Manrope', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .bg-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                linear-gradient(rgba(74, 158, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(74, 158, 255, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        header {
-            padding: 4rem 0 3rem;
-            position: relative;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .header-text {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        h1 {
-            font-family: 'DM Serif Display', serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            line-height: 1.1;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-green) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
-        }
-
-        .header-links {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease-out 0.4s both;
-        }
-
-        .link-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            color: var(--text-primary);
-            text-decoration: none;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.9rem;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-        }
-
-        .link-btn:hover {
-            border-color: var(--accent-blue);
-            background: rgba(74, 158, 255, 0.1);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px var(--shadow);
-        }
-
-        .link-btn.primary {
-            background: var(--accent-blue);
-            border-color: var(--accent-blue);
-            color: var(--bg-primary);
-            font-weight: 600;
-        }
-
-        .link-btn.primary:hover {
-            background: #3b8ae6;
-            transform: translateY(-2px) scale(1.02);
-        }
-
-        .projects-section {
-            padding: 2rem 0 4rem;
-        }
-
-        .section-title {
-            font-family: 'DM Serif Display', serif;
-            font-size: 2rem;
-            margin-bottom: 2.5rem;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .section-title::before {
-            content: '';
-            width: 4px;
-            height: 40px;
-            background: linear-gradient(180deg, var(--accent-blue), var(--accent-green));
-            border-radius: 2px;
-        }
-
-        .project-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2.5rem;
-            margin-bottom: 2.5rem;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            animation: fadeInUp 0.8s ease-out both;
-        }
-
-        .project-card:nth-child(1) { animation-delay: 0.1s; }
-        .project-card:nth-child(2) { animation-delay: 0.2s; }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-
-        .project-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .project-card:hover {
-            border-color: var(--accent-blue);
-            box-shadow: 0 8px 24px var(--shadow);
-            transform: translateY(-4px);
-        }
-
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .project-title {
-            font-family: 'DM Serif Display', serif;
-            font-size: 1.8rem;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .project-type {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--accent-blue);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .project-tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            padding: 0.4rem 0.8rem;
-            background: rgba(74, 158, 255, 0.1);
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-family: 'IBM Plex Mono', monospace;
-            color: var(--accent-blue);
-        }
-
-        .project-description {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-            line-height: 1.7;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            padding: 1rem;
-            background: var(--bg-secondary);
-            border-radius: 8px;
-            border: 1px solid rgba(74, 158, 255, 0.08);
-            transition: all 0.3s ease;
-        }
-
-        .feature-item:hover {
-            border-color: var(--accent-blue);
-            background: rgba(74, 158, 255, 0.05);
-        }
-
-        .feature-icon {
-            width: 24px;
-            height: 24px;
-            border-radius: 4px;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-green));
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: var(--bg-primary);
-        }
-
-        .feature-text {
-            flex: 1;
-        }
-
-        .feature-title {
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.25rem;
-            font-size: 0.95rem;
-        }
-
-        .feature-desc {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .tech-stack {
-            margin: 1.5rem 0;
-            padding: 1.5rem;
-            background: var(--bg-secondary);
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-orange);
-        }
-
-        .tech-stack-title {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.9rem;
-            color: var(--accent-orange);
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .tech-list {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-
-        .tech-item {
-            padding: 0.5rem 1rem;
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 107, 53, 0.2);
-            border-radius: 6px;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--text-primary);
-        }
-
-        .results-section {
-            margin: 1.5rem 0;
-            padding: 1.5rem;
-            background: linear-gradient(135deg, rgba(0, 217, 163, 0.05), rgba(74, 158, 255, 0.05));
-            border-radius: 8px;
-            border: 1px solid rgba(0, 217, 163, 0.2);
-        }
-
-        .results-title {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.9rem;
-            color: var(--accent-green);
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        .result-item {
-            text-align: center;
-            padding: 1rem;
-            background: var(--bg-card);
-            border-radius: 6px;
-        }
-
-        .result-value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--accent-green);
-            font-family: 'IBM Plex Mono', monospace;
-        }
-
-        .result-label {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-top: 0.25rem;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .github-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            color: var(--text-primary);
-            text-decoration: none;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.9rem;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-        }
-
-        .github-btn:hover {
-            border-color: var(--accent-green);
-            background: rgba(0, 217, 163, 0.1);
-            transform: translateX(4px);
-        }
-
-        footer {
-            padding: 3rem 0 2rem;
-            text-align: center;
-            border-top: 1px solid var(--border);
-            margin-top: 4rem;
-        }
-
-        .footer-text {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        .footer-links {
-            margin-top: 1rem;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-link {
-            color: var(--accent-blue);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-link:hover {
-            color: var(--accent-green);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .project-card {
-                padding: 1.5rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/ds.css">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t);
+        var l = localStorage.getItem('lang');
+        if (!l && /^(sr|hr|bs|me|sh)/i.test(navigator.language || '')) l = 'sr';
+        if (l) document.documentElement.setAttribute('data-lang', l);
+      } catch (e) {}
+    })();
+  </script>
 </head>
-<body>
-    <div class="bg-grid"></div>
+<body class="dn-root">
+<div class="page">
 
-    <div class="container">
-        <header>
-            <div class="header-content">
-                <div class="header-text">
-                    <h1>Danilo Lazović</h1>
-                    <p class="subtitle">Production Planner @ BOSCH | Operations Management Student @ FON</p>
-                    <div class="header-links">
-                        <a href="https://github.com/danilo-lazovic" class="link-btn primary" target="_blank">
-                            <span>→</span> GitHub
-                        </a>
-                        <a href="mailto:dobrilazovic@gmail.com" class="link-btn">
-                            <span>✉</span> Email
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <section class="projects-section">
-            <h2 class="section-title">Featured Projects</h2>
-
-            <!-- Project 1: TSP -->
-            <div class="project-card">
-                <div class="project-header">
-                    <div>
-                        <div class="project-type">Optimization · Algorithm Design</div>
-                        <h3 class="project-title">TSP Heuristic Optimization</h3>
-                    </div>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">MATLAB</span>
-                        <span class="tag">Algorithms</span>
-                    </div>
-                </div>
-
-                <p class="project-description">
-                    Comprehensive implementation and comparison of four heuristic algorithms for solving the Traveling Salesman Problem (TSP). 
-                    Includes data collection via geocoding, algorithm implementations, and performance analysis across 17 European cities.
-                </p>
-
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <div class="feature-icon">1</div>
-                        <div class="feature-text">
-                            <div class="feature-title">Nearest Neighbor</div>
-                            <div class="feature-desc">Greedy constructive heuristic</div>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">2</div>
-                        <div class="feature-text">
-                            <div class="feature-title">2-OPT Optimization</div>
-                            <div class="feature-desc">Local search improvement</div>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">3</div>
-                        <div class="feature-text">
-                            <div class="feature-title">Simulated Annealing</div>
-                            <div class="feature-desc">Metaheuristic with 50K iterations</div>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">4</div>
-                        <div class="feature-text">
-                            <div class="feature-title">Genetic Algorithm</div>
-                            <div class="feature-desc">Custom evolutionary approach</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tech-stack">
-                    <div class="tech-stack-title">Tech Stack</div>
-                    <div class="tech-list">
-                        <span class="tech-item">Python 3.x</span>
-                        <span class="tech-item">MATLAB R2020+</span>
-                        <span class="tech-item">GeoPy</span>
-                        <span class="tech-item">Pandas</span>
-                        <span class="tech-item">Excel</span>
-                    </div>
-                </div>
-
-                <div class="results-section">
-                    <div class="results-title">Key Achievements</div>
-                    <div class="results-grid">
-                        <div class="result-item">
-                            <div class="result-value">4</div>
-                            <div class="result-label">Algorithms Implemented</div>
-                        </div>
-                        <div class="result-item">
-                            <div class="result-value">17</div>
-                            <div class="result-label">Cities Optimized</div>
-                        </div>
-                        <div class="result-item">
-                            <div class="result-value">50K</div>
-                            <div class="result-label">SA Iterations</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-links">
-                    <a href="https://github.com/danilo-lazovic/tsp-optimization" class="github-btn" target="_blank">
-                        View on GitHub →
-                    </a>
-                </div>
-            </div>
-
-            <!-- Project 2: Production Planning -->
-            <div class="project-card">
-                <div class="project-header">
-                    <div>
-                        <div class="project-type">Production · Automation · Analytics</div>
-                        <h3 class="project-title">Automated Production Planning System</h3>
-                    </div>
-                    <div class="project-tags">
-                        <span class="tag">MATLAB</span>
-                        <span class="tag">Excel</span>
-                        <span class="tag">Operations</span>
-                    </div>
-                </div>
-
-                <p class="project-description">
-                    Intelligent production scheduling system that optimizes manufacturing plans based on demand forecasts and capacity constraints. 
-                    Generates optimal production release schedules while minimizing backlog and avoiding excess inventory buildup.
-                </p>
-
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <div class="feature-icon">📊</div>
-                        <div class="feature-text">
-                            <div class="feature-title">Dynamic Planning</div>
-                            <div class="feature-desc">Excel-based demand & capacity input</div>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">⚙️</div>
-                        <div class="feature-text">
-                            <div class="feature-title">Smart Scheduling</div>
-                            <div class="feature-desc">Automated release planning</div>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">📈</div>
-                        <div class="feature-text">
-                            <div class="feature-title">Visual Analytics</div>
-                            <div class="feature-desc">Comprehensive dashboards</div>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">🎯</div>
-                        <div class="feature-text">
-                            <div class="feature-title">Backlog Minimization</div>
-                            <div class="feature-desc">Real-time tracking & optimization</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tech-stack">
-                    <div class="tech-stack-title">Tech Stack</div>
-                    <div class="tech-list">
-                        <span class="tech-item">MATLAB R2020+</span>
-                        <span class="tech-item">Excel Integration</span>
-                        <span class="tech-item">Custom Algorithms</span>
-                        <span class="tech-item">Data Visualization</span>
-                    </div>
-                </div>
-
-                <div class="results-section">
-                    <div class="results-title">Dashboard Analytics</div>
-                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">
-                        System generates 9 comprehensive visualizations including capacity utilization, backlog analysis, 
-                        inventory tracking, top production items, and demand vs production trends.
-                    </p>
-                    <div class="results-grid">
-                        <div class="result-item">
-                            <div class="result-value">9</div>
-                            <div class="result-label">Analytics Charts</div>
-                        </div>
-                        <div class="result-item">
-                            <div class="result-value">∞</div>
-                            <div class="result-label">Scalable Weeks</div>
-                        </div>
-                        <div class="result-item">
-                            <div class="result-value">Real-time</div>
-                            <div class="result-label">Planning Updates</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-links">
-                    <a href="https://github.com/danilo-lazovic/production-planning" class="github-btn" target="_blank">
-                        View on GitHub →
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <p class="footer-text">Built with passion for operations optimization and data-driven decision making.</p>
-            <div class="footer-links">
-                <a href="https://github.com/danilo-lazovic" class="footer-link">GitHub</a>
-                <a href="https://linkedin.com/in/danilo-lazovic" class="footer-link">LinkedIn</a>
-                <a href="mailto:dobrilazovic@gmail.com" class="footer-link">Email</a>
-            </div>
-        </footer>
+  <nav class="dn-nav" aria-label="Main">
+    <a class="dn-nav__home" href="#top"><span>:/</span> danilo</a>
+    <div class="nav-right">
+      <ul>
+        <li><a href="#work" aria-current="page"><span data-l="en">work</span><span data-l="sr">radovi</span></a></li>
+        <li><a href="#info">info</a></li>
+        <li><a href="#contact"><span data-l="en">contact</span><span data-l="sr">kontakt</span></a></li>
+      </ul>
+      <div class="toggles">
+        <button class="dn-btn" type="button" data-toggle="lang"><span data-l="en">srpski</span><span data-l="sr">english</span></button>
+        <button class="dn-btn" type="button" data-toggle="theme"><span data-l="en">paper / night</span><span data-l="sr">papir / noć</span></button>
+      </div>
     </div>
+  </nav>
+
+  <main id="top">
+
+    <header class="hero">
+      <div>
+        <h1 class="hero-name">Danilo<br>Lazović</h1>
+        <p class="hero-path"><span>:/</span> portfolio</p>
+      </div>
+      <div class="hero-art">
+        <pre class="flow-ascii" aria-label="Animated ASCII drawing: particles flow from left to right through a narrow neck and pile up in front of it"></pre>
+        <span class="dn-note" style="left:34%" aria-hidden="true">usko grlo</span>
+      </div>
+    </header>
+
+    <!-- ====== WORK ====== -->
+    <section class="sec" id="work">
+      <div class="sec-head">
+        <span class="dn-label"><span class="dn-label__path">:/</span><span class="dn-label__name"><span data-l="en">&lt;work_&gt;</span><span data-l="sr">&lt;radovi_&gt;</span></span></span>
+      </div>
+
+      <div class="grid">
+        <a class="dn-card" href="#p01">
+          <div class="dn-card__media"><pre aria-hidden="true">
+
+ MN9 firing rate after silencing 34 neurons (Hz)
+ ..........................................................................
+
+ intact brain         ######################################## 107.7
+
+ out-strength top 34  ############################################ 118
+
+ pagerank top 34      ######################################## 107.8
+
+ random on-path x20   ######################################## 107.3
+
+ betweenness top 34   ################# 44.3
+
+ min-cut, mine        . 0.38
+
+ ..........................................................................
+ 30 trials x 1 s, mean of both MN9 cells, male CNS v1.0
+
+
+
+</pre></div>
+          <div class="dn-card__body">
+            <p class="dn-card__meta">#01 · 2026 · <span data-l="en">graphs</span><span data-l="sr">grafovi</span></p>
+            <h3 class="dn-card__title">Brain bottlenecks</h3>
+            <p class="dn-card__text" data-l="en">Where does a fly's brain squeeze the path from taste to movement? I found 34 neurons that carry it.</p>
+            <p class="dn-card__text" data-l="sr">Gde mozak mušice sabija put od ukusa do pokreta? Našao sam 34 neurona koji ga nose.</p>
+            <div class="dn-tags"><span class="dn-tag dn-tag--hot"><span data-l="en">ongoing</span><span data-l="sr">u toku</span></span><span class="dn-tag">python</span><span class="dn-tag">or-tools</span><span class="dn-tag">numba</span></div>
+          </div>
+        </a>
+
+        <a class="dn-card" href="#p02">
+          <div class="dn-card__media dn-card__media--sky"><pre aria-hidden="true">
+
+                             :++- novi sad
+                             +@@#.
+                             .:-.     .-+++=:
+                                    :*%@@@@@@#:
+                            .       *@@@@@@@@@%:
+                           =%*.     *@@@@@@@@@beograd, 49
+                           :=-      :#@@@@@@@@=
+                                     .=*#%#*+:
+                                         .:-.
+                                          *@+
+                                          ..     .
+                                čačak          :#@*.kragujevac
+                                      -#*.     .+*=
+                           .==.       :+=.
+                  zlatibor -%#.                :**-
+                                               =%%=
+                                                                .:-.
+                                               :##:             *@@#.niš
+                                               .++.             :++-
+
+
+
+
+
+   boka:*###*:      =*-
+       .+*#%#:     .+#= podgorica
+ 70 active cafés, one inbox</pre></div>
+          <div class="dn-card__body">
+            <p class="dn-card__meta">#02 · 2026 · <span data-l="en">tooling</span><span data-l="sr">alati</span></p>
+            <h3 class="dn-card__title">Review engine</h3>
+            <p class="dn-card__text" data-l="en">One inbox for the Google reviews of 70 cafés, with replies drafted in each manager's own voice.</p>
+            <p class="dn-card__text" data-l="sr">Jedno sanduče za Google recenzije 70 kafića, sa odgovorima koji zvuče kao menadžer koji ih šalje.</p>
+            <div class="dn-tags"><span class="dn-tag">fastapi</span><span class="dn-tag">next.js</span><span class="dn-tag">claude api</span></div>
+          </div>
+        </a>
+
+        <a class="dn-card" href="#p03">
+          <div class="dn-card__media"><pre aria-hidden="true">
+ live sales by hour, today vs same weekday last week
+
+                              |
+                          #   |
+                      #  :#   |
+                  #  :#  :#   |
+              #  :#  :#  :#  :|
+          #  :#  :#  :#  :#  :|
+         :#  :#  :#  :#  :#  :|  :
+     :#  :#  :#  :#  :#  :#  :|  :   :
+ :#  :#  :#  :#  :#  :#  :#  :|  :   :   :
+ :#  :#  :#  :#  :#  :#  :#  :|  :   :   :   :
+ :#  :#  :#  :#  :#  :#  :#  :|  :   :   :   :   :
+ :#  :#  :#  :#  :#  :#  :#  :+  :   :   :   :   :
+ :#  :#  :#  :#  :#  :#  :#  :+  :   :   :   :   :   :
+ :#  :#  :#  :#  :#  :#  :#  :+  :   :   :   :   :   :
+ :#  :#  :#  :#  :#  :#  :#  :+  :   :   :   :   :   :
+ :#  :#  :#  :#  :#  :#  :#  :+  :   :   :   :   :   :
+ :#  :#  :#  :#  :#  :#  :#  :+  :   :   :   :   :   :   :
+ :#  :#  :#  :#  :#  :#  :#  :+  :   :   :   :   :   :   :
+ :#  :#  :#  :#  :#  :#  :#  :+  :   :   :   :   :   :   :   :
+ :#  :#  :#  :#  :#  :#  :#  :+  :   :   :   :   :   :   :   :
+ 07  08  09  10  11  12  13  14  15  16  17  18  19  20  21  22
+
+ # today   : last week   | now, 14:35        (mock data from the design)</pre></div>
+          <div class="dn-card__body">
+            <p class="dn-card__meta">#03 · 2026 · <span data-l="en">data</span><span data-l="sr">podaci</span></p>
+            <h3 class="dn-card__title">Café portal</h3>
+            <p class="dn-card__text" data-l="en">Registers, Wolt, Glovo and our own app on one screen, and a warning when a café goes quiet.</p>
+            <p class="dn-card__text" data-l="sr">Kase, Wolt, Glovo i naša aplikacija na jednom ekranu, i upozorenje kad neki kafić utihne.</p>
+            <div class="dn-tags"><span class="dn-tag dn-tag--hot"><span data-l="en">building</span><span data-l="sr">gradim</span></span><span class="dn-tag">postgres</span><span class="dn-tag">fastapi</span><span class="dn-tag">next.js</span></div>
+          </div>
+        </a>
+
+        <a class="dn-card" href="#p04">
+          <div class="dn-card__media"><pre aria-hidden="true">
+
+ $ cowork run morning-exports
+
+ 08:00  agent awake, chrome session ok
+ 08:01  glovo   reports / performance / yesterday ......... saved
+ 08:03  wolt    financials / purchase data / yesterday .... saved
+ 08:03  moved 2 files to platforme_izvozi/
+
+ $ platform_sync (watching)
+
+ 08:04  glovo_performance.csv   recognised by header
+ 08:04  wolt_purchases.csv      recognised by header
+ 08:04  vat removed, other brands skipped, delivered orders only
+ 08:04  imported, 0 rejected
+ 08:05  alarms: compared with the same weekday, last 4 weeks
+ 08:05  dashboards up to date
+
+ if the portal session expired:
+ 08:01  glovo login needed. stopping, a human has to sign in.
+</pre></div>
+          <div class="dn-card__body">
+            <p class="dn-card__meta">#04 · 2026 · <span data-l="en">automation</span><span data-l="sr">automatizacija</span></p>
+            <h3 class="dn-card__title">Morning agents</h3>
+            <p class="dn-card__text" data-l="en">My reports used to start with me downloading files. Now an agent does it at eight.</p>
+            <p class="dn-card__text" data-l="sr">Moji izveštaji su počinjali tako što skidam fajlove. Sada to radi agent u osam.</p>
+            <div class="dn-tags"><span class="dn-tag">claude cowork</span><span class="dn-tag">power bi</span><span class="dn-tag">excel</span></div>
+          </div>
+        </a>
+
+        <a class="dn-card" href="#p05">
+          <div class="dn-card__media dn-card__media--sage"><pre aria-hidden="true">
+ stock (+) and backlog (-) per week, 22-week run
+
+                                         .----------:
+               -+=.                      -%%%%%%%%%%+
+               #@@-                      -%%%%%%%%%%+
+        :--. . *@%:                      .:::::::::::
+ =%%+   *@@=   #@@-
+ :==-+*+-==-**+-==:==:+*+=**=**++**=**=+*+=**=**++**=**=+*+=**-+*==**-**=+**.
+     %@%   .==-    ...%@%#@@*@@##@@*@@#%@%#@@*@@%#@@*@@*%@%*@@+%@#*@@+@@*#@%:
+     .:.              #@%*@@*%@##@%*@@*%@%*@@*%@##@@*@@+#@#+@@+%@#*@%+@@*#@%.
+                      #@%*@@*%@##@%*@@*%@%*@@*%@##@@*@@*#@#+@@+%@#*@%+@@*#@%.
+                      #@%#@@*%@##@%*@@*%@%*@@*%@##@@*@@*#@#+@@+%@#*@%+@@*#@%.
+                      %@%*%%*%@##@%*@@*%@%*@@*%@##@@*@@*#@#+@@+%@#*@%+@@*#@%.
+                      ---...-@@##@%*@@*%@%*@@*%@##@@*@@*#@#+@@+%@#*@%+@@*#@%.
+                            -@@##@@*@@*%@%*@@*%@##@@*@@+#@#+@@+%@#*@%+@@*#@%.
+                            .--:+##+@@*%@%*@@*%@##@@*@@*#@#+@@+%@#*@%+@@*#@%.
+                                   =@@*%@%*@@*%@##@@=--:%@#+@@+%@#*@%+@@*#@%.
+                                 . =@@*%@%*@@*%@##@@-   %@#+@@+%@#*@%+@@*#@%.
+                                   =@@*%@%*@@*%@##@@-  .%@%+@@+%@#*@%+@@*#@%.
+                                   =@@*%@%*@@*%@##@@=   =+=+@@+%@#*@@--=:%@%:
+                                   =@@*%@%*@@*%@##@@-      +@@+%@#*@@-   +*+.
+                                   =@@*%@%#@@*%@##@@-    . +@@+%@#*@@- .
+                                   =@@*#%#=**+%@##@@=      =##=*#+*%%-
+                                   =@@* ..   :@@#+**:              ..
+                                   :==-    . -@@%
+                                             .===
+
+ w1                                                                      w22</pre></div>
+          <div class="dn-card__body">
+            <p class="dn-card__meta">#05 · 2025, 2026 · <span data-l="en">operations</span><span data-l="sr">operacije</span></p>
+            <h3 class="dn-card__title">Production planning</h3>
+            <p class="dn-card__text" data-l="en">Weekly plans that clear the backlog first. A MATLAB model at uni, then an 800 SKU app at Bosch.</p>
+            <p class="dn-card__text" data-l="sr">Nedeljni planovi koji prvo skidaju backlog. MATLAB model na faksu, pa aplikacija za 800 artikala u Boschu.</p>
+            <div class="dn-tags"><span class="dn-tag">matlab</span><span class="dn-tag">python</span><span class="dn-tag">pyqt5</span><span class="dn-tag">sap</span></div>
+          </div>
+        </a>
+
+        <a class="dn-card" href="#p06">
+          <div class="dn-card__media"><pre aria-hidden="true">
+                                                      -=.*
+                                                      :. +
+                                 +-=%#                .  *
+                                %@*#@@@*          -   . =@
+                                %@:+@@@#          %:  . -@.
+                                @*.-@@@          +@:  :.:@:
+                                @  +@@@.         :@. *@@@@
+                               -% =%@@@:          @  @@++#
+                               -. @# @@           @  @* *#
+                                  @  @@           ##@@#+@@
+                                  @  #=           @@@@@:-*
+                                  %  ::           ::=@@ :*
+                                  +  :               @@ :%
+ .. .                 ....  .                        -:  -.              :---.
+                                                                       :---=#%
+                                       -                              :=:::-+#
+   .           . .   .                 .                              --::-=*%
+   ...         .    .                                                 =-:--=*%
+    .....        .        .      .              ...                   =-:--+*@
+   ...... .... .                :: .    .                             +-:-=+#@
+..  .. ... :.:. .. ..     .::.  ..     ..                  .         .+---=+#@
+-..  ....... ............:.   ...  :                        .     .  :+---=*#@
+::-::    ........:.. ::.. ... :.. ..   ..... ... .    . .:.        . :+---=*%@
+:::-=-:.. .:..:..::. ..:: -:--   ..    ...     . .. . ....      .    .++-=+*@@
+==---==-....:::.. .       .... :. ..... .      . .. . .   ... .   .:.:-####@@@
+:--=--++==+---:-.  .::.  . :-.... :.:-  :::.   :.         . .. . ....:--##@@+:
+ :::-**++=::--:-:.:::-..=-::: . .--.::  ....  .. .     ..   .  .. ..::....:-:-
+-===++--==::-:-=-.   ::..+...::----+:..   ::.. .:.   .. ....-  : .:. ....:. -:</pre></div>
+          <div class="dn-card__body">
+            <p class="dn-card__meta">#06 · 2026 · <span data-l="en">game</span><span data-l="sr">igra</span></p>
+            <h3 class="dn-card__title">Colossus</h3>
+            <p class="dn-card__text" data-l="en">A game about climbing giants, built by a team of AI agents while I direct.</p>
+            <p class="dn-card__text" data-l="sr">Igra o penjanju na džinove, koju pravi tim AI agenata dok ja režiram.</p>
+            <div class="dn-tags"><span class="dn-tag dn-tag--hot"><span data-l="en">ongoing</span><span data-l="sr">u toku</span></span><span class="dn-tag">unity</span><span class="dn-tag">blender</span><span class="dn-tag">claude code</span></div>
+          </div>
+        </a>
+
+        <a class="dn-card" href="#p07">
+          <div class="dn-card__media dn-card__media--sky"><pre aria-hidden="true">
+                                                                          ::
+                                                          .....:::::::----%%:
+          ..                           .....:::::::------------:::::minsk.+-
+            amsterdam....:::::::------------:::::::.....                 -=
+         =#+:------------::::::::....                                    =:
+       . +#=::....                                                      -=
+        -=                                                              =:
+       -= ..                                                           -=
+      -=                                                               =:
+     -=.                                                              -=
+  . :+.                                                               =:
+   .=:                                    ..                         :=
+  *%=paris                                                           =:
+  =+=-.                            vienna =+:                       :=
+     -=-                                 .#%=--:.   budapest        =:
+   .  .-=:                               =-  .:--=%*.              :=
+        :==:                         .:+%* .     :** .             =:
+          :=-.                  .::-----+-         -: .           :=
+            :=-.  .        .::----:..             .+%+            =-
+              -=-     .::----:..        .        :%@*=-:         :=
+               .-+*=----::.                      .-=#%%*         =-
+                 +%+..                              =+@# belgrade=
+                    torino                           -*=: ..    =-
+                                                    #@%%%-     :=
+                                                    :=+=-=*+.  =-
+                                                         :##-:-+.
+                                                      .     .-%%sofia
+                                                          ..  ::</pre></div>
+          <div class="dn-card__body">
+            <p class="dn-card__meta">#07 · 2025 · <span data-l="en">heuristics</span><span data-l="sr">heuristike</span></p>
+            <h3 class="dn-card__title">Travelling salesman</h3>
+            <p class="dn-card__text" data-l="en">Four heuristics, seventeen cities. The simplest one won.</p>
+            <p class="dn-card__text" data-l="sr">Četiri heuristike, sedamnaest gradova. Pobedila je najjednostavnija.</p>
+            <div class="dn-tags"><span class="dn-tag">python</span><span class="dn-tag">matlab</span></div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <div class="dn-divider dn-divider--dots" role="separator" style="margin-top:var(--space-6)"></div>
+
+    <!-- ====== #01 ====== -->
+    <article class="case" id="p01">
+        <figure class="art">
+          <div class="art-box">
+            <pre class="dn-ascii" aria-label="Bar chart in ASCII: the motor neuron fires at about 107 Hz in every condition except betweenness top 34 at 44.3 Hz and the min-cut at 0.38 Hz">
+
+ MN9 firing rate after silencing 34 neurons (Hz)
+ ..........................................................................
+
+ intact brain         ######################################## 107.7
+
+ out-strength top 34  ############################################ 118
+
+ pagerank top 34      ######################################## 107.8
+
+ random on-path x20   ######################################## 107.3
+
+ betweenness top 34   ################# 44.3
+
+ min-cut, mine        . 0.38
+
+ ..........................................................................
+ 30 trials x 1 s, mean of both MN9 cells, male CNS v1.0
+
+
+
+</pre>
+            <span class="dn-note dn-note--coral" style="right:var(--space-5);bottom:22%" aria-hidden="true">0,4% ostaje</span>
+          </div>
+          <figcaption data-l="en">My result: firing rate of the proboscis motor neuron after silencing 34 neurons chosen five different ways.</figcaption>
+          <figcaption data-l="sr">Moj rezultat: frekvencija motornog neurona surle posle utišavanja 34 neurona izabrana na pet načina.</figcaption>
+        </figure>
+      <div class="case-text">
+        <p class="dn-card__meta">#01 · 2026 · <span data-l="en">graphs</span><span data-l="sr">grafovi</span></p>
+        <h2 class="dn-heading">Brain bottlenecks</h2>
+        <p class="lead" data-l="en">In 2026 the full wiring of a male fruit fly's nervous system was published: 174,386 neurons and 25.8 million connections. I wanted to know where the path from a sense to a movement gets squeezed. It's the same question I ask about a production line.</p>
+        <p class="lead" data-l="sr">Ove godine je objavljena kompletna mapa nervnog sistema mužjaka vinske mušice: 174.386 neurona i 25,8 miliona veza. Hteo sam da znam gde se put od čula do pokreta sužava. Isto pitanje postavljam i za proizvodnu liniju.</p>
+        <p data-l="en">I treated the connectome as a flow network and ran max-flow and min-cut between sensory neurons and the neurons that drive movement. Cutting a sense off from every motor output told me nothing. The fly is shallow, about two hops from sense to muscle, so the cut was just the first layer. Aiming at one behaviour at a time worked. For the escape from a looming shadow, the cut was led by LPLC2 and LC4, the same cells biologists already tie to that escape. The graph found them from the wiring alone.</p>
+        <p data-l="sr">Konektom sam posmatrao kao mrežu protoka i tražio max-flow i min-cut između čulnih neurona i neurona koji pokreću telo. Kad sam čulo odsekao od svih motornih izlaza, nisam dobio ništa korisno. Mušica je plitka, oko dva koraka od čula do mišića, pa je presek bio samo prvi sloj. Kad sam ciljao jedno ponašanje, proradilo je. Za bekstvo od senke koja se približava, presek su predvodili LPLC2 i LC4, upravo ćelije koje biolozi već vezuju za to bekstvo. Graf ih je našao samo iz veza.</p>
+        <p data-l="en">Then I tested the prediction. I rewrote a whole-brain spiking model in numba and silenced the 34 neurons in the cut between taste and the proboscis. Its motor neuron dropped from 107.7 Hz to 0.38 Hz. Silencing 34 random neurons on the same paths changed nothing, and the best centrality measure only cut it by about half.</p>
+        <p data-l="sr">Onda sam predikciju proverio. Prepisao sam spajking model celog mozga u numbi i utišao 34 neurona iz preseka između ukusa i surle. Njen motorni neuron je pao sa 107,7 Hz na 0,38 Hz. Kad sam utišao 34 nasumična neurona na istim putevima, ništa se nije promenilo, a najbolja mera centralnosti ga je oborila tek na pola.</p>
+      </div>
+      <div class="case-side">
+        <div class="dn-frame">
+          <p class="frame-k">stack</p>
+          <p>Python, OR-Tools, igraph, SciPy, numba, neuPrint</p>
+          <p class="frame-k"><span data-l="en">data</span><span data-l="sr">podaci</span></p>
+          <p data-l="en">Male CNS v1.0 connectome, Janelia FlyEM and Google</p>
+          <p data-l="sr">Konektom male CNS v1.0, Janelia FlyEM i Google</p>
+          <div class="frame-links"><a class="dn-btn" href="https://github.com/danilo-lazovic/fly-bottlenecks" target="_blank" rel="noopener"><span data-l="en">code on github</span><span data-l="sr">kod na githubu</span></a></div>
+        </div>
+      </div>
+    </article>
+
+    <div class="dn-divider dn-divider--dots" role="separator"></div>
+
+    <!-- ====== #02 ====== -->
+    <article class="case" id="p02">
+        <figure class="art">
+          <div class="art-box"><pre class="dn-ascii" aria-label="ASCII map of Serbia and Montenegro with the cafés grouped by city, Belgrade by far the largest">
+
+                             :++- novi sad
+                             +@@#.
+                             .:-.     .-+++=:
+                                    :*%@@@@@@#:
+                            .       *@@@@@@@@@%:
+                           =%*.     *@@@@@@@@@beograd, 49
+                           :=-      :#@@@@@@@@=
+                                     .=*#%#*+:
+                                         .:-.
+                                          *@+
+                                          ..     .
+                                čačak          :#@*.kragujevac
+                                      -#*.     .+*=
+                           .==.       :+=.
+                  zlatibor -%#.                :**-
+                                               =%%=
+                                                                .:-.
+                                               :##:             *@@#.niš
+                                               .++.             :++-
+
+
+
+
+
+   boka:*###*:      =*-
+       .+*#%#:     .+#= podgorica
+ 70 active cafés, one inbox</pre></div>
+          <figcaption data-l="en">Where the 70 active cafés are, grouped by city, from the app's location list.</figcaption>
+          <figcaption data-l="sr">Gde je 70 aktivnih kafića, po gradovima, iz spiska lokacija u aplikaciji.</figcaption>
+        </figure>
+      <div class="case-text">
+        <p class="dn-card__meta">#02 · 2026 · Kafeterija</p>
+        <h2 class="dn-heading">Review engine</h2>
+        <p class="lead" data-l="en">Kafeterija has 70 cafés, and each one has its own Google profile. Reviews piled up across all of them, replies were typed by hand, and a manager needed Google access just to thank a guest.</p>
+        <p class="lead" data-l="sr">Kafeterija ima 70 kafića i svaki ima svoj Google profil. Recenzije su se gomilale po svima njima, odgovori su se kucali ručno, a menadžer je morao da ima Google pristup samo da bi zahvalio gostu.</p>
+        <p data-l="en">It started as one Python script that pulled reviews into a spreadsheet. Today it's a FastAPI and Next.js app. It syncs all 47,000 reviews going back to 2016, puts the new ones in a single inbox and publishes replies straight to Google in the company's name. Managers sign in with their email and only see their own cafés.</p>
+        <p data-l="sr">Počelo je kao jedna Python skripta koja je vukla recenzije u tabelu. Danas je to FastAPI i Next.js aplikacija. Sinhronizuje svih 47.000 recenzija unazad do 2016, nove stavlja u jedno sanduče i odgovore objavljuje direktno na Google u ime firme. Menadžeri se prijavljuju mejlom i vide samo svoje kafiće.</p>
+        <p data-l="en">My favourite part is the reply drafts. Claude writes a suggestion, and with it I send a few of that manager's own earlier replies, so the draft sounds like them. They read it, fix what they want and send it. Once a week the app also builds the Excel report the team used to fill in by hand, in exactly the same format, so nobody had to change how they work.</p>
+        <p data-l="sr">Najdraži deo su mi predlozi odgovora. Claude piše predlog, a uz njega šaljem nekoliko ranijih odgovora tog menadžera, pa predlog zvuči kao on. Menadžer pročita, ispravi šta hoće i pošalje. Jednom nedeljno aplikacija pravi i Excel izveštaj koji je tim ranije popunjavao ručno, u potpuno istom formatu, pa niko nije morao da menja način rada.</p>
+      </div>
+      <div class="case-side">
+        <div class="dn-frame">
+          <p class="frame-k">stack</p>
+          <p>FastAPI, Next.js, Google Business Profile API, Claude API, Docker, Caddy</p>
+          <p class="frame-k">status</p>
+          <p data-l="en">In daily use. The code is private, but I'm happy to show it.</p>
+          <p data-l="sr">U svakodnevnoj upotrebi. Kod je privatan, ali rado ga pokažem.</p>
+        </div>
+      </div>
+    </article>
+
+    <div class="dn-divider dn-divider--dots" role="separator"></div>
+
+    <!-- ====== #03 ====== -->
+    <article class="case" id="p03">
+        <figure class="art">
+          <div class="art-box"><pre class="dn-ascii" aria-label="ASCII bar chart of sales per hour, today next to the same weekday last week, with a line at the current hour">
+ live sales by hour, today vs same weekday last week
+
+                              |
+                          #   |
+                      #  :#   |
+                  #  :#  :#   |
+              #  :#  :#  :#  :|
+          #  :#  :#  :#  :#  :|
+         :#  :#  :#  :#  :#  :|  :
+     :#  :#  :#  :#  :#  :#  :|  :   :
+ :#  :#  :#  :#  :#  :#  :#  :|  :   :   :
+ :#  :#  :#  :#  :#  :#  :#  :|  :   :   :   :
+ :#  :#  :#  :#  :#  :#  :#  :|  :   :   :   :   :
+ :#  :#  :#  :#  :#  :#  :#  :+  :   :   :   :   :
+ :#  :#  :#  :#  :#  :#  :#  :+  :   :   :   :   :   :
+ :#  :#  :#  :#  :#  :#  :#  :+  :   :   :   :   :   :
+ :#  :#  :#  :#  :#  :#  :#  :+  :   :   :   :   :   :
+ :#  :#  :#  :#  :#  :#  :#  :+  :   :   :   :   :   :
+ :#  :#  :#  :#  :#  :#  :#  :+  :   :   :   :   :   :   :
+ :#  :#  :#  :#  :#  :#  :#  :+  :   :   :   :   :   :   :
+ :#  :#  :#  :#  :#  :#  :#  :+  :   :   :   :   :   :   :   :
+ :#  :#  :#  :#  :#  :#  :#  :+  :   :   :   :   :   :   :   :
+ 07  08  09  10  11  12  13  14  15  16  17  18  19  20  21  22
+
+ # today   : last week   | now, 14:35        (mock data from the design)</pre></div>
+          <figcaption data-l="en">The live sales screen, drawn from the design mock. The numbers behind it are made up.</figcaption>
+          <figcaption data-l="sr">Ekran prodaje uživo, nacrtan iz dizajn makete. Brojke iza njega su izmišljene.</figcaption>
+        </figure>
+      <div class="case-text">
+        <p class="dn-card__meta">#03 · 2026 · Kafeterija</p>
+        <h2 class="dn-heading">Café portal</h2>
+        <p class="lead" data-l="en">Sales lived in the registers, delivery numbers in the Wolt and Glovo dashboards, and reviews in my other app. Nobody could see a whole day in one place.</p>
+        <p class="lead" data-l="sr">Prodaja je živela u kasama, brojke dostave na Wolt i Glovo portalima, a recenzije u mojoj drugoj aplikaciji. Niko nije mogao da vidi ceo dan na jednom mestu.</p>
+        <p data-l="en">So I'm building an internal portal that pulls everything into one Postgres database. Small workers do the pulling: register orders every minute, platform exports every morning, reviews from the review engine. The portal only ever reads our own database, so when Wolt is down, sales from the registers still load.</p>
+        <p data-l="sr">Zato pravim interni portal koji sve sliva u jednu Postgres bazu. Mali workeri povlače podatke: porudžbine sa kasa svakog minuta, izvoze sa platformi svako jutro, recenzije iz mog drugog alata. Portal čita samo našu bazu, pa kad Wolt ne radi, prodaja sa kasa se i dalje učitava.</p>
+        <p data-l="en">Every day is compared with the same weekday over the last four weeks. If a café drops by 70%, the portal says it stopped. If a whole channel drops, it says that too. I drew every screen first, with fake numbers clearly marked as fake, and now I build it one module at a time.</p>
+        <p data-l="sr">Svaki dan se poredi sa istim danom u prethodne četiri nedelje. Ako kafić padne za 70%, portal kaže da je stao. Ako padne ceo kanal, kaže i to. Prvo sam nacrtao svaki ekran, sa izmišljenim brojkama jasno označenim, a sada ga gradim modul po modul.</p>
+      </div>
+      <div class="case-side">
+        <div class="dn-frame">
+          <p class="frame-k">stack</p>
+          <p>FastAPI, SQLAlchemy, Alembic, PostgreSQL, Next.js, Docker</p>
+          <p class="frame-k">status</p>
+          <p data-l="en">Being built. Live sales run on mock data until the register API arrives.</p>
+          <p data-l="sr">U izradi. Prodaja uživo radi na lažnim podacima dok ne stigne API kase.</p>
+        </div>
+      </div>
+    </article>
+
+    <div class="dn-divider dn-divider--dots" role="separator"></div>
+
+    <!-- ====== #04 ====== -->
+    <article class="case" id="p04">
+        <figure class="art">
+          <div class="art-box"><pre class="dn-ascii dn-ascii--ink" aria-label="A log of one morning run of the export agent and the import worker">
+
+ $ cowork run morning-exports
+
+ 08:00  agent awake, chrome session ok
+ 08:01  glovo   reports / performance / yesterday ......... saved
+ 08:03  wolt    financials / purchase data / yesterday .... saved
+ 08:03  moved 2 files to platforme_izvozi/
+
+ $ platform_sync (watching)
+
+ 08:04  glovo_performance.csv   recognised by header
+ 08:04  wolt_purchases.csv      recognised by header
+ 08:04  vat removed, other brands skipped, delivered orders only
+ 08:04  imported, 0 rejected
+ 08:05  alarms: compared with the same weekday, last 4 weeks
+ 08:05  dashboards up to date
+
+ if the portal session expired:
+ 08:01  glovo login needed. stopping, a human has to sign in.
+</pre></div>
+          <figcaption data-l="en">What a normal morning looks like, written as a log.</figcaption>
+          <figcaption data-l="sr">Kako izgleda obično jutro, zapisano kao log.</figcaption>
+        </figure>
+      <div class="case-text">
+        <p class="dn-card__meta">#04 · 2026 · Kafeterija</p>
+        <h2 class="dn-heading">Morning agents</h2>
+        <p class="lead" data-l="en">Most of my reports began the same way: log in to Wolt, log in to Glovo, download yesterday, move the files, import them.</p>
+        <p class="lead" data-l="sr">Većina mojih izveštaja je počinjala isto: uloguj se na Wolt, uloguj se na Glovo, skini jučerašnji dan, premesti fajlove, uvezi ih.</p>
+        <p data-l="en">Now a scheduled Claude agent does it at eight every morning, in the browser, and leaves the exports where the portal picks them up. It never types a password. If a session has expired, it stops and asks me. Other agents fill in the weekly Google reviews report, the monthly Power BI numbers and the Glovo promo plan for marketing.</p>
+        <p data-l="sr">Sada to radi zakazani Claude agent svako jutro u osam, u pretraživaču, i ostavlja izvoze tamo gde ih portal pokupi. Nikad ne kuca lozinku. Ako je sesija istekla, stane i pita mene. Drugi agenti popunjavaju nedeljni izveštaj Google recenzija, mesečne brojke iz Power BI-ja i plan Glovo akcija za marketing.</p>
+        <p data-l="en">Under it sits the reporting model in Power BI and Excel. It has three layers (dimensions, raw data, report), so a new month is a data drop and not a rebuild. It follows ad spend per channel and sorts the menu into a BCG matrix: what sells and earns, and what only takes up space.</p>
+        <p data-l="sr">Ispod stoji model za izveštavanje u Power BI-ju i Excelu. Ima tri sloja (dimenzije, sirovi podaci, izveštaj), pa je novi mesec samo ubacivanje podataka, a ne pravljenje ispočetka. Prati ulaganje u oglase po kanalu i deli meni u BCG matricu: šta se prodaje i zarađuje, a šta samo zauzima mesto.</p>
+      </div>
+      <div class="case-side">
+        <div class="dn-frame">
+          <p class="frame-k">stack</p>
+          <p>Claude Cowork, Power BI, Power Query, Excel, Python</p>
+        </div>
+      </div>
+    </article>
+
+    <div class="dn-divider dn-divider--dots" role="separator"></div>
+
+    <!-- ====== #05 ====== -->
+    <article class="case" id="p05">
+        <figure class="art">
+          <div class="art-box"><pre class="dn-ascii" aria-label="ASCII bar chart: weekly stock above a zero line for the first weeks, then backlog below the line for the rest of the run">
+ stock (+) and backlog (-) per week, 22-week run
+
+                                         .----------:
+               -+=.                      -%%%%%%%%%%+
+               #@@-                      -%%%%%%%%%%+
+        :--. . *@%:                      .:::::::::::
+ =%%+   *@@=   #@@-
+ :==-+*+-==-**+-==:==:+*+=**=**++**=**=+*+=**=**++**=**=+*+=**-+*==**-**=+**.
+     %@%   .==-    ...%@%#@@*@@##@@*@@#%@%#@@*@@%#@@*@@*%@%*@@+%@#*@@+@@*#@%:
+     .:.              #@%*@@*%@##@%*@@*%@%*@@*%@##@@*@@+#@#+@@+%@#*@%+@@*#@%.
+                      #@%*@@*%@##@%*@@*%@%*@@*%@##@@*@@*#@#+@@+%@#*@%+@@*#@%.
+                      #@%#@@*%@##@%*@@*%@%*@@*%@##@@*@@*#@#+@@+%@#*@%+@@*#@%.
+                      %@%*%%*%@##@%*@@*%@%*@@*%@##@@*@@*#@#+@@+%@#*@%+@@*#@%.
+                      ---...-@@##@%*@@*%@%*@@*%@##@@*@@*#@#+@@+%@#*@%+@@*#@%.
+                            -@@##@@*@@*%@%*@@*%@##@@*@@+#@#+@@+%@#*@%+@@*#@%.
+                            .--:+##+@@*%@%*@@*%@##@@*@@*#@#+@@+%@#*@%+@@*#@%.
+                                   =@@*%@%*@@*%@##@@=--:%@#+@@+%@#*@%+@@*#@%.
+                                 . =@@*%@%*@@*%@##@@-   %@#+@@+%@#*@%+@@*#@%.
+                                   =@@*%@%*@@*%@##@@-  .%@%+@@+%@#*@%+@@*#@%.
+                                   =@@*%@%*@@*%@##@@=   =+=+@@+%@#*@@--=:%@%:
+                                   =@@*%@%*@@*%@##@@-      +@@+%@#*@@-   +*+.
+                                   =@@*%@%#@@*%@##@@-    . +@@+%@#*@@- .
+                                   =@@*#%#=**+%@##@@=      =##=*#+*%%-
+                                   =@@* ..   :@@#+**:              ..
+                                   :==-    . -@@%
+                                             .===
+
+ w1                                                                      w22</pre></div>
+          <figcaption data-l="en">Stock and backlog per week from one run of the MATLAB planner.</figcaption>
+          <figcaption data-l="sr">Zalihe i backlog po nedeljama iz jednog pokretanja MATLAB planera.</figcaption>
+        </figure>
+      <div class="case-text">
+        <p class="dn-card__meta">#05 · 2025, 2026 · <span data-l="en">operations</span><span data-l="sr">operacije</span></p>
+        <h2 class="dn-heading">Production planning</h2>
+        <p class="lead" data-l="en">Demand goes up and down every week, capacity doesn't. A plan has to decide what gets made now and what can wait.</p>
+        <p class="lead" data-l="sr">Tražnja svake nedelje ide gore i dole, kapacitet ne. Plan mora da odluči šta se pravi sada, a šta može da sačeka.</p>
+        <p data-l="en">At university I built a planner in MATLAB. It reads weekly demand and daily capacity from Excel, releases production so the backlog is cleared first, avoids making stock too early, and draws nine charts that show what happened. The drawing is one of them: stock above the line, backlog below it.</p>
+        <p data-l="sr">Na fakultetu sam napravio planer u MATLAB-u. Čita nedeljnu tražnju i dnevni kapacitet iz Excela, pušta proizvodnju tako da se prvo skine backlog, ne pravi zalihe prerano i crta devet grafika koji pokazuju šta se desilo. Crtež je jedan od njih: zalihe iznad linije, backlog ispod.</p>
+        <p data-l="en">At Bosch I did it for real. I planned and ordered production materials in SAP, and next to that I built a desktop app in Python and PyQt5 that plans more than 800 SKUs over 52 weeks, a VBA tool that splits capacity in Excel, and Power Query automation that feeds Power BI.</p>
+        <p data-l="sr">U Boschu sam to radio zaista. Planirao sam i naručivao materijal u SAP-u, a pored toga napravio desktop aplikaciju u Pythonu i PyQt5 koja planira više od 800 artikala na 52 nedelje, VBA alat koji deli kapacitet u Excelu i Power Query automatizaciju za Power BI.</p>
+      </div>
+      <div class="case-side">
+        <div class="dn-frame">
+          <p class="frame-k">stack</p>
+          <p>MATLAB, Excel, Python, PyQt5, VBA, Power Query, SAP</p>
+          <div class="frame-links"><a class="dn-btn" href="https://github.com/danilo-lazovic/production-planning" target="_blank" rel="noopener"><span data-l="en">matlab version on github</span><span data-l="sr">matlab verzija na githubu</span></a></div>
+        </div>
+      </div>
+    </article>
+
+    <div class="dn-divider dn-divider--dots" role="separator"></div>
+
+    <!-- ====== #06 ====== -->
+    <article class="case" id="p06">
+        <figure class="art">
+          <div class="art-box"><pre class="dn-ascii" aria-label="ASCII drawing of a playtest screenshot: a tall colossus, a ruined tower and the small player on an empty plain">
+                                                      -=.*
+                                                      :. +
+                                 +-=%#                .  *
+                                %@*#@@@*          -   . =@
+                                %@:+@@@#          %:  . -@.
+                                @*.-@@@          +@:  :.:@:
+                                @  +@@@.         :@. *@@@@
+                               -% =%@@@:          @  @@++#
+                               -. @# @@           @  @* *#
+                                  @  @@           ##@@#+@@
+                                  @  #=           @@@@@:-*
+                                  %  ::           ::=@@ :*
+                                  +  :               @@ :%
+ .. .                 ....  .                        -:  -.              :---.
+                                                                       :---=#%
+                                       -                              :=:::-+#
+   .           . .   .                 .                              --::-=*%
+   ...         .    .                                                 =-:--=*%
+    .....        .        .      .              ...                   =-:--+*@
+   ...... .... .                :: .    .                             +-:-=+#@
+..  .. ... :.:. .. ..     .::.  ..     ..                  .         .+---=+#@
+-..  ....... ............:.   ...  :                        .     .  :+---=*#@
+::-::    ........:.. ::.. ... :.. ..   ..... ... .    . .:.        . :+---=*%@
+:::-=-:.. .:..:..::. ..:: -:--   ..    ...     . .. . ....      .    .++-=+*@@
+==---==-....:::.. .       .... :. ..... .      . .. . .   ... .   .:.:-####@@@
+:--=--++==+---:-.  .::.  . :-.... :.:-  :::.   :.         . .. . ....:--##@@+:
+ :::-**++=::--:-:.:::-..=-::: . .--.::  ....  .. .     ..   .  .. ..::....:-:-
+-===++--==::-:-=-.   ::..+...::----+:..   ::.. .:.   .. ....-  : .:. ....:. -:</pre></div>
+          <figcaption data-l="en">A playtest screenshot from brief 005: the colossus, a ruined tower and the player.</figcaption>
+          <figcaption data-l="sr">Screenshot sa playtesta za brief 005: kolos, srušena kula i igrač.</figcaption>
+        </figure>
+      <div class="case-text">
+        <p class="dn-card__meta">#06 · 2026 · <span data-l="en">game</span><span data-l="sr">igra</span></p>
+        <h2 class="dn-heading">Colossus</h2>
+        <p class="lead" data-l="en">A game about climbing giants in an empty land. I'm the creative director, and the rest of the studio is a team of Claude agents.</p>
+        <p class="lead" data-l="sr">Igra o penjanju na džinove u praznoj zemlji. Ja sam kreativni direktor, a ostatak studija je tim Claude agenata.</p>
+        <p data-l="en">There's a programmer, a tech artist, a 3D artist, a 2D artist and a playtester. Each one works in Unity or Blender directly. I write a brief, they build it on a branch, the playtester plays it and sends me screenshots, and I decide. Every phase has one question, and we don't move on until the answer is yes. Right now the question is whether it's fun to hold on to something that is trying to shake you off.</p>
+        <p data-l="sr">Tu su programer, tehnički umetnik, 3D umetnik, 2D umetnik i tester. Svaki radi direktno u Unity-ju ili Blenderu. Ja napišem brief, oni ga naprave na posebnoj grani, tester ga odigra i pošalje mi screenshotove, a ja odlučim. Svaka faza ima jedno pitanje i ne idemo dalje dok odgovor nije da. Trenutno je pitanje da li je zabavno držati se za nešto što pokušava da te strese.</p>
+        <p data-l="en">This is how I described the feeling in the design doc:</p>
+        <p data-l="sr">Ovako sam opisao osećaj u dizajn dokumentu:</p>
+        <blockquote data-l="en">"Like coming back to your hometown after a while, and everything that was supposed to wait for you is gone."</blockquote>
+        <blockquote data-l="sr">„Kao kad se vratiš u rodni grad posle izvesnog vremena i imaš osećaj da nema ničega, jer sve što je trebalo da te sačeka fali.“</blockquote>
+      </div>
+      <div class="case-side">
+        <div class="dn-frame">
+          <p class="frame-k">stack</p>
+          <p>Unity 6, C#, Cinemachine, Blender, Claude Code, MCP</p>
+          <p class="frame-k">status</p>
+          <p data-l="en">Phase 3 of 5: climbing a colossus that moves.</p>
+          <p data-l="sr">Faza 3 od 5: penjanje po kolosu koji se kreće.</p>
+        </div>
+      </div>
+    </article>
+
+    <div class="dn-divider dn-divider--dots" role="separator"></div>
+
+    <!-- ====== #07 ====== -->
+    <article class="case" id="p07">
+        <figure class="art">
+          <div class="art-box">
+            <pre class="dn-ascii" aria-label="ASCII map of the 17 city tour across Europe, from Paris and Amsterdam to Minsk and Sofia">
+                                                                          ::
+                                                          .....:::::::----%%:
+          ..                           .....:::::::------------:::::minsk.+-
+            amsterdam....:::::::------------:::::::.....                 -=
+         =#+:------------::::::::....                                    =:
+       . +#=::....                                                      -=
+        -=                                                              =:
+       -= ..                                                           -=
+      -=                                                               =:
+     -=.                                                              -=
+  . :+.                                                               =:
+   .=:                                    ..                         :=
+  *%=paris                                                           =:
+  =+=-.                            vienna =+:                       :=
+     -=-                                 .#%=--:.   budapest        =:
+   .  .-=:                               =-  .:--=%*.              :=
+        :==:                         .:+%* .     :** .             =:
+          :=-.                  .::-----+-         -: .           :=
+            :=-.  .        .::----:..             .+%+            =-
+              -=-     .::----:..        .        :%@*=-:         :=
+               .-+*=----::.                      .-=#%%*         =-
+                 +%+..                              =+@# belgrade=
+                    torino                           -*=: ..    =-
+                                                    #@%%%-     :=
+                                                    :=+=-=*+.  =-
+                                                         :##-:-+.
+                                                      .     .-%%sofia
+                                                          ..  ::</pre>
+            <span class="dn-note dn-note--coral" style="left:22%;bottom:8%" aria-hidden="true">2-opt pobedio</span>
+          </div>
+          <figcaption data-l="en">The tour after 2-opt.</figcaption>
+          <figcaption data-l="sr">Tura posle 2-opt.</figcaption>
+        </figure>
+      <div class="case-text">
+        <p class="dn-card__meta">#07 · 2025 · <span data-l="en">heuristics</span><span data-l="sr">heuristike</span></p>
+        <h2 class="dn-heading">Travelling salesman</h2>
+        <p class="lead" data-l="en">Seventeen cities, from Kosjerić to Minsk. Which order is the shortest?</p>
+        <p class="lead" data-l="sr">Sedamnaest gradova, od Kosjerića do Minska. Koji redosled je najkraći?</p>
+        <p data-l="en">I geocoded the cities in Python and wrote four heuristics in MATLAB: nearest neighbour, 2-opt, simulated annealing with 50,000 iterations, and a genetic algorithm with order crossover. I expected the genetic algorithm to win. It didn't. Plain 2-opt found the shortest tour, 68.46 against 74.92 for the genetic algorithm and 79.75 for nearest neighbour. On a problem this size, a simple local search was enough.</p>
+        <p data-l="sr">Gradove sam geokodirao u Pythonu i napisao četiri heuristike u MATLAB-u: najbližeg suseda, 2-opt, simulirano kaljenje sa 50.000 iteracija i genetski algoritam sa order crossoverom. Očekivao sam da pobedi genetski. Nije. Obični 2-opt je našao najkraću turu, 68,46 prema 74,92 za genetski i 79,75 za najbližeg suseda. Na ovoliko malom problemu, jednostavna lokalna pretraga je bila dovoljna.</p>
+      </div>
+      <div class="case-side">
+        <div class="dn-frame">
+          <p class="frame-k"><span data-l="en">tour length</span><span data-l="sr">dužina ture</span></p>
+          <p class="mono" data-l="en">2-opt 68.46 · genetic 74.92 · annealing 75.12 · nearest neighbour 79.75</p>
+          <p class="mono" data-l="sr">2-opt 68,46 · genetski 74,92 · kaljenje 75,12 · najbliži sused 79,75</p>
+          <div class="frame-links"><a class="dn-btn" href="https://github.com/danilo-lazovic/tsp-optimization" target="_blank" rel="noopener"><span data-l="en">code on github</span><span data-l="sr">kod na githubu</span></a></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ====== INFO ====== -->
+    <section class="sec" id="info">
+      <div class="sec-head">
+        <span class="dn-label"><span class="dn-label__path">:/</span><span class="dn-label__name">&lt;info_&gt;</span></span>
+      </div>
+      <div class="info">
+        <div>
+          <p class="lead" style="margin-top:0" data-l="en">I'm Danilo. I grew up in Čačak and live in Belgrade, where I study operations management at FON and work at Kafeterija on everything that has to do with data: sales, delivery platforms, reviews, and the agents that connect them.</p>
+          <p class="lead" style="margin-top:0" data-l="sr">Ja sam Danilo. Odrastao sam u Čačku, a živim u Beogradu, gde studiram menadžment operacija na FON-u i radim u Kafeteriji na svemu što ima veze sa podacima: prodaji, platformama za dostavu, recenzijama i agentima koji ih povezuju.</p>
+          <p data-l="en">The moment I like most in any project is when a messy process turns into one clear picture, and you can finally point at the spot where it gets stuck. I've chased that on a shop floor in Čačak, in Bosch's material plans, in the delivery numbers of 70 cafés and in the brain of a fly.</p>
+          <p data-l="sr">Najviše volim trenutak kad neuredan proces postane jedna jasna slika i kad konačno možeš da pokažeš mesto gde se zaglavljuje. To sam tražio u pogonu u Čačku, u planovima materijala u Boschu, u brojkama dostave 70 kafića i u mozgu mušice.</p>
+          <p data-l="en">A few rules I keep. A number always comes with what it's compared to. Fake data never mixes with real data. And I don't move on until the current question has an answer.</p>
+          <p data-l="sr">Imam nekoliko pravila. Brojka uvek ide uz ono sa čim se poredi. Lažni podaci se nikad ne mešaju sa pravim. I ne idem dalje dok trenutno pitanje nema odgovor.</p>
+          <p data-l="en">Away from the screen I follow basketball and football, and I like helping people learn. I spent a semester mentoring students at FON.</p>
+          <p data-l="sr">Van ekrana pratim košarku i fudbal i volim da pomognem drugima da nauče. Semestar sam bio mentor studentima na FON-u.</p>
+        </div>
+        <div>
+          <p class="frame-k"><span data-l="en">work</span><span data-l="sr">posao</span></p>
+          <dl class="rows">
+            <dt data-l="en">jul 2026 to now</dt><dt data-l="sr">jul 2026 do danas</dt>
+            <dd>Kafeterija <span>Digital Operations &amp; Data Engineer</span></dd>
+            <dt>jan 2026 · jun 2026</dt>
+            <dd>Bosch <span data-l="en">Production Planner in Logistics, Šimanovci</span><span data-l="sr">planer proizvodnje u logistici, Šimanovci</span></dd>
+            <dt>maj 2025 · jun 2025</dt>
+            <dd>UNIQA <span data-l="en">Input/Output Center, Production</span><span data-l="sr">ulazno izlazni centar, proizvodnja</span></dd>
+            <dt>dec 2024 · mar 2025</dt>
+            <dd>ProCredit Bank <span data-l="en">Accounting support</span><span data-l="sr">podrška u računovodstvu</span></dd>
+            <dt>okt 2024 · mar 2025</dt>
+            <dd>FON <span data-l="en">Student mentor</span><span data-l="sr">student mentor</span></dd>
+            <dt>okt 2021 · feb 2022</dt>
+            <dd>Del Trade <span data-l="en">Production support, Čačak</span><span data-l="sr">podrška u proizvodnji, Čačak</span></dd>
+          </dl>
+          <p class="frame-k"><span data-l="en">school and more</span><span data-l="sr">škola i ostalo</span></p>
+          <dl class="rows">
+            <dt>FON</dt>
+            <dd data-l="en">Management and Organisation, Operations Management <span>University of Belgrade</span></dd>
+            <dd data-l="sr">Menadžment i organizacija, menadžment operacija <span>Univerzitet u Beogradu</span></dd>
+            <dt><span data-l="en">gymnasium</span><span data-l="sr">gimnazija</span></dt>
+            <dd data-l="en">Gimnazija, Čačak</dd>
+            <dd data-l="sr">Gimnazija u Čačku</dd>
+            <dt>apr 2025</dt>
+            <dd data-l="en">1st place, Belgrade Engineering Days case study <span>BEST Belgrade, a plan for decentralising Belgrade</span></dd>
+            <dd data-l="sr">1. mesto, case study na Belgrade Engineering Days <span>BEST Beograd, plan za decentralizaciju Beograda</span></dd>
+            <dt><span data-l="en">languages</span><span data-l="sr">jezici</span></dt>
+            <dd data-l="en">Serbian, English</dd>
+            <dd data-l="sr">srpski, engleski</dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== CONTACT ====== -->
+    <section class="contact" id="contact">
+      <div class="sec-head" style="margin-bottom:0">
+        <span class="dn-label"><span class="dn-label__path">:/</span><span class="dn-label__name"><span data-l="en">&lt;contact_&gt;</span><span data-l="sr">&lt;kontakt_&gt;</span></span></span>
+      </div>
+      <a class="mail" href="mailto:dobrilazovic@gmail.com">dobrilazovic@gmail.com</a>
+      <div class="frame-links">
+        <a class="dn-btn dn-btn--fill" href="mailto:dobrilazovic@gmail.com"><span data-l="en">write to me</span><span data-l="sr">piši mi</span></a>
+        <a class="dn-btn" href="https://github.com/danilo-lazovic" target="_blank" rel="noopener">github</a>
+        <a class="dn-btn" href="https://linkedin.com/in/danilo-lazovic" target="_blank" rel="noopener">linkedin</a>
+        <a class="dn-btn" href="assets/Danilo_Lazovic_CV_EN.pdf" download>cv, pdf</a>
+      </div>
+    </section>
+  </main>
+
+  <div class="dn-divider dn-divider--dots" role="separator" style="margin:0"></div>
+  <footer><p>:/ danilo · <span data-l="en">belgrade</span><span data-l="sr">beograd</span> · <span data-year>2026</span></p></footer>
+</div>
+<script src="assets/js/main.js" defer></script>
 </body>
 </html>
