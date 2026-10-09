@@ -1,0 +1,74 @@
+/* Tokens from the "Danilo" design system (tokens.json). Two themes: Papir (light, default) and Noc (dark). */
+:root {
+  --paper: #ece8be;
+  --sheet: #fbfaf3;
+  --ink: #1c1b17;
+  --ink-muted: #5f5c4a;
+  --line: #cfc9a0;
+  --blue: #4762b0;
+  --on-blue: #fbfaf3;
+  --coral: #e88a66;
+  --coral-ink: #a8401c;
+  --on-coral: #1c1b17;
+  --sky: #afc4ec;
+  --sage: #c3dca0;
+  --on-field: #1c1b17;
+  --shadow-sheet: 4px 4px 0 0 #afc4ec;
+  --shadow-none: none;
+
+  --font-mono: "Courier Prime", "Courier New", ui-monospace, monospace;
+  --font-sans: "Instrument Sans", system-ui, sans-serif;
+  --font-hand: Caveat, "Segoe Print", cursive;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 40px;
+  --space-6: 64px;
+  --space-7: 104px;
+
+  --radius-0: 0px;
+  --radius-sm: 3px;
+  --stroke-hair: 1px;
+  --stroke-rule: 2px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #17160f;
+    --sheet: #222017;
+    --ink: #ece8ce;
+    --ink-muted: #a9a58c;
+    --line: #3a3726;
+    --blue: #94aeee;
+    --on-blue: #17160f;
+    --coral: #ee8a63;
+    --coral-ink: #f29c7a;
+    --on-coral: #17160f;
+    --sky: #3e4f7a;
+    --sage: #4c5e36;
+    --on-field: #ece8ce;
+    --shadow-sheet: 4px 4px 0 0 #3e4f7a;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #17160f;
+  --sheet: #222017;
+  --ink: #ece8ce;
+  --ink-muted: #a9a58c;
+  --line: #3a3726;
+  --blue: #94aeee;
+  --on-blue: #17160f;
+  --coral: #ee8a63;
+  --coral-ink: #f29c7a;
+  --on-coral: #17160f;
+  --sky: #3e4f7a;
+  --sage: #4c5e36;
+  --on-field: #ece8ce;
+  --shadow-sheet: 4px 4px 0 0 #3e4f7a;
+  color-scheme: dark;
+}
