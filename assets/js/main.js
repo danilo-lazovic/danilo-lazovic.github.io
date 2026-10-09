@@ -187,7 +187,7 @@
           var lab = s4 || s3 || s2 || s1, ch = ' ', k2 = '';
           if (bits === 15) {
             var hv = hash(c - ox, r - oy);
-            if (lab === 'u') { ch = 'u'; k2 = 'cut'; }
+            if (lab === 'u') { ch = 'u'; k2 = 'pink'; }
             else if (lab === 't') ch = hv < 0.5 ? '%' : hv < 0.8 ? '#' : '*';
             else if (lab === 'h' || lab === 'e') ch = hv < 0.82 ? '#' : '%';
             else if (lab === 'f') ch = '#';
@@ -195,7 +195,7 @@
           } else if (bits) {
             ch = EDGE[bits] || '%';
             if (lab === 't' && hash(c - ox, r) < 0.45) ch = '*';
-            if (lab === 'u') { ch = 'u'; k2 = 'cut'; }
+            if (lab === 'u') { ch = 'u'; k2 = 'pink'; }
           }
           line.push(ch); cl.push(k2);
         }
@@ -208,10 +208,15 @@
         grid[rr][cc] = ch; cls[rr][cc] = k3 || '';
       }
       // face
-      var eyeCh = eye < 0.25 ? '-' : eye < 0.7 ? '=' : eye > 1.3 ? 'O' : 'o';
+      // a soft face: light eyes (- asleep, ^ content, o awake, O surprised), a pink w and blush when awake
+      var eyeCh = eye < 0.25 ? '-' : eye < 0.7 ? '^' : eye > 1.3 ? 'O' : 'o';
       put(p.hx - ex + 0.5, eyeY + 0.5, eyeCh, 'eye');
       put(p.hx + ex + 0.5, eyeY + 0.5, eyeCh, 'eye');
-      put(p.hx + 0.5, p.hy + 2.6, 'v', 'eye');
+      put(p.hx + 0.5, p.hy + 2.6, 'w', 'pink');
+      if (eye >= 0.25) {
+        put(p.hx - ex - 0.9, eyeY + 2.6, '~', 'pink');
+        put(p.hx + ex + 1.9, eyeY + 2.6, '~', 'pink');
+      }
       var wy = p.hy + 2.8, wl = p.hx - p.hr - 1.1, wr = p.hx + p.hr + 1.1;
       put(wl - 0.6, wy, '=', '', true); put(wl - 1.6, wy, '-', '', true);
       put(wr + 0.6, wy, '=', '', true); put(wr + 1.6, wy, '-', '', true);
