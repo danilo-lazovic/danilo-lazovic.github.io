@@ -206,7 +206,7 @@
 </pre></div>
           <div class="dn-card__body">
             <p class="dn-card__meta">#04 · 2026 · <span data-l="en">automation</span><span data-l="sr">automatizacija</span></p>
-            <h3 class="dn-card__title">Morning agents</h3>
+            <h3 class="dn-card__title">Reports on autopilot</h3>
             <p class="dn-card__text" data-l="en">My reports used to start with me downloading files. Now an agent does it at eight.</p>
             <p class="dn-card__text" data-l="sr">Moji izveštaji su počinjali tako što skidam fajlove. Sada to radi agent u osam.</p>
             <div class="dn-tags"><span class="dn-tag">claude cowork</span><span class="dn-tag">power bi</span><span class="dn-tag">excel</span></div>
@@ -430,12 +430,12 @@
       <div class="case-text">
         <p class="dn-card__meta">#02 · 2026 · Kafeterija</p>
         <h2 class="dn-heading">Review engine</h2>
-        <p class="lead" data-l="en">Kafeterija has 70 cafés and every one has its own Google profile. When I started, replies were typed by hand, and a manager needed access to Google just to thank a guest.</p>
-        <p class="lead" data-l="sr">Kafeterija ima 70 kafića i svaki ima svoj Google profil. Kad sam počeo, odgovori su se kucali ručno, a menadžeru je trebao pristup Googleu samo da bi zahvalio gostu.</p>
+        <p class="lead" data-l="en">Kafeterija has 70 cafés, each with its own Google profile. When I started, replies were typed by hand, and a manager needed access to Google just to thank a guest.</p>
+        <p class="lead" data-l="sr">Kafeterija ima 70 kafića, svaki sa svojim Google profilom. Kad sam počeo, odgovori su se kucali ručno, a menadžeru je trebao pristup Googleu samo da bi zahvalio gostu.</p>
         <p data-l="en">It began as one Python script that pulled the reviews into a spreadsheet, and even that took a while. Google gave my project a quota of zero for the Business Profile APIs, so I filed a request and waited for approval before I could pull a single review. After that the login kept expiring every seven days, until I moved the app out of Google's testing mode.</p>
         <p data-l="sr">Počelo je kao jedna Python skripta koja je vukla recenzije u tabelu, i čak je i to potrajalo. Google je mom projektu dao kvotu nula za Business Profile API, pa sam podneo zahtev i čekao odobrenje pre nego što sam mogao da povučem ijednu recenziju. Posle toga je prijava isticala na svakih sedam dana, sve dok aplikaciju nisam izvukao iz Googleovog test režima.</p>
-        <p data-l="en">Today it's a FastAPI and Next.js app with all 47,000 reviews back to 2016. New ones land in one inbox and replies go straight to Google in the company's name. Managers sign in with their email and only see their own cafés. Claude drafts each reply, and I send it a few of that manager's older replies along with the review, so the draft sounds like the person who will send it. At one point I put Haiku and Sonnet side by side on real reviews to see which one writes better replies.</p>
-        <p data-l="sr">Danas je to FastAPI i Next.js aplikacija sa svih 47.000 recenzija unazad do 2016. Nove stižu u jedno sanduče, a odgovori idu direktno na Google u ime firme. Menadžeri se prijavljuju mejlom i vide samo svoje kafiće. Claude piše predlog za svaki odgovor, a uz recenziju mu šaljem i nekoliko starijih odgovora tog menadžera, pa predlog zvuči kao osoba koja će ga poslati. U jednom trenutku sam stavio Haiku i Sonnet jedan pored drugog na pravim recenzijama da vidim koji piše bolje odgovore.</p>
+        <p data-l="en">Today it's a FastAPI and Next.js app with all 47,000 reviews back to 2016. New ones land in one inbox and replies go straight to Google in the company's name. Managers sign in with their email and only see their own cafés. Claude drafts each reply. Along with the review, it gets a few replies that manager wrote before, so the draft already sounds like them. At one point I put Haiku and Sonnet side by side on real reviews to see which one writes better replies.</p>
+        <p data-l="sr">Danas je to FastAPI i Next.js aplikacija sa svih 47.000 recenzija unazad do 2016. Nove stižu u jedno sanduče, a odgovori idu direktno na Google u ime firme. Menadžeri se prijavljuju mejlom i vide samo svoje kafiće. Claude piše predlog za svaki odgovor. Uz recenziju dobija i nekoliko odgovora koje je taj menadžer ranije napisao, pa predlog odmah zvuči kao on. U jednom trenutku sam stavio Haiku i Sonnet jedan pored drugog na pravim recenzijama da vidim koji piše bolje odgovore.</p>
         <p data-l="en">The weekly Excel report the team used to fill in by hand now comes out of the app, in exactly the same format, so nobody had to change how they work.</p>
         <p data-l="sr">Nedeljni Excel izveštaj koji je tim ranije popunjavao ručno sada izlazi iz aplikacije, u potpuno istom formatu, pa niko nije morao da menja način rada.</p>
       </div>
@@ -489,8 +489,8 @@
         <h2 class="dn-heading">Café portal</h2>
         <p class="lead" data-l="en">Sales live in the registers, delivery numbers in the Wolt and Glovo dashboards, and reviews in my other app. I'm building one internal portal that shows all of it.</p>
         <p class="lead" data-l="sr">Prodaja živi u kasama, brojke dostave na Wolt i Glovo portalima, a recenzije u mojoj drugoj aplikaciji. Pravim jedan interni portal koji sve to prikazuje.</p>
-        <p data-l="en">Small workers pull everything into our own Postgres database: register orders every minute, Wolt and Glovo exports every morning, reviews from the review engine. The portal only ever reads that database, so if Wolt is down, the register numbers still load. Each day gets compared with the same weekday over the last four weeks, and if a café drops by 70% the portal says it has stopped.</p>
-        <p data-l="sr">Mali workeri sve slivaju u našu Postgres bazu: porudžbine sa kasa svakog minuta, Wolt i Glovo izvoze svako jutro, recenzije iz drugog alata. Portal čita samo tu bazu, pa kad Wolt ne radi, brojke sa kasa se i dalje učitavaju. Svaki dan se poredi sa istim danom u prethodne četiri nedelje, i ako kafić padne za 70%, portal kaže da je stao.</p>
+        <p data-l="en">Small workers pull everything into our own Postgres database: register orders every minute, Wolt and Glovo exports every morning, reviews from the review engine. The portal itself reads only from that database, so even when Wolt is down, sales from the registers still show up. Each day gets compared with the same weekday over the last four weeks, and if a café drops by 70% the portal says it has stopped.</p>
+        <p data-l="sr">Mali workeri sve slivaju u našu Postgres bazu: porudžbine sa kasa svakog minuta, Wolt i Glovo izvoze svako jutro, recenzije iz drugog alata. Sam portal čita samo iz te baze, pa i kad Wolt ne radi, prodaja sa kasa se i dalje vidi. Svaki dan se poredi sa istim danom u prethodne četiri nedelje, i ako kafić padne za 70%, portal kaže da je stao.</p>
         <p data-l="en">The register API hasn't arrived yet, so the live sales screen runs on fake orders for now. Every fake row is marked as fake, and the worker refuses to mix fake and real ones.</p>
         <p data-l="sr">API kase još nije stigao, pa ekran prodaje uživo za sada radi na izmišljenim porudžbinama. Svaki takav red je označen, a worker odbija da pomeša izmišljene i prave.</p>
       </div>
@@ -536,7 +536,7 @@
         </figure>
       <div class="case-text">
         <p class="dn-card__meta">#04 · 2026 · Kafeterija</p>
-        <h2 class="dn-heading">Morning agents</h2>
+        <h2 class="dn-heading">Reports on autopilot</h2>
         <p class="lead" data-l="en">My reports used to start the same way every day: log in to Wolt, log in to Glovo, download yesterday, move the files.</p>
         <p class="lead" data-l="sr">Moji izveštaji su svakog dana počinjali isto: uloguj se na Wolt, uloguj se na Glovo, skini jučerašnji dan, premesti fajlove.</p>
         <p data-l="en">Now a scheduled Claude agent does that around eight in the morning, in the browser, and leaves the files where the portal picks them up. It never types a password, and if a session has expired it stops and tells me. It only runs while the Claude app is open. Other agents fill in the weekly reviews report, the monthly Power BI numbers and the Glovo promo plan. Underneath sits a Power BI and Excel model in three layers (dimensions, raw data, report), with ad spend per channel and a BCG matrix of the menu.</p>
