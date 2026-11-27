@@ -40,6 +40,165 @@
 
   document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
 
+  /* Nav: the brackets move to the section that is on screen. */
+  (function () {
+    var links = document.querySelectorAll('.dn-nav ul a[href^="#"]'), secs = [];
+    links.forEach(function (a) { var el = document.querySelector(a.getAttribute('href')); if (el) secs.push([el, a]); });
+    if (!secs.length) return;
+    var ticking = false;
+    function mark() {
+      ticking = false;
+      var line = window.innerHeight * 0.4, cur = secs[0][1];
+      secs.forEach(function (p) { if (p[0].getBoundingClientRect().top <= line) cur = p[1]; });
+      var atEnd = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+      if (atEnd) cur = secs[secs.length - 1][1];
+      links.forEach(function (a) { if (a === cur) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+      secs.forEach(function (p) { p[0].classList.toggle('here', p[1] === cur); });
+    }
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(mark); } }, { passive: true });
+    mark();
+  })();
+
+  /* j and k step through the projects, the way they step through lines in vim. */
+  document.addEventListener('keydown', function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey || (e.key !== 'j' && e.key !== 'k')) return;
+    if (/^(input|textarea|select)$/i.test(e.target.tagName || '')) return;
+    var cases = [].slice.call(document.querySelectorAll('.case')), at = -1;
+    cases.forEach(function (c, n) { if (c.getBoundingClientRect().top < 80) at = n; });
+    var onTop = at > -1 && Math.abs(cases[at].getBoundingClientRect().top) < 80;
+    var next = e.key === 'j' ? cases[at + 1] : cases[onTop ? at - 1 : at];
+    if (next) next.scrollIntoView({ block: 'start' });
+  });
+
+  /* Footer: what time it is in Belgrade right now. */
+  document.querySelectorAll('[data-belgrade]').forEach(function (el) {
+    function tick() {
+      try {
+        el.textContent = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Belgrade', hour: '2-digit', minute: '2-digit' }).format(new Date());
+      } catch (e) {}
+    }
+    tick();
+    setInterval(tick, 20000);
+  });
+
+  /* Case studies: each drawing prints line by line the first time it comes into view. */
+  (function () {
+    var cases = document.querySelectorAll('.case');
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    cases.forEach(function (c) {
+      var pre = c.querySelector('.art pre');
+      if (!pre || pre.querySelector('.ink')) return;
+      var ink = document.createElement('span');
+      ink.className = 'ink';
+      while (pre.firstChild) ink.appendChild(pre.firstChild);
+      pre.appendChild(ink);
+    });
+    root.classList.add('js');
+    function show(c) {
+      if (c.classList.contains('in')) return;
+      c.classList.add('in');
+      var ink = c.querySelector('.art .ink');
+      if (!ink || still || !ink.animate) return;
+      var n = Math.max(1, ink.textContent.split('\n').length);
+      ink.animate([{ clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0 0)' }],
+        { duration: Math.min(1400, n * 45), easing: 'steps(' + n + ', end)' });
+    }
+    if (!('IntersectionObserver' in window)) { cases.forEach(show); return; }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -18% 0px' });
+    cases.forEach(function (c) { io.observe(c); });
+  })();
+
+  /* Nem' kad: an ASCII clock that shows the real time. 21 x 11 characters, redrawn every second. */
+  function clockRows(d) {
+    var W = 21, H = 11, cx = 10, cy = 5, rx = 9.6, ry = 4.9, g = [], x, y, i, a;
+    for (y = 0; y < H; y++) { g.push(new Array(W + 1).join(' ').split('')); }
+    function put(px, py, c) {
+      px = Math.round(px); py = Math.round(py);
+      if (py >= 0 && py < H && px >= 0 && px < W) g[py][px] = c;
+    }
+    for (i = 0; i < 120; i++) { a = i / 120 * 2 * Math.PI; put(cx + Math.sin(a) * rx, cy - Math.cos(a) * ry, '.'); }
+    for (i = 0; i < 12; i++) { a = i / 12 * 2 * Math.PI; put(cx + Math.sin(a) * rx, cy - Math.cos(a) * ry, i % 3 ? "'" : 'o'); }
+    function hand(frac, len, c) {
+      var t = frac * 2 * Math.PI, s;
+      for (s = 0.16; s <= len; s += 0.05) put(cx + Math.sin(t) * rx * s, cy - Math.cos(t) * ry * s, c);
+    }
+    var h = d.getHours() % 12, m = d.getMinutes(), sec = d.getSeconds();
+    hand((m + sec / 60) / 60, 0.8, ':');
+    hand((h + m / 60) / 12, 0.5, '#');
+    a = sec / 60 * 2 * Math.PI;
+    put(cx + Math.sin(a) * rx * 0.86, cy - Math.cos(a) * ry * 0.86, '*');
+    put(cx, cy, '+');
+    return g.map(function (r) { return r.join(''); });
+  }
+
+  /* Redraws a small drawing every `ms`, only while it is on screen and the tab is open. */
+  function live(el, ms, draw) {
+    var visible = true;
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }).observe(el);
+    }
+    draw();
+    setInterval(function () { if (visible && !document.hidden) draw(); }, ms);
+  }
+  function two(n) { return (n < 10 ? '0' : '') + n; }
+
+  document.querySelectorAll('pre[data-clock]').forEach(function (pre) {
+    var el = pre.querySelector('.ink') || pre;
+    var lines = el.textContent.split('\n'), at = -1;
+    for (var i = 0; i < lines.length; i++) { if (lines[i].indexOf("Nem' kad!!!") > -1) { at = i + 1; break; } }
+    if (at < 0) return;
+    live(pre, 1000, function () {
+      var rows = clockRows(new Date());
+      for (var r = 0; r < rows.length; r++) {
+        var line = lines[at + r] || '';
+        while (line.length < 22) line += ' ';
+        lines[at + r] = (' ' + rows[r] + line.slice(22)).replace(/\s+$/, '');
+      }
+      el.textContent = lines.join('\n');
+    });
+  });
+
+  /* Café portal: the sales chart plays one day, from 07:00 to 22:00, then starts again.
+     Last week's columns (:) are read from the drawing in the page; today's (#) grow hour by hour.
+     The hours after 14:00 are not in the drawing, so they are made up here, like the rest of the mock data. */
+  document.querySelectorAll('pre[data-sales]').forEach(function (pre) {
+    var el = pre.querySelector('.ink') || pre;
+    var src = el.textContent.split('\n'), axis = -1, top = -1, i, r, h;
+    for (i = 0; i < src.length; i++) { if (/^ 07  08/.test(src[i])) axis = i; }
+    for (i = 0; i < src.length; i++) { if (/live sales/.test(src[i])) { top = i + 2; break; } }
+    if (axis < 0 || top < 0) return;
+    var H = 16, R = axis - top, L = [], T = [], later = [1, 0, -1, 1, 0, 1, -1, 0, 0];
+    for (h = 0; h < H; h++) {
+      var l = 0, t = 0;
+      for (r = top; r < axis; r++) {
+        if (src[r].charAt(1 + 4 * h) === ':') l++;
+        if (src[r].charAt(2 + 4 * h) === '#') t++;
+      }
+      L.push(l);
+      T.push(h < 7 ? t : Math.max(1, Math.min(R - 1, l + later[h - 7])));
+    }
+    var legend = -1, t0 = Date.now();
+    for (i = axis; i < src.length; i++) { if (/now, \d\d:\d\d/.test(src[i])) legend = i; }
+    live(pre, 150, function () {
+      var s = ((Date.now() - t0) / 1000) % 19, pos = Math.min(15.99, s * 16 / 15), k = Math.floor(pos), f = pos - k;
+      var out = src.slice();
+      for (r = top; r < axis; r++) {
+        var level = axis - r, line = '';
+        for (h = 0; h < H; h++) {
+          var b = ' ';
+          if (h < k) b = T[h] >= level ? '#' : ' ';
+          else if (h === k) b = Math.round(T[h] * f) >= level ? '+' : '|';
+          line += ' ' + (L[h] >= level ? ':' : ' ') + b + ' ';
+        }
+        out[r] = line.replace(/\s+$/, '');
+      }
+      if (legend > -1) out[legend] = src[legend].replace(/now, \d\d:\d\d/, 'now, ' + two(7 + k) + ':' + two(Math.floor(f * 60)));
+      el.textContent = out.join('\n');
+    });
+  });
+
   /* Runs draw(t) about every `ms` while the element is on screen.
      The animations always move (Danilo's choice); a click or tap on one pauses or resumes it. */
   function animate(el, ms, draw) {
