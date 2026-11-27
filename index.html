@@ -6,14 +6,14 @@
   <title>Danilo Lazović :/ portfolio</title>
   <meta name="x-title-en" content="Danilo Lazović :/ portfolio">
   <meta name="x-title-sr" content="Danilo Lazović :/ portfolio">
-  <meta name="description" content="Projects by Danilo Lazović: a min-cut through the fruit fly brain, a review engine, data portal and promo desk for a 70 café chain, barista training on the phone, morning AI agents, production planning and two games.">
+  <meta name="description" content="Projects by Danilo Lazović: a review engine, data portal and promo desk for a 70 café chain, barista training on the phone, morning AI agents, a min-cut through the fruit fly brain, production planning and two games.">
   <meta name="author" content="Danilo Lazović">
   <meta name="theme-color" content="#ece8be" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#17160f" media="(prefers-color-scheme: dark)">
   <link rel="canonical" href="https://danilo-lazovic.github.io/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Danilo Lazović :/ portfolio">
-  <meta property="og:description" content="Brain bottlenecks, a review engine, a café data portal, a promo desk, barista training, morning agents, production planning and two games.">
+  <meta property="og:description" content="A review engine, a café data portal, a promo desk, barista training, morning agents, brain bottlenecks, production planning and two games.">
   <meta property="og:url" content="https://danilo-lazovic.github.io/">
   <meta property="og:image" content="https://danilo-lazovic.github.io/assets/img/og.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -22,9 +22,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/tokens.css?v=9">
-  <link rel="stylesheet" href="assets/css/ds.css?v=9">
-  <link rel="stylesheet" href="assets/css/site.css?v=9">
+  <link rel="stylesheet" href="assets/css/tokens.css?v=10">
+  <link rel="stylesheet" href="assets/css/ds.css?v=10">
+  <link rel="stylesheet" href="assets/css/site.css?v=10">
   <script>
     (function () {
       try {
@@ -60,6 +60,8 @@
       <div>
         <h1 class="hero-name">Danilo<br>Lazović</h1>
         <p class="hero-path"><span>:/</span> portfolio</p>
+        <p class="hero-line" data-l="en">I find the part of a working day that's tedious or stuck, and build something so nobody has to do it by hand.</p>
+        <p class="hero-line" data-l="sr">Nađem deo radnog dana koji je dosadan ili zapinje i napravim nešto da to niko više ne radi ručno.</p>
       </div>
       <div class="hero-art">
         <pre class="cat-ascii" aria-label="Animated ASCII drawing of a street cat made of dots: it sleeps, wakes up wide-eyed, sits and licks its paw, then goes back to sleep"></pre>
@@ -70,44 +72,11 @@
     <!-- ====== WORK ====== -->
     <section class="sec" id="work">
       <div class="sec-head">
-        <span class="dn-label"><span class="dn-label__path">:/</span><span class="dn-label__name"><span data-l="en">&lt;work_&gt;</span><span data-l="sr">&lt;radovi_&gt;</span></span></span>
+        <span class="dn-label"><span class="dn-label__path">:/</span><span class="dn-label__name"><span data-l="en">&lt;work<i class="cur">_</i>&gt;</span><span data-l="sr">&lt;radovi<i class="cur">_</i>&gt;</span></span></span>
       </div>
 
       <div class="grid">
         <a class="dn-card" href="#p01">
-          <div class="dn-card__media"><pre aria-hidden="true">
-
- MN9 firing rate after silencing 34 neurons (Hz)
- ..........................................................................
-
- intact brain         ######################################## 107.7
-
- out-strength top 34  ############################################ 118
-
- pagerank top 34      ######################################## 107.8
-
- random on-path x20   ######################################## 107.3
-
- betweenness top 34   ################# 44.3
-
- min-cut, mine        . 0.38
-
- ..........................................................................
- 30 trials x 1 s, mean of both MN9 cells, male CNS v1.0
-
-
-
-</pre></div>
-          <div class="dn-card__body">
-            <p class="dn-card__meta">#01 · 2026 · <span data-l="en">graphs</span><span data-l="sr">grafovi</span></p>
-            <h3 class="dn-card__title">Brain bottlenecks</h3>
-            <p class="dn-card__text" data-l="en">Where does a fly's brain squeeze the path from taste to movement? I found 34 neurons that carry it.</p>
-            <p class="dn-card__text" data-l="sr">Gde mozak mušice sabija put od ukusa do pokreta? Našao sam 34 neurona koji ga nose.</p>
-            <div class="dn-tags"><span class="dn-tag dn-tag--hot"><span data-l="en">ongoing</span><span data-l="sr">u toku</span></span><span class="dn-tag">python</span><span class="dn-tag">or-tools</span><span class="dn-tag">numba</span></div>
-          </div>
-        </a>
-
-        <a class="dn-card" href="#p02">
           <div class="dn-card__media dn-card__media--sky"><pre aria-hidden="true">
 
                              :++- novi sad
@@ -138,7 +107,7 @@
        .+*#%#:     .+#= podgorica
  70 active cafés, one inbox</pre></div>
           <div class="dn-card__body">
-            <p class="dn-card__meta">#02 · 2026 · <span data-l="en">tooling</span><span data-l="sr">alati</span></p>
+            <p class="dn-card__meta path"><b>:/</b>kafeterija/2026</p>
             <h3 class="dn-card__title">Review engine</h3>
             <p class="dn-card__text" data-l="en">One inbox for the Google reviews of 70 cafés, with replies drafted in each manager's own voice.</p>
             <p class="dn-card__text" data-l="sr">Jedno sanduče za Google recenzije 70 kafića, sa odgovorima koji zvuče kao menadžer koji ih šalje.</p>
@@ -146,8 +115,8 @@
           </div>
         </a>
 
-        <a class="dn-card" href="#p03">
-          <div class="dn-card__media"><pre aria-hidden="true">
+        <a class="dn-card" href="#p02">
+          <div class="dn-card__media"><pre aria-hidden="true" data-sales>
  live sales by hour, today vs same weekday last week
 
                               |
@@ -174,7 +143,7 @@
 
  # today   : last week   | now, 14:35        (mock data from the design)</pre></div>
           <div class="dn-card__body">
-            <p class="dn-card__meta">#03 · 2026 · <span data-l="en">data</span><span data-l="sr">podaci</span></p>
+            <p class="dn-card__meta path"><b>:/</b>kafeterija/2026</p>
             <h3 class="dn-card__title">Café portal</h3>
             <p class="dn-card__text" data-l="en">Registers, Wolt, Glovo and our own app on one screen, and a warning when a café goes quiet.</p>
             <p class="dn-card__text" data-l="sr">Kase, Wolt, Glovo i naša aplikacija na jednom ekranu, i upozorenje kad neki kafić utihne.</p>
@@ -182,42 +151,46 @@
           </div>
         </a>
 
-        <a class="dn-card" href="#p04">
+        <a class="dn-card" href="#p03">
           <div class="dn-card__media dn-card__media--sage"><pre aria-hidden="true">
+
+
  would a 20% discount pay for itself?        x = times today's daily sales
 
  item                 a day   needs   expects   margin a day
  ..........................................................................
- cheese burger         12.0   2.07x    2.58x      +677   go
- hrskavi krompiri      18.0   1.61x    2.16x      +643   go
- ledena kafa            9.0   1.69x    2.52x      +486   go
- limunada               7.0   1.54x    2.17x      +395   go
- pasta karbonara        5.0   1.81x    2.08x      +183   go
- kroasan                6.0   1.99x    2.86x      +183   go
- brownie                4.0   1.94x    2.85x      +165   go
- cheesecake             5.0   2.12x    2.47x       +89   go
- classic burger        14.0   2.00x    2.05x       +70   barely
- cezar tortilja         8.0   1.98x    2.01x       +23   barely
- pileća salata          4.0   2.20x    1.95x       -86   no
- coca cola 0.25        20.0   2.19x    1.98x      -106   no
- east kraft cola        6.0   3.03x    1.20x      -224   no
+ cheese burger         12.0   2.07x    2.58x      +677   pays off
+ hrskavi krompiri      18.0   1.61x    2.16x      +643   pays off
+ ledena kafa            9.0   1.69x    2.52x      +486   pays off
+ limunada               7.0   1.54x    2.17x      +395   pays off
+ pasta karbonara        5.0   1.81x    2.08x      +183   pays off
+ kroasan                6.0   1.99x    2.86x      +183   pays off
+ brownie                4.0   1.94x    2.85x      +165   pays off
+ cheesecake             5.0   2.12x    2.47x       +89   pays off
+ classic burger        14.0   2.00x    2.05x       +70   pays off
+ cezar tortilja         8.0   1.98x    2.01x       +23   pays off
+ pileća salata          4.0   2.20x    1.95x       -86   doesn't
+ coca cola 0.25        20.0   2.19x    1.98x      -106   doesn't
+ east kraft cola        6.0   3.03x    1.20x      -224   doesn't
  ..........................................................................
  needs:   how much more it must sell to earn what it earns without a promo
- expects: how much more it sold in its own past promos
+ expects: how much more it should sell, estimated from past promos
 
  demo data, every number here is made up
 </pre></div>
           <div class="dn-card__body">
-            <p class="dn-card__meta">#04 · 2026 · <span data-l="en">tooling</span><span data-l="sr">alati</span></p>
+            <p class="dn-card__meta path"><b>:/</b>kafeterija/2026</p>
             <h3 class="dn-card__title">Promo desk</h3>
-            <p class="dn-card__text" data-l="en">Will a Wolt or Glovo discount pay for itself? A simulator answers before the promo goes out, then the same tool launches it and tracks it.</p>
-            <p class="dn-card__text" data-l="sr">Da li se popust na Woltu ili Glovu isplati? Simulator odgovori pre nego što akcija krene, a isti alat je posle pusti i prati.</p>
+            <p class="dn-card__text" data-l="en">Will a Wolt or Glovo discount pay for itself? A simulator answers before the promo goes out. The same tool then sends the emails that start it and tracks the sales.</p>
+            <p class="dn-card__text" data-l="sr">Da li se popust na Woltu ili Glovu isplati? Simulator odgovori pre nego što akcija krene. Isti alat zatim pošalje mejlove kojima se pušta i prati prodaju.</p>
             <div class="dn-tags"><span class="dn-tag">next.js</span><span class="dn-tag">typescript</span><span class="dn-tag">mcp</span></div>
           </div>
         </a>
 
-        <a class="dn-card" href="#p05">
+        <a class="dn-card" href="#p04">
           <div class="dn-card__media"><pre aria-hidden="true">
+
+
  &gt; make a combo "Wrap + Fanta", 990 din, like item 6136756
 
  find_products("wrap")
@@ -232,25 +205,24 @@
  &gt; confirm
 
  create_product(confirm=true)       made once, in the central system
-                                    written to the log, upisi.jsonl
 
  $ python3 kasa.py trazi "Wrap + Fanta" --lokal 2003
    did it reach the register?
 
  ..........................................................................
- the first plan, writing to every register directly:
+ writing to a register directly:
    POST /Product   403  "Nemate prava na izabranu akciju"
 </pre></div>
           <div class="dn-card__body">
-            <p class="dn-card__meta">#05 · 2026 · <span data-l="en">automation</span><span data-l="sr">automatizacija</span></p>
+            <p class="dn-card__meta path"><b>:/</b>kafeterija/2026</p>
             <h3 class="dn-card__title">Register by sentence</h3>
             <p class="dn-card__text" data-l="en">A new combo used to mean clicking through the register admin. Now I describe it, read the preview and confirm.</p>
-            <p class="dn-card__text" data-l="sr">Nov kombo je značio klikanje po adminu kase. Sada ga opišem, pročitam pregled i potvrdim.</p>
+            <p class="dn-card__text" data-l="sr">Novi kombo je značio klikanje po adminu kase. Sada ga opišem, pročitam pregled i potvrdim.</p>
             <div class="dn-tags"><span class="dn-tag">python</span><span class="dn-tag">mcp</span><span class="dn-tag">claude</span></div>
           </div>
         </a>
 
-        <a class="dn-card" href="#p06">
+        <a class="dn-card" href="#p05">
           <div class="dn-card__media dn-card__media--sky"><pre aria-hidden="true">
      :.-:.:          =%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%+          :.:-..
     -:....-:         +@@@@@@@@@@@@=*=*+#+*++@@@@@@@@@@@@@         :-....:-
@@ -279,7 +251,7 @@
 .......................::..................::.....:......::--------------.....
 </pre></div>
           <div class="dn-card__body">
-            <p class="dn-card__meta">#06 · 2026 · <span data-l="en">learning</span><span data-l="sr">obuka</span></p>
+            <p class="dn-card__meta path"><b>:/</b>kafeterija/2026</p>
             <h3 class="dn-card__title">Zrno po zrno</h3>
             <p class="dn-card__text" data-l="en">Barista training on the phone: short lessons, a final test, and a game where you work a shift behind the bar.</p>
             <p class="dn-card__text" data-l="sr">Obuka barista na telefonu: kratke lekcije, završni test i igra u kojoj odradiš smenu za šankom.</p>
@@ -287,7 +259,7 @@
           </div>
         </a>
 
-        <a class="dn-card" href="#p07">
+        <a class="dn-card" href="#p06">
           <div class="dn-card__media"><pre aria-hidden="true">
 
  $ cowork run morning-exports
@@ -310,16 +282,19 @@
  08:01  glovo login needed. stopping, a human has to sign in.
 </pre></div>
           <div class="dn-card__body">
-            <p class="dn-card__meta">#07 · 2026 · <span data-l="en">automation</span><span data-l="sr">automatizacija</span></p>
+            <p class="dn-card__meta path"><b>:/</b>kafeterija/2026</p>
             <h3 class="dn-card__title">Reports on autopilot</h3>
             <p class="dn-card__text" data-l="en">My reports used to start with me downloading files. Now an agent does it at eight.</p>
-            <p class="dn-card__text" data-l="sr">Moji izveštaji su počinjali tako što skidam fajlove. Sada to radi agent u osam.</p>
+            <p class="dn-card__text" data-l="sr">Moji izveštaji su počinjali tako što sam skidao fajlove. Sada to radi agent u osam.</p>
             <div class="dn-tags"><span class="dn-tag">claude cowork</span><span class="dn-tag">power bi</span><span class="dn-tag">excel</span></div>
           </div>
         </a>
 
-        <a class="dn-card" href="#p08">
+        <a class="dn-card" href="#p07">
           <div class="dn-card__media"><pre aria-hidden="true">
+
+
+
  ČETVRTO MEMORIJALNO TAKMIČENJE „ANDRIJA ČIKIĆ“            Ћир   Lat   Eng
                                                                  ...
  Koja kompozicija vas je najviše dirnula?
@@ -342,47 +317,75 @@
  one vote per device        open / close from the admin        2. 12. 2026.
 </pre></div>
           <div class="dn-card__body">
-            <p class="dn-card__meta">#08 · 2026 · <span data-l="en">event</span><span data-l="sr">događaj</span></p>
+            <p class="dn-card__meta path"><b>:/</b>kolarac/2026</p>
             <h3 class="dn-card__title">Audience vote</h3>
-            <p class="dn-card__text" data-l="en">One evening, one hall, a few hundred phones. The audience picks its favourite of ten new compositions.</p>
-            <p class="dn-card__text" data-l="sr">Jedno veče, jedna sala, nekoliko stotina telefona. Publika bira omiljenu od deset novih kompozicija.</p>
+            <p class="dn-card__text" data-l="en">One evening, one hall, a few hundred phones. The audience picks its favourite of ten compositions.</p>
+            <p class="dn-card__text" data-l="sr">Jedno veče, jedna sala, nekoliko stotina telefona. Publika bira omiljenu među deset kompozicija.</p>
             <div class="dn-tags"><span class="dn-tag dn-tag--hot"><span data-l="en">2 dec</span><span data-l="sr">2. dec</span></span><span class="dn-tag">next.js</span><span class="dn-tag">supabase</span><span class="dn-tag">vercel</span></div>
           </div>
         </a>
 
-        <a class="dn-card" href="#p09">
-          <div class="dn-card__media dn-card__media--sage"><pre aria-hidden="true">
-                                   ..      *:
-                               :- .@+...-  #*
-                               #@  %%#*@%+@@=  -
-                               -%  #@:###%%@=  *=
-                             :+=+  +@+*@@#@@-  =@
-                       .-::+=@@#   -@%@@@+#@-  +@#
-                       +@%+@#@@@    @+:    *+  +@=+.
-                        @@@*@%@@:   -::===: :  *@ *%.
-                        *@@@@%%#=   -=::+-=+-  %@ #@*-:.
-                        =@@@%#%%# :+-=: - .+=+ *@ %#.@@:
-                        .%%@%%@=: *= =#.-  . == +:@-=@.
-                         *#%@@=. -=-. =**.   =*: -@=#%
-                         =%#::   =:   .#*    :-=  -:%#
-                         ...     =-.   +*     .+    ..
-                                .+-:   .*.   :=+
-                                 +.     =.    :+
-                                 ==-          :+
-                                 .*-        .=+-
-                                  -+ -.      -+
-                                   ==-  - .--+.
-                                    -+--=::--
-                                     .-===-.
+        <a class="dn-card" href="#p08">
+          <div class="dn-card__media dn-card__media--sage"><pre aria-hidden="true" data-clock>
 
-                      "Nem' kad!!!". Mi imamo.
+
+                          "Nem' kad!!!"  Mi imamo.
+        ...o...
+     .'.       .'.        [x] every monday
+   ..             ..          merge sales from three sheets into one report
+  .'             ::'.         -&gt; the report arrives by itself
+ ..    ###   :::::  ..    [x] every day
+ o        #+::       o        retype orders from email into the system
+ ..                 ..        -&gt; orders enter the system by themselves
+  .'               '.     [x] after every review
+   ..             ..          think up a reply to the guest on Google
+     .'.   *   .'.            -&gt; AI writes a draft, you click send
+        ...o...           [x] end of the month
+                              collect invoices and send them to the accountant
+                              -&gt; we do it for you
+
+ ..........................................................................
+ kafeterija          loft          lovefest          kolarac
 </pre></div>
           <div class="dn-card__body">
-            <p class="dn-card__meta">#09 · 2026 · <span data-l="en">company</span><span data-l="sr">firma</span></p>
+            <p class="dn-card__meta path"><b>:/</b>nemkad/2026</p>
             <h3 class="dn-card__title">Nem' kad</h3>
-            <p class="dn-card__text" data-l="en">The name this kind of work goes under when it's for other companies. It started as a T-shirt.</p>
-            <p class="dn-card__text" data-l="sr">Ime pod kojim ovakav posao radimo za druge firme. Počelo je kao majica.</p>
-            <div class="dn-tags"><span class="dn-tag">astro</span><span class="dn-tag">vercel</span><span class="dn-tag">github actions</span></div>
+            <p class="dn-card__text" data-l="en">Automation for other companies, under one name. We build the tool, or we run the process for you.</p>
+            <p class="dn-card__text" data-l="sr">Automatizacija za druge firme, pod jednim imenom. Napravimo alat ili vodimo proces umesto vas.</p>
+            <div class="dn-tags"><span class="dn-tag">kafeterija</span><span class="dn-tag">loft</span><span class="dn-tag">lovefest</span><span class="dn-tag">kolarac</span></div>
+          </div>
+        </a>
+
+        <a class="dn-card" href="#p09">
+          <div class="dn-card__media"><pre aria-hidden="true">
+
+ MN9 firing rate after silencing 34 neurons (Hz)
+ ..........................................................................
+
+ intact brain         ######################################## 107.7
+
+ out-strength top 34  ############################################ 118
+
+ pagerank top 34      ######################################## 107.8
+
+ random on-path x20   ######################################## 107.3
+
+ betweenness top 34   ################# 44.3
+
+ min-cut, mine        . 0.38
+
+ ..........................................................................
+ 30 trials x 1 s, mean of both MN9 cells, male CNS v1.0
+
+
+
+</pre></div>
+          <div class="dn-card__body">
+            <p class="dn-card__meta path"><b>:/</b><span data-l="en">research</span><span data-l="sr">istraživanje</span>/2026</p>
+            <h3 class="dn-card__title">Brain bottlenecks</h3>
+            <p class="dn-card__text" data-l="en">Where does a fly's brain squeeze the path from taste to movement? I found 34 neurons that carry it.</p>
+            <p class="dn-card__text" data-l="sr">Gde mozak mušice sabija put od ukusa do pokreta? Našao sam 34 neurona koji ga nose.</p>
+            <div class="dn-tags"><span class="dn-tag dn-tag--hot"><span data-l="en">ongoing</span><span data-l="sr">u toku</span></span><span class="dn-tag">python</span><span class="dn-tag">or-tools</span><span class="dn-tag">numba</span></div>
           </div>
         </a>
 
@@ -417,7 +420,7 @@
 
  w1                                                                      w22</pre></div>
           <div class="dn-card__body">
-            <p class="dn-card__meta">#10 · 2025, 2026 · <span data-l="en">operations</span><span data-l="sr">operacije</span></p>
+            <p class="dn-card__meta path"><b>:/</b><span data-l="en">operations</span><span data-l="sr">operacije</span>/2025-26</p>
             <h3 class="dn-card__title">Production planning</h3>
             <p class="dn-card__text" data-l="en">Weekly plans that clear the backlog first. A MATLAB model at uni, then an 800 SKU app at Bosch.</p>
             <p class="dn-card__text" data-l="sr">Nedeljni planovi koji prvo skidaju backlog. MATLAB model na faksu, pa aplikacija za 800 artikala u Boschu.</p>
@@ -456,7 +459,7 @@
  :::-**++=::--:-:.:::-..=-::: . .--.::  ....  .. .     ..   .  .. ..::....:-:-
 -===++--==::-:-=-.   ::..+...::----+:..   ::.. .:.   .. ....-  : .:. ....:. -:</pre></div>
           <div class="dn-card__body">
-            <p class="dn-card__meta">#11 · 2026 · <span data-l="en">game</span><span data-l="sr">igra</span></p>
+            <p class="dn-card__meta path"><b>:/</b><span data-l="en">games</span><span data-l="sr">igre</span>/2026</p>
             <h3 class="dn-card__title">Colossus</h3>
             <p class="dn-card__text" data-l="en">A game about climbing giants, built by a team of AI agents while I direct.</p>
             <p class="dn-card__text" data-l="sr">Igra o penjanju na džinove, koju pravi tim AI agenata dok ja režiram.</p>
@@ -466,7 +469,10 @@
 
         <a class="dn-card" href="#p12">
           <div class="dn-card__media"><pre aria-hidden="true">
- $ tools/play.sh sweep         one test day, played by six simple strategies
+
+
+
+ $ tools/play.sh sweep         one test day, played by seven simple strategies
 
  quota 850 DM    salary 55.000 din    dealer takes 10%    1.851 din for 1 DM
 
@@ -478,6 +484,7 @@
  work it out, then steal         850      510   yes      3/3     317
  squeeze everyone                  0        0   no       0/3      26
  do nothing                        0        0   no       0/3      26
+ press, honestly                1020        0   yes      0/3      26
  ..........................................................................
  official   what the criminals paid into the service's book, in DM
  secret     collected above what was written down, recorded nowhere
@@ -487,16 +494,17 @@
  a strategy only sees the files and papers that arrived, never the truth
 </pre></div>
           <div class="dn-card__body">
-            <p class="dn-card__meta">#12 · 2026 · <span data-l="en">game</span><span data-l="sr">igra</span></p>
+            <p class="dn-card__meta path"><b>:/</b><span data-l="en">games</span><span data-l="sr">igre</span>/2026</p>
             <h3 class="dn-card__title">Služba</h3>
             <p class="dn-card__text" data-l="en">One office, Yugoslavia in the nineties. You decide what each small-time criminal pays, and everybody lies to you.</p>
             <p class="dn-card__text" data-l="sr">Jedna kancelarija, Jugoslavija devedesetih. Odlučuješ koliko koji sitni kriminalac plaća, a svi te lažu.</p>
-            <div class="dn-tags"><span class="dn-tag dn-tag--hot"><span data-l="en">early</span><span data-l="sr">početak</span></span><span class="dn-tag">unity</span><span class="dn-tag">c#</span><span class="dn-tag">claude code</span></div>
+            <div class="dn-tags"><span class="dn-tag dn-tag--hot"><span data-l="en">early</span><span data-l="sr">rana faza</span></span><span class="dn-tag">unity</span><span class="dn-tag">c#</span><span class="dn-tag">claude code</span></div>
           </div>
         </a>
 
         <a class="dn-card" href="#p13">
           <div class="dn-card__media dn-card__media--sky"><pre aria-hidden="true">
+
  $ ./poso.sh
 
  27.11.2026. 00:47     59 sources     architecture, belgrade
@@ -515,17 +523,17 @@
 
  same ad on two sites ............ one card, both links
  past its deadline ............... hidden
- no deadline ..................... gone after 45 days
+ no deadline ..................... gone with its source, or after 45 days
 
  active: 20      new since the last run: 1      new in the last 7 days: 14
 
  linkedin, facebook, instagram: can't be read, links to check by hand
 </pre></div>
           <div class="dn-card__body">
-            <p class="dn-card__meta">#13 · 2026 · <span data-l="en">scraping</span><span data-l="sr">skrejping</span></p>
+            <p class="dn-card__meta path"><b>:/</b><span data-l="en">tools</span><span data-l="sr">alati</span>/2026</p>
             <h3 class="dn-card__title">Job radar</h3>
-            <p class="dn-card__text" data-l="en">Every morning it reads about 60 places where architecture internships in Belgrade get posted, and shows only what's new.</p>
-            <p class="dn-card__text" data-l="sr">Svako jutro pročita oko 60 mesta na kojima izlaze prakse za arhitekte u Beogradu i pokaže samo ono što je novo.</p>
+            <p class="dn-card__text" data-l="en">Once a day it reads about 60 places where architecture internships in Belgrade get posted, and puts what's new on top.</p>
+            <p class="dn-card__text" data-l="sr">Jednom dnevno pročita oko 60 mesta na kojima izlaze prakse za arhitekte u Beogradu i na vrh stavi ono što je novo.</p>
             <div class="dn-tags"><span class="dn-tag">python</span><span class="dn-tag">httpx</span><span class="dn-tag">sqlite</span></div>
           </div>
         </a>
@@ -561,7 +569,7 @@
                                                       .     .-%%sofia
                                                           ..  ::</pre></div>
           <div class="dn-card__body">
-            <p class="dn-card__meta">#14 · 2025 · <span data-l="en">heuristics</span><span data-l="sr">heuristike</span></p>
+            <p class="dn-card__meta path"><b>:/</b><span data-l="en">uni</span><span data-l="sr">faks</span>/2025</p>
             <h3 class="dn-card__title">Travelling salesman</h3>
             <p class="dn-card__text" data-l="en">Four heuristics, seventeen cities. The simplest one won.</p>
             <p class="dn-card__text" data-l="sr">Četiri heuristike, sedamnaest gradova. Pobedila je najjednostavnija.</p>
@@ -575,64 +583,6 @@
 
     <!-- ====== #01 ====== -->
     <article class="case" id="p01">
-        <figure class="art">
-          <div class="art-box">
-            <pre class="dn-ascii" aria-label="Bar chart in ASCII: the motor neuron fires at about 107 Hz in every condition except betweenness top 34 at 44.3 Hz and the min-cut at 0.38 Hz">
-
- MN9 firing rate after silencing 34 neurons (Hz)
- ..........................................................................
-
- intact brain         ######################################## 107.7
-
- out-strength top 34  ############################################ 118
-
- pagerank top 34      ######################################## 107.8
-
- random on-path x20   ######################################## 107.3
-
- betweenness top 34   ################# 44.3
-
- min-cut, mine        . 0.38
-
- ..........................................................................
- 30 trials x 1 s, mean of both MN9 cells, male CNS v1.0
-
-
-
-</pre>
-            <span class="dn-note dn-note--coral" style="right:var(--space-5);bottom:22%" aria-hidden="true">0,4% ostaje</span>
-          </div>
-          <figcaption data-l="en">My result, as a "chart": firing rate of the proboscis motor neuron after silencing 34 neurons chosen five different ways :)</figcaption>
-          <figcaption data-l="sr">Moj rezultat kao „grafikon“: frekvencija motornog neurona surle posle utišavanja 34 neurona izabrana na pet načina :)</figcaption>
-        </figure>
-      <div class="case-text">
-        <p class="dn-card__meta">#01 · 2026 · <span data-l="en">graphs</span><span data-l="sr">grafovi</span></p>
-        <h2 class="dn-heading">Brain bottlenecks</h2>
-        <p class="lead" data-l="en">This one started as a question I couldn't let go of. In 2026 the full wiring diagram of a male fruit fly's nervous system came out, 174,386 neurons and about 25.8 million connections, and I wanted to see if the tools I use for production flows would say anything about a brain.</p>
-        <p class="lead" data-l="sr">Ovo je počelo kao pitanje koje nisam mogao da pustim. Ove godine je objavljena kompletna mapa nervnog sistema mužjaka vinske mušice, 174.386 neurona i oko 25,8 miliona veza, i hteo sam da vidim da li alati koje koristim za protok u proizvodnji mogu nešto da kažu o mozgu.</p>
-        <p data-l="en">I treated the connectome as a flow network and ran max-flow / min-cut from the sensory neurons to the neurons that drive movement. My first try was useless. If you cut a sense off from every motor output at once, the cut is simply the first layer of neurons after that sense, because the fly's nervous system is very shallow, about two steps from sense to muscle. So I went one behaviour at a time. For escaping a looming shadow, most of the cut landed on LPLC2 and LC4, which are the cells biologists already link to that escape. I never told the algorithm anything about them.</p>
-        <p data-l="sr">Konektom sam posmatrao kao mrežu protoka i tražio max-flow / min-cut od čulnih neurona do neurona koji pokreću telo. Prvi pokušaj nije vredeo ništa. Kad čulo odsečeš od svih motornih izlaza odjednom, presek je samo prvi sloj neurona posle tog čula, jer je nervni sistem mušice jako plitak, oko dva koraka od čula do mišića. Zato sam išao ponašanje po ponašanje. Za bekstvo od senke koja se približava, najveći deo preseka je pao na LPLC2 i LC4, upravo ćelije koje biolozi već vezuju za to bekstvo. Algoritmu nisam rekao ništa o njima.</p>
-        <p data-l="en">Next I wanted to know if the cut actually matters, which meant simulating the whole brain. The published model runs on Brian2, and Brian2 needs a C compiler on Windows, so I rewrote the model in numba instead. All of it had to fit in the 16 GB of RAM on my home PC. When I silenced the 34 neurons in the cut between taste and the proboscis, its motor neuron went from 107.7 Hz to 0.38 Hz. Silencing 34 random neurons on the same paths did nothing, and the best centrality measure only took it down to about half.</p>
-        <p data-l="sr">Onda sam hteo da vidim da li presek stvarno nešto znači, a za to je trebala simulacija celog mozga. Objavljeni model radi na Brian2, a Brian2 na Windowsu traži C kompajler, pa sam model prepisao u numbi. Sve je moralo da stane u 16 GB RAM-a na kućnom računaru. Kad sam utišao 34 neurona iz preseka između ukusa i surle, njen motorni neuron je pao sa 107,7 Hz na 0,38 Hz. Utišavanje 34 nasumična neurona na istim putevima nije uradilo ništa, a najbolja mera centralnosti ga je spustila tek na pola.</p>
-        <p data-l="en">Vision is still open. Every photoreceptor in the fly is histaminergic, and a model that only knows "excite" and "inhibit" can't treat them fairly. That, the 3D pictures and a proper write-up are next.</p>
-        <p data-l="sr">Vid je i dalje otvoren. Svi fotoreceptori kod mušice su histaminergični, a model koji zna samo za „pobudi“ i „koči“ ne može pošteno da ih predstavi. To, 3D slike i pravi tekst o svemu su sledeći.</p>
-      </div>
-      <div class="case-side">
-        <div class="dn-frame">
-          <p class="frame-k">stack</p>
-          <p>Python, OR-Tools, igraph, SciPy, numba, neuPrint</p>
-          <p class="frame-k"><span data-l="en">data</span><span data-l="sr">podaci</span></p>
-          <p data-l="en">Male CNS v1.0 connectome, Janelia FlyEM and Google</p>
-          <p data-l="sr">Konektom male CNS v1.0, Janelia FlyEM i Google</p>
-          <div class="frame-links"><a class="dn-btn" href="https://github.com/danilo-lazovic/fly-bottlenecks" target="_blank" rel="noopener"><span data-l="en">code on github</span><span data-l="sr">kod na githubu</span></a></div>
-        </div>
-      </div>
-    </article>
-
-    <div class="dn-divider dn-divider--dots" role="separator"></div>
-
-    <!-- ====== #02 ====== -->
-    <article class="case" id="p02">
         <figure class="art">
           <div class="art-box"><pre class="dn-ascii" aria-label="ASCII map of Serbia and Montenegro with the cafés grouped by city, Belgrade by far the largest">
 
@@ -667,34 +617,35 @@
           <figcaption data-l="sr">„Mapa“ 70 aktivnih kafića po gradovima, iz spiska lokacija u aplikaciji :)</figcaption>
         </figure>
       <div class="case-text">
-        <p class="dn-card__meta">#02 · 2026 · Kafeterija</p>
+        <p class="dn-card__meta path"><b>:/</b>kafeterija/2026</p>
         <h2 class="dn-heading">Review engine</h2>
-        <p class="lead" data-l="en">Kafeterija has 70 cafés, each with its own Google profile. When I started, replies were typed by hand, and a manager needed access to Google just to thank a guest.</p>
-        <p class="lead" data-l="sr">Kafeterija ima 70 kafića, svaki sa svojim Google profilom. Kad sam počeo, odgovori su se kucali ručno, a menadžeru je trebao pristup Googleu samo da bi zahvalio gostu.</p>
-        <p data-l="en">It began as one Python script that pulled the reviews into a spreadsheet, and even that took a while. Google gave my project a quota of zero for the Business Profile APIs, so I filed a request and waited for approval before I could pull a single review. After that the login kept expiring every seven days, until I moved the app out of Google's testing mode.</p>
-        <p data-l="sr">Počelo je kao jedna Python skripta koja je vukla recenzije u tabelu, i čak je i to potrajalo. Google je mom projektu dao kvotu nula za Business Profile API, pa sam podneo zahtev i čekao odobrenje pre nego što sam mogao da povučem ijednu recenziju. Posle toga je prijava isticala na svakih sedam dana, sve dok aplikaciju nisam izvukao iz Googleovog test režima.</p>
-        <p data-l="en">Today it's a FastAPI and Next.js app with all 47,000 reviews back to 2016. New ones land in one inbox and replies go straight to Google in the company's name. Managers sign in with their email and only see their own cafés. Claude drafts each reply. Along with the review, it gets a few replies that manager wrote before, so the draft already sounds like them. At one point I put Haiku and Sonnet side by side on real reviews to see which one writes better replies.</p>
-        <p data-l="sr">Danas je to FastAPI i Next.js aplikacija sa svih 47.000 recenzija unazad do 2016. Nove stižu u jedno sanduče, a odgovori idu direktno na Google u ime firme. Menadžeri se prijavljuju mejlom i vide samo svoje kafiće. Claude piše predlog za svaki odgovor. Uz recenziju dobija i nekoliko odgovora koje je taj menadžer ranije napisao, pa predlog odmah zvuči kao on. U jednom trenutku sam stavio Haiku i Sonnet jedan pored drugog na pravim recenzijama da vidim koji piše bolje odgovore.</p>
-        <p data-l="en">The weekly Excel report the team used to fill in by hand now comes out of the app, in exactly the same format, so nobody had to change how they work.</p>
-        <p data-l="sr">Nedeljni Excel izveštaj koji je tim ranije popunjavao ručno sada izlazi iz aplikacije, u potpuno istom formatu, pa niko nije morao da menja način rada.</p>
-      </div>
-      <div class="case-side">
-        <div class="dn-frame">
-          <p class="frame-k">stack</p>
-          <p>FastAPI, Next.js, Google Business Profile API, Claude API, Docker, Caddy</p>
-          <p class="frame-k">status</p>
-          <p data-l="en">In daily use. The code is private, but I'm happy to show it.</p>
-          <p data-l="sr">U svakodnevnoj upotrebi. Kod je privatan, ali rado ga pokažem.</p>
-        </div>
+        <p class="lead" data-l="en">One inbox for the Google reviews of all 70 Kafeterija cafés, with a reply already drafted for each one.</p>
+        <p class="lead" data-l="sr">Jedno sanduče za Google recenzije svih 70 kafića Kafeterije, sa već napisanim predlogom odgovora za svaku.</p>
+        <ul class="does" data-l="en">
+          <li>All 47,000 reviews back to 2016. New ones arrive in one inbox.</li>
+          <li>Claude drafts the reply from the review and a few replies that manager wrote before, so it sounds like them.</li>
+          <li>Replies go straight to Google in the company's name. Managers sign in by email and see only their own cafés.</li>
+          <li>The weekly Excel report the team used to fill in by hand comes out of the app, in the same format.</li>
+        </ul>
+        <ul class="does" data-l="sr">
+          <li>Svih 47.000 recenzija unazad do 2016. Nove stižu u jedno sanduče.</li>
+          <li>Claude piše predlog iz recenzije i nekoliko ranijih odgovora tog menadžera, pa zvuči kao on.</li>
+          <li>Odgovori idu direktno na Google u ime firme. Menadžeri se prijavljuju mejlom i vide samo svoje kafiće.</li>
+          <li>Nedeljni Excel izveštaj koji je tim popunjavao ručno izlazi iz aplikacije, u istom formatu.</li>
+        </ul>
+        <dl class="rows facts">
+          <dt>stack</dt><dd>FastAPI, Next.js, Google Business Profile API, Claude API, Docker, Caddy</dd>
+          <dt>status</dt><dd data-l="en">In daily use. The code is private, but I'm happy to show it.</dd><dd data-l="sr">U svakodnevnoj upotrebi. Kod je privatan, ali rado ga pokažem.</dd>
+        </dl>
       </div>
     </article>
 
     <div class="dn-divider dn-divider--dots" role="separator"></div>
 
-    <!-- ====== #03 ====== -->
-    <article class="case" id="p03">
+    <!-- ====== #02 ====== -->
+    <article class="case" id="p02">
         <figure class="art">
-          <div class="art-box"><pre class="dn-ascii" aria-label="ASCII bar chart of sales per hour, today next to the same weekday last week, with a line at the current hour">
+          <div class="art-box"><pre class="dn-ascii" data-sales aria-label="ASCII bar chart of sales per hour, today next to the same weekday last week, with a line at the current hour">
  live sales by hour, today vs same weekday last week
 
                               |
@@ -724,23 +675,86 @@
           <figcaption data-l="sr">„Screenshot“ ekrana prodaje uživo, iz dizajn makete. Brojke iza njega su izmišljene :)</figcaption>
         </figure>
       <div class="case-text">
-        <p class="dn-card__meta">#03 · 2026 · Kafeterija</p>
+        <p class="dn-card__meta path"><b>:/</b>kafeterija/2026</p>
         <h2 class="dn-heading">Café portal</h2>
-        <p class="lead" data-l="en">Sales live in the registers, delivery numbers in the Wolt and Glovo dashboards, and reviews in my other app. I'm building one internal portal that shows all of it.</p>
-        <p class="lead" data-l="sr">Prodaja živi u kasama, brojke dostave na Wolt i Glovo portalima, a recenzije u mojoj drugoj aplikaciji. Pravim jedan interni portal koji sve to prikazuje.</p>
-        <p data-l="en">Small workers pull everything into our own Postgres database: register orders every minute, Wolt and Glovo exports every morning, reviews from the review engine. The portal itself reads only from that database, so even when Wolt is down, sales from the registers still show up. Each day gets compared with the same weekday over the last four weeks, and if a café drops by 70% the portal says it has stopped.</p>
-        <p data-l="sr">Mali workeri sve slivaju u našu Postgres bazu: porudžbine sa kasa svakog minuta, Wolt i Glovo izvoze svako jutro, recenzije iz drugog alata. Sam portal čita samo iz te baze, pa i kad Wolt ne radi, prodaja sa kasa se i dalje vidi. Svaki dan se poredi sa istim danom u prethodne četiri nedelje, i ako kafić padne za 70%, portal kaže da je stao.</p>
-        <p data-l="en">The register API hasn't arrived yet, so the live sales screen runs on fake orders for now. Every fake row is marked as fake, and the worker refuses to mix fake and real ones.</p>
-        <p data-l="sr">API kase još nije stigao, pa ekran prodaje uživo za sada radi na izmišljenim porudžbinama. Svaki takav red je označen, a worker odbija da pomeša izmišljene i prave.</p>
+        <p class="lead" data-l="en">One internal portal for everything Kafeterija sells: registers, Wolt, Glovo and our own app, with reviews next to it.</p>
+        <p class="lead" data-l="sr">Jedan interni portal za sve što Kafeterija proda: kase, Wolt, Glovo i naša aplikacija, sa recenzijama pored.</p>
+        <ul class="does" data-l="en">
+          <li>Small background workers pull everything into our own Postgres: register orders every minute, Wolt and Glovo exports every morning.</li>
+          <li>The portal reads only from that database, so sales from the registers still show when Wolt is down.</li>
+          <li>Every day is compared with the same weekday over the last four weeks. If a café drops by 70%, the portal says it has stopped.</li>
+          <li>Until the register API arrives, live sales run on fake orders. Every fake row is marked, and the worker refuses to mix fake and real.</li>
+        </ul>
+        <ul class="does" data-l="sr">
+          <li>Mali workeri sve vuku u našu Postgres bazu: porudžbine sa kasa svakog minuta, izvoze sa Wolta i Glova svakog jutra.</li>
+          <li>Portal čita samo iz te baze, pa se prodaja sa kasa vidi i kad Wolt padne.</li>
+          <li>Svaki dan se poredi sa istim danom u nedelji u poslednje četiri nedelje. Ako kafić padne za 70%, portal javi da je stao.</li>
+          <li>Dok ne stigne API kase, prodaja uživo radi na lažnim porudžbinama. Svaki lažni red je označen, a worker odbija da meša lažne i prave.</li>
+        </ul>
+        <dl class="rows facts">
+          <dt>stack</dt><dd>FastAPI, SQLAlchemy, Alembic, PostgreSQL, Next.js, Docker</dd>
+          <dt>status</dt><dd data-l="en">Being built. Live sales run on mock data until the register API arrives.</dd><dd data-l="sr">U izradi. Prodaja uživo radi na lažnim podacima dok ne stigne API kase.</dd>
+        </dl>
       </div>
-      <div class="case-side">
-        <div class="dn-frame">
-          <p class="frame-k">stack</p>
-          <p>FastAPI, SQLAlchemy, Alembic, PostgreSQL, Next.js, Docker</p>
-          <p class="frame-k">status</p>
-          <p data-l="en">Being built. Live sales run on mock data until the register API arrives.</p>
-          <p data-l="sr">U izradi. Prodaja uživo radi na lažnim podacima dok ne stigne API kase.</p>
-        </div>
+    </article>
+
+    <div class="dn-divider dn-divider--dots" role="separator"></div>
+
+    <!-- ====== #03 ====== -->
+    <article class="case" id="p03">
+        <figure class="art">
+          <div class="art-box"><pre class="dn-ascii" aria-label="A table in ASCII: thirteen menu items, how much more each has to sell for a 20% discount to pay off, how much more it is expected to sell, and the difference in daily margin">
+
+
+ would a 20% discount pay for itself?        x = times today's daily sales
+
+ item                 a day   needs   expects   margin a day
+ ..........................................................................
+ cheese burger         12.0   2.07x    2.58x      +677   pays off
+ hrskavi krompiri      18.0   1.61x    2.16x      +643   pays off
+ ledena kafa            9.0   1.69x    2.52x      +486   pays off
+ limunada               7.0   1.54x    2.17x      +395   pays off
+ pasta karbonara        5.0   1.81x    2.08x      +183   pays off
+ kroasan                6.0   1.99x    2.86x      +183   pays off
+ brownie                4.0   1.94x    2.85x      +165   pays off
+ cheesecake             5.0   2.12x    2.47x       +89   pays off
+ classic burger        14.0   2.00x    2.05x       +70   pays off
+ cezar tortilja         8.0   1.98x    2.01x       +23   pays off
+ pileća salata          4.0   2.20x    1.95x       -86   doesn't
+ coca cola 0.25        20.0   2.19x    1.98x      -106   doesn't
+ east kraft cola        6.0   3.03x    1.20x      -224   doesn't
+ ..........................................................................
+ needs:   how much more it must sell to earn what it earns without a promo
+ expects: how much more it should sell, estimated from past promos
+
+ demo data, every number here is made up
+</pre>
+            <span class="dn-note dn-note--coral" style="right:4%;bottom:5%" aria-hidden="true">tri ne puštamo</span>
+          </div>
+          <figcaption data-l="en">The suggestions table, as a "table". Demo data, every number is made up :)</figcaption>
+          <figcaption data-l="sr">Tabela predloga kao „tabela“. Probni podaci, svi brojevi su izmišljeni :)</figcaption>
+        </figure>
+      <div class="case-text">
+        <p class="dn-card__meta path"><b>:/</b>kafeterija/2026</p>
+        <h2 class="dn-heading">Promo desk</h2>
+        <p class="lead" data-l="en">Tells us whether a promo on Wolt or Glovo will pay for itself, then sends the emails that start it and tracks the sales.</p>
+        <p class="lead" data-l="sr">Kaže nam da li se akcija na Woltu ili Glovu isplati, pa pošalje mejlove kojima se pušta i prati prodaju.</p>
+        <ul class="does" data-l="en">
+          <li>The simulator works out, for any item or combo, how many times more it has to sell to break even and how many times more it probably will. The second number is estimated from past promos.</li>
+          <li>Launching a promo is one email per step. I can preview each one, edit it and send it to myself as a test, and a sent email can't go out twice.</li>
+          <li>Once the promo is live, it puts daily sales from the register database next to what the simulator expected.</li>
+          <li>It says how fresh the register data really is, and it refuses to run if the recipients file is damaged.</li>
+        </ul>
+        <ul class="does" data-l="sr">
+          <li>Simulator za svaki artikal ili kombo izračuna koliko puta više mora da se proda da akcija izađe na nulu i koliko će se verovatno prodati. Taj drugi broj procenjuje iz prošlih akcija.</li>
+          <li>Puštanje akcije je po jedan mejl za svaki korak. Svaki mogu da pregledam, izmenim i pošaljem sebi kao probu, a poslat mejl ne može da ode dvaput.</li>
+          <li>Kad akcija krene, stavlja dnevnu prodaju iz baze kase pored onoga što je simulator očekivao.</li>
+          <li>Piše koliko su podaci iz kase stvarno sveži i odbija da radi ako je fajl sa primaocima oštećen.</li>
+        </ul>
+        <dl class="rows facts">
+          <dt>stack</dt><dd>Next.js, TypeScript, Power BI exports, MCP to the register database (read only), SMTP</dd>
+          <dt>status</dt><dd data-l="en">Running on our real numbers. It runs locally and the code is private, but I'm happy to show it.</dd><dd data-l="sr">Radi na našim pravim brojkama. Radi lokalno i kod je privatan, ali rado ga pokažem.</dd>
+        </dl>
       </div>
     </article>
 
@@ -749,64 +763,9 @@
     <!-- ====== #04 ====== -->
     <article class="case" id="p04">
         <figure class="art">
-          <div class="art-box"><pre class="dn-ascii" aria-label="A table in ASCII: thirteen menu items, how much more each has to sell for a 20% discount to pay off, how much more it is expected to sell, and the difference in daily margin">
- would a 20% discount pay for itself?        x = times today's daily sales
-
- item                 a day   needs   expects   margin a day
- ..........................................................................
- cheese burger         12.0   2.07x    2.58x      +677   go
- hrskavi krompiri      18.0   1.61x    2.16x      +643   go
- ledena kafa            9.0   1.69x    2.52x      +486   go
- limunada               7.0   1.54x    2.17x      +395   go
- pasta karbonara        5.0   1.81x    2.08x      +183   go
- kroasan                6.0   1.99x    2.86x      +183   go
- brownie                4.0   1.94x    2.85x      +165   go
- cheesecake             5.0   2.12x    2.47x       +89   go
- classic burger        14.0   2.00x    2.05x       +70   barely
- cezar tortilja         8.0   1.98x    2.01x       +23   barely
- pileća salata          4.0   2.20x    1.95x       -86   no
- coca cola 0.25        20.0   2.19x    1.98x      -106   no
- east kraft cola        6.0   3.03x    1.20x      -224   no
- ..........................................................................
- needs:   how much more it must sell to earn what it earns without a promo
- expects: how much more it sold in its own past promos
-
- demo data, every number here is made up
-</pre></div>
-          <figcaption data-l="en">The suggestions table, as a "table". Demo data, every number is made up :)</figcaption>
-          <figcaption data-l="sr">Tabela predloga kao „tabela“. Probni podaci, svi brojevi su izmišljeni :)</figcaption>
-        </figure>
-      <div class="case-text">
-        <p class="dn-card__meta">#04 · 2026 · Kafeterija</p>
-        <h2 class="dn-heading">Promo desk</h2>
-        <p class="lead" data-l="en">Every promo on Wolt or Glovo used to start with a question nobody could really answer: will the extra orders cover the discount and the commission?</p>
-        <p class="lead" data-l="sr">Svaka akcija na Woltu ili Glovu počinjala je pitanjem na koje niko nije imao pravi odgovor: hoće li dodatne porudžbine pokriti popust i proviziju?</p>
-        <p data-l="en">So I built a small app around that question. It reads monthly sales from Power BI exports and the delivery menu from the master sheet, finds past promos in the history and measures how much each one really lifted sales. From that the simulator works out two numbers for any item or combo: how many times more it has to sell to break even at a given discount, and how many times more it probably will. If the second number is smaller, the promo loses money and the table says so.</p>
-        <p data-l="sr">Zato sam oko tog pitanja napravio malu aplikaciju. Čita mesečnu prodaju iz Power BI izvoza i meni za dostavu iz glavne tabele, u istoriji nađe prošle akcije i izmeri koliko je koja stvarno podigla prodaju. Iz toga simulator za svaki artikal ili kombo izračuna dva broja: koliko puta više mora da se proda da bi akcija bila na nuli pri datom popustu, i koliko puta više će se verovatno prodati. Ako je drugi broj manji, akcija gubi novac i tabela to kaže.</p>
-        <p data-l="en">Launching is the boring half, so the app does that too. A promo is a chain of steps with one email per step, and the emails to the platforms wait until every combo has its code in the register. I can preview and edit each email and send it to myself as a test, and once it has gone out it can't go out twice. When the promo is live, the app reads daily sales straight from the register database and puts them next to what the simulator expected.</p>
-        <p data-l="sr">Puštanje je dosadnija polovina posla, pa aplikacija radi i to. Akcija je niz koraka sa po jednim mejlom, a mejlovi platformama čekaju dok svaki kombo ne dobije šifru u kasi. Svaki mejl mogu da pregledam, izmenim i pošaljem sebi kao probu, a kad jednom ode, ne može da ode dvaput. Kad akcija krene, aplikacija čita dnevnu prodaju pravo iz baze kase i stavlja je pored onoga što je simulator očekivao.</p>
-        <p data-l="en">Two things I didn't see coming. The register server imports receipts with a delay (one day in November it was fifteen days behind), so the tracking page now says how far the data really goes instead of pretending it's fresh. And the register and Power BI don't agree on monthly totals, so the monthly numbers still come from Power BI until I find out why.</p>
-        <p data-l="sr">Dve stvari nisam predvideo. Server kase uvozi račune sa zakašnjenjem (jednog dana u novembru kasnio je petnaest dana), pa strana za praćenje sada piše dokle podaci stvarno idu, umesto da se pravi da su sveži. A kasa i Power BI se ne slažu oko mesečnih zbirova, pa mesečne brojke i dalje dolaze iz Power BI-ja dok ne otkrijem zašto.</p>
-        <p data-l="en">The list of recipients lives in one file. The app keeps a copy before every write, and if the file ever gets damaged it refuses to run rather than quietly swap the recipients for an empty list.</p>
-        <p data-l="sr">Spisak primalaca živi u jednom fajlu. Aplikacija pre svakog upisa sačuva kopiju, a ako se fajl ikad pokvari, odbije da radi umesto da primaoce tiho zameni praznim spiskom.</p>
-      </div>
-      <div class="case-side">
-        <div class="dn-frame">
-          <p class="frame-k">stack</p>
-          <p>Next.js, TypeScript, Power BI exports, MCP to the register database (read only), SMTP</p>
-          <p class="frame-k">status</p>
-          <p data-l="en">In use for our own promos. It runs locally and the code is private, but I'm happy to show it.</p>
-          <p data-l="sr">Koristi se za naše akcije. Radi lokalno i kod je privatan, ali rado ga pokažem.</p>
-        </div>
-      </div>
-    </article>
-
-    <div class="dn-divider dn-divider--dots" role="separator"></div>
-
-    <!-- ====== #05 ====== -->
-    <article class="case" id="p05">
-        <figure class="art">
           <div class="art-box"><pre class="dn-ascii dn-ascii--ink" aria-label="A log of making one new combo item: search, preview with what is and is not copied from the template, confirmation, a check on one register, and the 403 error from the first approach">
+
+
  &gt; make a combo "Wrap + Fanta", 990 din, like item 6136756
 
  find_products("wrap")
@@ -821,45 +780,47 @@
  &gt; confirm
 
  create_product(confirm=true)       made once, in the central system
-                                    written to the log, upisi.jsonl
 
  $ python3 kasa.py trazi "Wrap + Fanta" --lokal 2003
    did it reach the register?
 
  ..........................................................................
- the first plan, writing to every register directly:
+ writing to a register directly:
    POST /Product   403  "Nemate prava na izabranu akciju"
-</pre></div>
+</pre>
+            <span class="dn-note dn-note--coral" style="right:9%;bottom:5%" aria-hidden="true">:/</span>
+          </div>
           <figcaption data-l="en">One new combo, as a "log" :)</figcaption>
           <figcaption data-l="sr">Jedan nov kombo, kao „log“ :)</figcaption>
         </figure>
       <div class="case-text">
-        <p class="dn-card__meta">#05 · 2026 · Kafeterija</p>
+        <p class="dn-card__meta path"><b>:/</b>kafeterija/2026</p>
         <h2 class="dn-heading">Register by sentence</h2>
-        <p class="lead" data-l="en">Every promo ends with the same chore: somebody has to make the combo in the register system, with the right recipe, choice groups and price lists, for the right cafés.</p>
-        <p class="lead" data-l="sr">Svaka akcija se završava istim poslom: neko mora da napravi kombo u sistemu kase, sa pravim normativom, grupama izbora i cenovnicima, za prave kafiće.</p>
-        <p data-l="en">My first plan was to write the new item to every register, one by one. Each café has its own register server, and item and category ids differ from café to café, so the tool looked up the template by its code and the category by its name. Reading worked. Writing came back with 403, "you don't have rights for this action", with both keys I had.</p>
-        <p data-l="sr">Prvi plan je bio da nov artikal upišem na svaku kasu, jednu po jednu. Svaki kafić ima svoj server kase, a id-jevi artikala i kategorija se razlikuju od lokala do lokala, pa je alat šablon tražio po šifri, a kategoriju po nazivu. Čitanje je radilo. Upis je vraćao 403, „Nemate prava na izabranu akciju“, sa oba ključa koja sam imao.</p>
-        <p data-l="en">So I went one level up. The chain also has a central Octopos, where price lists decide which café sells what and the registers pull their items from. Now an item is made once, in the centre, by copying a similar one that already exists: recipe, choice groups, warehouses and price lists come along, all at the new price. Image, translations, happy hour and tags don't.</p>
-        <p data-l="sr">Zato sam otišao nivo iznad. Lanac ima i centralni Octopos, u kom cenovnici određuju koji kafić šta prodaje i iz kog kase povlače artikle. Sada se artikal pravi jednom, u centrali, kopiranjem sličnog koji već postoji: normativ, grupe izbora, magacini i cenovnici idu sa njim, svi na novu cenu. Slika, prevodi, happy hour i tagovi ne idu.</p>
-        <p data-l="en">There are two ways in. One is an MCP server, so I can ask Claude for a combo in one sentence. The other is a small local web page, for when I'd rather click. Both show a preview first and write nothing until I confirm, every write goes into a log, and there is no delete at all, on purpose. The tool for single registers stayed, but it only reads: it checks whether a new item has really arrived.</p>
-        <p data-l="sr">Ulaza su dva. Jedan je MCP server, pa od Claudea mogu da tražim kombo jednom rečenicom. Drugi je mala lokalna web strana, za kad mi je lakše da kliknem. Oba prvo pokažu pregled i ništa ne upisuju dok ne potvrdim, svaki upis ide u dnevnik, a brisanja nema uopšte, namerno. Alat za pojedinačne kase je ostao, ali samo čita: proverava da li je nov artikal zaista stigao.</p>
-      </div>
-      <div class="case-side">
-        <div class="dn-frame">
-          <p class="frame-k">stack</p>
-          <p>Python, MCP, Octopos API</p>
-          <p class="frame-k">status</p>
-          <p data-l="en">The central system works. Writing straight to a register still returns 403.</p>
-          <p data-l="sr">Centrala radi. Direktan upis na kasu i dalje vraća 403.</p>
-        </div>
+        <p class="lead" data-l="en">A new combo in the register system from one sentence or one small form, instead of clicking through the admin.</p>
+        <p class="lead" data-l="sr">Novi kombo u sistemu kase iz jedne rečenice ili jedne male forme, umesto klikanja po adminu.</p>
+        <ul class="does" data-l="en">
+          <li>Copies a similar item that already exists: recipe, choice groups, warehouses and price lists, all at the new price.</li>
+          <li>There are two ways in, an MCP server for Claude and a small local web page.</li>
+          <li>Preview first. Nothing is written until I confirm, the web page logs every write, and there is no delete, on purpose.</li>
+          <li>The item is made once, in the central system, where the registers get their items from. Writing straight to a register returned 403, which is why.</li>
+        </ul>
+        <ul class="does" data-l="sr">
+          <li>Kopira sličan artikal koji već postoji: normativ, grupe izbora, magacine i cenovnike, sve na novu cenu.</li>
+          <li>Ulaza su dva, MCP server za Claudea i mala lokalna web strana.</li>
+          <li>Prvo pregled. Ništa se ne upisuje dok ne potvrdim, web strana beleži svaki upis, a brisanja nema, namerno.</li>
+          <li>Artikal se pravi jednom, u centrali, iz koje kase povlače artikle. Direktan upis na kasu je vraćao 403, zato je tako.</li>
+        </ul>
+        <dl class="rows facts">
+          <dt>stack</dt><dd>Python, MCP, Octopos API</dd>
+          <dt>status</dt><dd data-l="en">The central system works. Writing straight to a register still returns 403.</dd><dd data-l="sr">Centrala radi. Direktan upis na kasu i dalje vraća 403.</dd>
+        </dl>
       </div>
     </article>
 
     <div class="dn-divider dn-divider--dots" role="separator"></div>
 
-    <!-- ====== #06 ====== -->
-    <article class="case" id="p06">
+    <!-- ====== #05 ====== -->
+    <article class="case" id="p05">
         <figure class="art">
           <div class="art-box"><pre class="dn-ascii" aria-label="ASCII drawing from the shift game: a guest stands at the counter under a menu board, with a speech bubble for the order and a register on the right">
      :.-:.:          =%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%+          :.:-..
@@ -888,37 +849,38 @@
 ........ ..... ........=:..................--.....+......=@@%*********#@@.....
 .......................::..................::.....:......::--------------.....
 </pre></div>
-          <figcaption data-l="en">A guest ordering in the shift game, from the game's own drawing :)</figcaption>
-          <figcaption data-l="sr">Gost poručuje u igri Smena, sa crteža iz same igre :)</figcaption>
+          <figcaption data-l="en">A guest ordering in the shift game, from a screenshot of the game :)</figcaption>
+          <figcaption data-l="sr">Gost poručuje u igri Smena, sa slike ekrana iz igre :)</figcaption>
         </figure>
       <div class="case-text">
-        <p class="dn-card__meta">#06 · 2026 · Kafeterija</p>
+        <p class="dn-card__meta path"><b>:/</b>kafeterija/2026</p>
         <h2 class="dn-heading">Zrno po zrno</h2>
-        <p class="lead" data-l="en">Kafeterija trains its baristas in person. Zrno po zrno, "bean by bean", is the part they can do on their phone before that course.</p>
-        <p class="lead" data-l="sr">Kafeterija svoje bariste obučava uživo. Zrno po zrno je deo koji mogu da prođu na telefonu pre tog kursa.</p>
-        <p data-l="en">The first course has 13 levels in four parts, 50 terms on cards and a final test of 20 questions with a pass mark of 80%. The levels follow the trainers' script module by module, from the history of coffee to hygiene. Trainers and café managers get an admin side where they see who has got how far and which questions go badly, and a manager only ever sees people from their own cafés.</p>
-        <p data-l="sr">Prvi kurs ima 13 nivoa u četiri dela, 50 pojmova na karticama i završni test od 20 pitanja sa pragom od 80%. Nivoi prate skriptu trenera modul po modul, od istorije kafe do higijene. Treneri i menadžeri lokala imaju admin deo u kom vide ko je dokle stigao i koja pitanja idu teško, a menadžer vidi samo ljude iz svojih lokala.</p>
-        <p data-l="en">Two rules I set at the start and haven't broken. The server is the only source of truth: the phone sends what the trainee did and the server does the counting, so nobody earns a certificate from the browser console. And content never changes underneath progress: every step and every question has a fixed id and an edit makes a new version of the course, so the statistics survive rewrites.</p>
-        <p data-l="sr">Dva pravila sam postavio na početku i nisam ih prekršio. Server je jedini izvor istine: telefon šalje šta je polaznik uradio, a server računa, pa niko ne može da zaradi sertifikat iz konzole pretraživača. I sadržaj se ne menja ispod napretka: svaki korak i svako pitanje ima stalan id, a izmena pravi novu verziju kursa, pa statistika preživi prepravke.</p>
-        <p data-l="en">My favourite part is Smena, the shift. A guest orders and you make the drink across five stations: register, grinder, machine, milk, bar. The shot keeps running while you're at another station, and the guest scores every step, so a trainer can see which station needs practice. I tried it in 3D first, with three.js and Blender, and threw that away because it didn't feel like a game. What stayed is a 2D version in Phaser, drawn in code as SVG, in the style of the Papa's games.</p>
-        <p data-l="sr">Najdraži deo mi je Smena. Gost poruči, a ti praviš piće kroz pet stanica: kasa, mlin, aparat, mleko, šank. Šot teče i dok si na drugoj stanici, a gost ocenjuje svaki korak, pa trener vidi koja stanica traži vežbu. Prvo sam je probao u 3D-u, sa three.js i Blenderom, i to sam bacio jer nije ličilo na igru. Ostala je 2D verzija u Phaseru, crtana u kodu kao SVG, u stilu Papa's igara.</p>
-      </div>
-      <div class="case-side">
-        <div class="dn-frame">
-          <p class="frame-k">stack</p>
-          <p>FastAPI, SQLAlchemy, Alembic, PostgreSQL, Next.js, TypeScript, Phaser 3</p>
-          <p class="frame-k">status</p>
-          <p data-l="en">The first course is in. The drinks menu in the game is a placeholder until Kafeterija's own recipes arrive.</p>
-          <p data-l="sr">Prvi kurs je unet. Meni pića u igri je privremen dok ne stignu recepture Kafeterije.</p>
-          <div class="frame-links"><a class="dn-btn" href="https://github.com/danilo-lazovic/zrno-po-zrno" target="_blank" rel="noopener"><span data-l="en">code on github</span><span data-l="sr">kod na githubu</span></a></div>
-        </div>
+        <p class="lead" data-l="en">Barista training on the phone, for the part that comes before Kafeterija's course in person. The name means "bean by bean".</p>
+        <p class="lead" data-l="sr">Obuka barista na telefonu, za deo koji dolazi pre Kafeterijinog kursa uživo.</p>
+        <ul class="does" data-l="en">
+          <li>13 levels in four parts, 50 terms on cards and a final test of 20 questions with a pass mark of 80%.</li>
+          <li>Smena, a game where a guest orders and you make the drink across five stations. The guest scores every step.</li>
+          <li>Trainers see who has got how far and which questions go badly. A manager sees only their own cafés.</li>
+          <li>The server grades the final test and issues the certificate, so nobody earns one from the browser console.</li>
+        </ul>
+        <ul class="does" data-l="sr">
+          <li>13 nivoa u četiri dela, 50 pojmova na karticama i završni test od 20 pitanja sa pragom od 80%.</li>
+          <li>Smena, igra u kojoj gost poruči, a ti praviš piće kroz pet stanica. Gost ocenjuje svaki korak.</li>
+          <li>Treneri vide ko je dokle stigao i koja pitanja idu teško. Menadžer vidi samo svoje lokale.</li>
+          <li>Završni test ocenjuje i sertifikat izdaje server, pa niko ne može da ga zaradi iz konzole pretraživača.</li>
+        </ul>
+        <dl class="rows facts">
+          <dt>stack</dt><dd>FastAPI, SQLAlchemy, Alembic, PostgreSQL, Next.js, TypeScript, Phaser 3</dd>
+          <dt>status</dt><dd data-l="en">The first course is in. The drinks menu in the game is a placeholder until Kafeterija's own recipes arrive.</dd><dd data-l="sr">Prvi kurs je unet. Meni pića u igri je privremen dok ne stignu recepture Kafeterije.</dd>
+        </dl>
+        <div class="frame-links"><a class="dn-btn" href="https://github.com/danilo-lazovic/zrno-po-zrno" target="_blank" rel="noopener"><span data-l="en">code on github</span><span data-l="sr">kod na githubu</span></a></div>
       </div>
     </article>
 
     <div class="dn-divider dn-divider--dots" role="separator"></div>
 
-    <!-- ====== #07 ====== -->
-    <article class="case" id="p07">
+    <!-- ====== #06 ====== -->
+    <article class="case" id="p06">
         <figure class="art">
           <div class="art-box"><pre class="dn-ascii dn-ascii--ink" aria-label="A log of one morning run of the export agent and the import worker">
 
@@ -945,21 +907,38 @@
           <figcaption data-l="sr">Obično jutro, kao „log“ :)</figcaption>
         </figure>
       <div class="case-text">
-        <p class="dn-card__meta">#07 · 2026 · Kafeterija</p>
+        <p class="dn-card__meta path"><b>:/</b>kafeterija/2026</p>
         <h2 class="dn-heading">Reports on autopilot</h2>
-        <p class="lead" data-l="en">My reports used to start the same way every day: log in to Wolt, log in to Glovo, download yesterday, move the files.</p>
-        <p class="lead" data-l="sr">Moji izveštaji su svakog dana počinjali isto: uloguj se na Wolt, uloguj se na Glovo, skini jučerašnji dan, premesti fajlove.</p>
-        <p data-l="en">Now a scheduled Claude agent does that around eight in the morning, in the browser, and leaves the files where the portal picks them up. It never types a password, and if a session has expired it stops and tells me. It only runs while the Claude app is open. Other agents fill in the weekly reviews report, the monthly Power BI numbers and the Glovo promo plan. Underneath sits a Power BI and Excel model in three layers (dimensions, raw data, report), with ad spend per channel and a BCG matrix of the menu.</p>
-        <p data-l="sr">Sada to radi zakazani Claude agent oko osam ujutru, u pretraživaču, i ostavlja fajlove tamo gde ih portal pokupi. Nikad ne kuca lozinku, a ako je sesija istekla, stane i javi mi. Radi samo dok je Claude aplikacija otvorena. Drugi agenti popunjavaju nedeljni izveštaj recenzija, mesečne brojke iz Power BI-ja i plan Glovo akcija. Ispod svega je Power BI i Excel model u tri sloja (dimenzije, sirovi podaci, izveštaj), sa ulaganjem u oglase po kanalu i BCG matricom menija.</p>
+        <p class="lead" data-l="en">A scheduled Claude agent downloads yesterday's Wolt and Glovo files every morning, so my reports no longer start with me doing it.</p>
+        <p class="lead" data-l="sr">Zakazani Claude agent svakog jutra skine jučerašnje fajlove sa Wolta i Glova, pa moji izveštaji više ne počinju time.</p>
+        <ul class="does" data-l="en">
+          <li>Runs around eight, in the browser, and leaves the files where the portal picks them up.</li>
+          <li>Never types a password. If a session has expired, it stops and tells me.</li>
+          <li>Other agents fill in the weekly reviews report, the monthly Power BI numbers and the Glovo promo plan.</li>
+          <li>Underneath it all sits a Power BI and Excel model in three layers, with ad spend per channel and a BCG matrix of the menu.</li>
+        </ul>
+        <ul class="does" data-l="sr">
+          <li>Radi oko osam, u pretraživaču, i ostavlja fajlove tamo gde ih portal pokupi.</li>
+          <li>Nikad ne kuca lozinku. Ako je sesija istekla, stane i javi mi.</li>
+          <li>Drugi agenti popunjavaju nedeljni izveštaj recenzija, mesečne brojke iz Power BI-ja i plan Glovo akcija.</li>
+          <li>Ispod svega je Power BI i Excel model u tri sloja, sa ulaganjem u oglase po kanalu i BCG matricom menija.</li>
+        </ul>
+        <dl class="rows facts">
+          <dt>stack</dt><dd>Claude Cowork, Power BI, Excel</dd>
+          <dt>status</dt><dd data-l="en">Runs every morning, as long as the Claude app is open.</dd><dd data-l="sr">Radi svakog jutra, dok je Claude aplikacija otvorena.</dd>
+        </dl>
       </div>
     </article>
 
     <div class="dn-divider dn-divider--dots" role="separator"></div>
 
-    <!-- ====== #08 ====== -->
-    <article class="case" id="p08">
+    <!-- ====== #07 ====== -->
+    <article class="case" id="p07">
         <figure class="art">
           <div class="art-box"><pre class="dn-ascii" aria-label="ASCII drawing of the voting screen: the name of the competition, the question, ten compositions as radio buttons in performance order, and a vote button">
+
+
+
  ČETVRTO MEMORIJALNO TAKMIČENJE „ANDRIJA ČIKIĆ“            Ћир   Lat   Eng
                                                                  ...
  Koja kompozicija vas je najviše dirnula?
@@ -985,25 +964,78 @@
           <figcaption data-l="sr">Ekran za glasanje, kao „telefon“ :)</figcaption>
         </figure>
       <div class="case-text">
-        <p class="dn-card__meta">#08 · 2026 · Kolarac</p>
+        <p class="dn-card__meta path"><b>:/</b>kolarac/2026</p>
         <h2 class="dn-heading">Audience vote</h2>
-        <p class="lead" data-l="en">On 2 December 2026 the final of the fourth Andrija Čikić memorial competition is played in the great hall of Kolarac, and the audience picks its own winner out of ten compositions.</p>
-        <p class="lead" data-l="sr">Drugog decembra 2026. u Velikoj dvorani Kolarca svira se finale Četvrtog memorijalnog takmičenja „Andrija Čikić“, a publika bira svog pobednika među deset kompozicija.</p>
-        <p data-l="en">Until now the vote ran on a generic poll site. I made a small one that looks like Kolarac and follows their rules: a QR code on the projector, ten options in the order they are performed, one vote per device, and an admin that somebody who isn't a programmer can run, with a button to open the vote and a button to close it. It's an unofficial favour, not the institution's website.</p>
-        <p data-l="sr">Do sada se glasalo preko gotovog sajta za ankete. Napravio sam mali sajt koji liči na Kolarac i poštuje njihova pravila: QR kod na projektoru, deset opcija redom kojim se izvode, jedan glas po uređaju i admin koji može da vodi i neko ko nije programer, sa dugmetom za otvaranje i dugmetom za zatvaranje glasanja. Nezvaničan je, kao pomoć, nije sajt institucije.</p>
-        <p data-l="en">Part of the hall will be on Wi-Fi and part on mobile data, so an IP address can't be an identity or a limit. In my first version the QR code changed every two minutes, so that a link sent to someone outside the hall would die quickly. Ten days later I took that out. A static code that opens the front page is simpler, and for one evening the simple thing is what has to hold when a few hundred votes arrive in a couple of minutes.</p>
-        <p data-l="sr">Deo sale će biti na Wi-Fi-ju, a deo na mobilnim podacima, pa IP adresa ne može da bude ni identitet ni ograničenje. U prvoj verziji QR kod se menjao na dva minuta, da link poslat nekome van sale brzo istekne. Deset dana kasnije sam to izbacio. Statički kod koji otvara početnu stranu je jednostavniji, a za jedno veče mora da izdrži baš ono što je jednostavno, i to kad nekoliko stotina glasova stigne za par minuta.</p>
-        <p data-l="en">It reads in Latin, Cyrillic and English, foreign titles stay the same in all three, and there is only a light theme, because the dark one was turned down as depressing.</p>
-        <p data-l="sr">Čita se na latinici, ćirilici i engleskom, strani naslovi ostaju isti u sva tri, a postoji samo svetla tema, jer je tamna odbijena kao depresivna.</p>
+        <p class="lead" data-l="en">A voting site for one evening: on 2 December 2026 the audience at Kolarac picks its favourite of ten compositions.</p>
+        <p class="lead" data-l="sr">Sajt za glasanje za jedno veče: 2. decembra 2026. publika na Kolarcu bira omiljenu među deset kompozicija.</p>
+        <ul class="does" data-l="en">
+          <li>A QR code on the projector, ten options in the order they are performed, one vote per device.</li>
+          <li>An admin that opens and closes the vote, made for somebody who isn't a programmer.</li>
+          <li>Built for a few hundred votes in a couple of minutes, on a mix of Wi-Fi and mobile data.</li>
+          <li>Latin, Cyrillic and English.</li>
+        </ul>
+        <ul class="does" data-l="sr">
+          <li>QR kod na projektoru, deset opcija redom kojim se izvode, jedan glas po uređaju.</li>
+          <li>Admin koji otvara i zatvara glasanje, pravljen za nekoga ko nije programer.</li>
+          <li>Pravljen za nekoliko stotina glasova u par minuta, na mešavini Wi-Fi-ja i mobilnih podataka.</li>
+          <li>Latinica, ćirilica i engleski.</li>
+        </ul>
+        <dl class="rows facts">
+          <dt>stack</dt><dd>Next.js, Supabase (Postgres), Vercel, Vitest</dd>
+          <dt>status</dt><dd data-l="en">Built and deployed, waiting for its one evening.</dd><dd data-l="sr">Napravljeno i postavljeno, čeka svoje jedno veče.</dd>
+        </dl>
       </div>
-      <div class="case-side">
-        <div class="dn-frame">
-          <p class="frame-k">stack</p>
-          <p>Next.js, Supabase (Postgres), Vercel, Vitest</p>
-          <p class="frame-k">status</p>
-          <p data-l="en">Built and deployed, waiting for its one evening.</p>
-          <p data-l="sr">Napravljeno i postavljeno, čeka svoje jedno veče.</p>
-        </div>
+    </article>
+
+    <div class="dn-divider dn-divider--dots" role="separator"></div>
+
+    <!-- ====== #08 ====== -->
+    <article class="case" id="p08">
+        <figure class="art">
+          <div class="art-box"><pre class="dn-ascii" data-clock aria-label="An ASCII clock showing the current time, next to four chores a client no longer does by hand: the Monday report, retyping orders, replying to reviews and collecting invoices. Below it, four clients: Kafeterija, Loft, Lovefest, Kolarac">
+
+
+                          "Nem' kad!!!"  Mi imamo.
+        ...o...
+     .'.       .'.        [x] every monday
+   ..             ..          merge sales from three sheets into one report
+  .'             ::'.         -&gt; the report arrives by itself
+ ..    ###   :::::  ..    [x] every day
+ o        #+::       o        retype orders from email into the system
+ ..                 ..        -&gt; orders enter the system by themselves
+  .'               '.     [x] after every review
+   ..             ..          think up a reply to the guest on Google
+     .'.   *   .'.            -&gt; AI writes a draft, you click send
+        ...o...           [x] end of the month
+                              collect invoices and send them to the accountant
+                              -&gt; we do it for you
+
+ ..........................................................................
+ kafeterija          loft          lovefest          kolarac
+</pre></div>
+          <figcaption data-l="en">What changes for a client, as a "to-do list". The clock shows your time :)</figcaption>
+          <figcaption data-l="sr">Šta se promeni za klijenta, kao „spisak obaveza“. Sat pokazuje tvoje vreme :)</figcaption>
+        </figure>
+      <div class="case-text">
+        <p class="dn-card__meta path"><b>:/</b>nemkad/2026</p>
+        <h2 class="dn-heading">Nem' kad</h2>
+        <p class="lead" data-l="en">"Nem' kad" is what you say in Serbian when you have no time. It's also a small company: we automate the work that repeats, and when a client would rather not run it themselves, we run it.</p>
+        <p class="lead" data-l="sr">„Nem' kad“ je ono što kažeš kad nemaš vremena. To je i mala firma: automatizujemo posao koji se ponavlja, a kad klijent ne želi da ga vodi sam, vodimo ga mi.</p>
+        <ul class="does" data-l="en">
+          <li><b>Kafeterija</b>, 70 cafés: Google reviews in one inbox with replies drafted, live sales from every channel on one screen, promos checked before they launch, barista training on the phone.</li>
+          <li><b>Loft</b>: every Google review in one place, with a reply ready to send.</li>
+          <li><b>Lovefest</b>: ticket sales from Sixtix, Efinity and Tickets.rs on one dashboard, day by day, with a projection up to the festival.</li>
+          <li><b>Kolarac</b>: the audience votes by phone at a competition final, one vote per device.</li>
+          <li>We work in three ways: we build it and hand it over, we run the process for you, or we build it, run it and keep improving it.</li>
+        </ul>
+        <ul class="does" data-l="sr">
+          <li><b>Kafeterija</b>, 70 kafića: Google recenzije u jednom sandučetu sa predlozima odgovora, prodaja uživo sa svih kanala na jednom ekranu, akcije proverene pre puštanja, obuka barista na telefonu.</li>
+          <li><b>Loft</b>: sve Google recenzije na jednom mestu, sa odgovorom spremnim za slanje.</li>
+          <li><b>Lovefest</b>: prodaja karata sa Sixtixa, Efinityja i Tickets.rs na jednom dashboardu, dan po dan, sa projekcijom do festivala.</li>
+          <li><b>Kolarac</b>: publika glasa telefonom na finalu takmičenja, jedan glas po uređaju.</li>
+          <li>Radimo na tri načina: napravimo i predamo, vodimo proces umesto vas, ili napravimo, vodimo i stalno unapređujemo.</li>
+        </ul>
+        <div class="frame-links"><a class="dn-btn" href="https://nemkad.rs" target="_blank" rel="noopener">nemkad.rs</a></div>
       </div>
     </article>
 
@@ -1012,56 +1044,59 @@
     <!-- ====== #09 ====== -->
     <article class="case" id="p09">
         <figure class="art">
-          <div class="art-box"><pre class="dn-ascii" aria-label="ASCII drawing of the Nem&#x27; kad logo: the hand-lettered name with three exclamation marks above a round clock">
-                                   ..      *:
-                               :- .@+...-  #*
-                               #@  %%#*@%+@@=  -
-                               -%  #@:###%%@=  *=
-                             :+=+  +@+*@@#@@-  =@
-                       .-::+=@@#   -@%@@@+#@-  +@#
-                       +@%+@#@@@    @+:    *+  +@=+.
-                        @@@*@%@@:   -::===: :  *@ *%.
-                        *@@@@%%#=   -=::+-=+-  %@ #@*-:.
-                        =@@@%#%%# :+-=: - .+=+ *@ %#.@@:
-                        .%%@%%@=: *= =#.-  . == +:@-=@.
-                         *#%@@=. -=-. =**.   =*: -@=#%
-                         =%#::   =:   .#*    :-=  -:%#
-                         ...     =-.   +*     .+    ..
-                                .+-:   .*.   :=+
-                                 +.     =.    :+
-                                 ==-          :+
-                                 .*-        .=+-
-                                  -+ -.      -+
-                                   ==-  - .--+.
-                                    -+--=::--
-                                     .-===-.
+          <div class="art-box">
+            <pre class="dn-ascii" aria-label="Bar chart in ASCII: the motor neuron fires at about 107 Hz in every condition except betweenness top 34 at 44.3 Hz and the min-cut at 0.38 Hz">
 
-                      "Nem' kad!!!". Mi imamo.
-</pre></div>
-          <figcaption data-l="en">The logo, traced from the first T-shirt and then turned into characters :)</figcaption>
-          <figcaption data-l="sr">Logo, precrtan sa prve majice pa pretvoren u znakove :)</figcaption>
+ MN9 firing rate after silencing 34 neurons (Hz)
+ ..........................................................................
+
+ intact brain         ######################################## 107.7
+
+ out-strength top 34  ############################################ 118
+
+ pagerank top 34      ######################################## 107.8
+
+ random on-path x20   ######################################## 107.3
+
+ betweenness top 34   ################# 44.3
+
+ min-cut, mine        . 0.38
+
+ ..........................................................................
+ 30 trials x 1 s, mean of both MN9 cells, male CNS v1.0
+
+
+
+</pre>
+            <span class="dn-note dn-note--coral" style="right:var(--space-4);bottom:31%" aria-hidden="true">0,4% ostaje</span>
+          </div>
+          <figcaption data-l="en">My result, as a "chart": firing rate of the proboscis motor neuron after silencing 34 neurons chosen five different ways :)</figcaption>
+          <figcaption data-l="sr">Moj rezultat kao „grafikon“: frekvencija motornog neurona surle posle utišavanja 34 neurona izabrana na pet načina :)</figcaption>
         </figure>
       <div class="case-text">
-        <p class="dn-card__meta">#09 · 2026 · <span data-l="en">company</span><span data-l="sr">firma</span></p>
-        <h2 class="dn-heading">Nem' kad</h2>
-        <p class="lead" data-l="en">"Nem' kad" is what you say in Serbian when you have no time. It's also a small company: we automate the work that repeats, and when a client would rather not run it themselves, we run it.</p>
-        <p class="lead" data-l="sr">„Nem' kad“ je ono što kažeš kad nemaš vremena. To je i mala firma: automatizujemo posao koji se ponavlja, a kad klijent ne želi da ga vodi sam, vodimo ga mi.</p>
-        <p data-l="en">The name is older than the company. A long time ago Vukašin found a site where you design your own T-shirt, kept not finding an afternoon to draw something good, and in the end typed the only thing in his head, "Nem' kad!!!", added a clock and ordered it. The logo is still that one, traced from the shirt thread by thread.</p>
-        <p data-l="sr">Ime je starije od firme. Davno je Vukašin naleteo na sajt na kom sam dizajniraš majicu, nikako nije nalazio popodne da nacrta nešto dobro, pa je na kraju ukucao jedino što mu je bilo u glavi, „Nem' kad!!!“, dodao sat i poručio. Logo je i danas taj, precrtan sa majice konac po konac.</p>
-        <p data-l="en">I built the site in Astro, as plain static pages. It has a few written rules: one typeface that is used for the name only, no gradients, no shadows, no stock or AI pictures, and no invented clients, quotes or percentages. A project goes on the site when it is real. Most of what's there you can also find on this page: the review engine, the café portal, the promo desk, Zrno po zrno and the audience vote.</p>
-        <p data-l="sr">Sajt sam napravio u Astru, kao obične statične strane. Ima nekoliko zapisanih pravila: jedan font koji se koristi samo za ime, bez gradijenata, bez senki, bez stock i AI slika, i bez izmišljenih klijenata, citata i procenata. Projekat ide na sajt kad je stvaran. Većinu onoga što je tamo možeš da nađeš i na ovoj strani: recenzije, portal, akcije, Zrno po zrno i glasanje publike.</p>
-        <p data-l="en">A few details I like. The projects on the front page are drawn in HTML in the site's three colours instead of screenshots, the "how we work" section is a BPMN diagram, the same notation I use for real processes, and after every release a GitHub Action sends search engines the list of pages.</p>
-        <p data-l="sr">Nekoliko detalja koje volim. Projekti na početnoj su nacrtani u HTML-u u tri boje sajta umesto slika ekrana, deo „Kako radimo“ je BPMN dijagram, ista notacija koju koristim za prave procese, a posle svake objave GitHub Action pošalje pretraživačima spisak strana.</p>
-      </div>
-      <div class="case-side">
-        <div class="dn-frame">
-          <p class="frame-k">stack</p>
-          <p>Astro, Vercel, Web3Forms, GitHub Actions</p>
-          <p class="frame-k">status</p>
-          <p data-l="en">Live.</p>
-          <p data-l="sr">Uživo.</p>
-          <div class="frame-links"><a class="dn-btn" href="https://nemkad.rs" target="_blank" rel="noopener">nemkad.rs</a></div>
-        </div>
+        <p class="dn-card__meta path"><b>:/</b><span data-l="en">research</span><span data-l="sr">istraživanje</span>/2026</p>
+        <h2 class="dn-heading">Brain bottlenecks</h2>
+        <p class="lead" data-l="en">I ran max-flow / min-cut on the full wiring diagram of a male fruit fly's nervous system, to find where the path from a sense to a movement is narrowest.</p>
+        <p class="lead" data-l="sr">Pustio sam max-flow / min-cut kroz kompletnu mapu nervnog sistema mužjaka vinske mušice, da nađem gde je put od čula do pokreta najuži.</p>
+        <ul class="does" data-l="en">
+          <li>174,386 neurons and about 25.8 million connections as a flow network, one behaviour at a time.</li>
+          <li>For escaping a looming shadow most of the cut lands on LPLC2 and LC4, the cells biologists already link to that escape. Nobody told the algorithm about them.</li>
+          <li>Silencing the 34 neurons in the cut between taste and the proboscis takes its motor neuron from 107.7 Hz to 0.38 Hz. 34 random neurons on the same paths change nothing.</li>
+          <li>The whole-brain simulation is rewritten in numba and fits in 16 GB of RAM on a home PC.</li>
+          <li>Vision, the 3D pictures and a proper write-up are still open.</li>
+        </ul>
+        <ul class="does" data-l="sr">
+          <li>174.386 neurona i oko 25,8 miliona veza kao mreža protoka, po jedno ponašanje.</li>
+          <li>Kod bežanja od senke koja se približava najveći deo preseka pada na LPLC2 i LC4, ćelije koje biolozi već vezuju za to bežanje. Algoritmu ih niko nije pomenuo.</li>
+          <li>Kad utišam 34 neurona iz preseka između ukusa i surle, njen motorni neuron padne sa 107,7 Hz na 0,38 Hz. Nasumična 34 neurona sa istih puteva ne promene ništa.</li>
+          <li>Simulacija celog mozga je prepisana u numba i staje u 16 GB RAM-a na kućnom računaru.</li>
+          <li>Vid, 3D slike i pravi tekst o svemu su još otvoreni.</li>
+        </ul>
+        <dl class="rows facts">
+          <dt>stack</dt><dd>Python, OR-Tools, igraph, SciPy, numba, neuPrint</dd>
+          <dt><span data-l="en">data</span><span data-l="sr">podaci</span></dt><dd data-l="en">Male CNS v1.0 connectome, Janelia FlyEM and Google</dd><dd data-l="sr">Konektom male CNS v1.0, Janelia FlyEM i Google</dd>
+        </dl>
+        <div class="frame-links"><a class="dn-btn" href="https://github.com/danilo-lazovic/fly-bottlenecks" target="_blank" rel="noopener"><span data-l="en">code on github</span><span data-l="sr">kod na githubu</span></a></div>
       </div>
     </article>
 
@@ -1103,21 +1138,24 @@
           <figcaption data-l="sr">„Grafikon“ zaliha i backloga po nedeljama, iz jednog pokretanja MATLAB planera :)</figcaption>
         </figure>
       <div class="case-text">
-        <p class="dn-card__meta">#10 · 2025, 2026 · <span data-l="en">operations</span><span data-l="sr">operacije</span></p>
+        <p class="dn-card__meta path"><b>:/</b><span data-l="en">operations</span><span data-l="sr">operacije</span>/2025-26</p>
         <h2 class="dn-heading">Production planning</h2>
-        <p class="lead" data-l="en">This is where coding stopped being a school subject for me.</p>
-        <p class="lead" data-l="sr">Ovde je kodiranje za mene prestalo da bude predmet na faksu.</p>
-        <p data-l="en">At uni I wrote a planner in MATLAB: weekly demand and daily capacity go in, a release plan comes out, the backlog gets cleared first, and nine charts show what happened. It worked, but it was a university project.</p>
-        <p data-l="sr">Na fakultetu sam napisao planer u MATLAB-u: unese se nedeljna tražnja i dnevni kapacitet, izađe plan puštanja, prvo se skida backlog, a devet grafika pokazuje šta se desilo. Radilo je, ali je bio fakultetski projekat.</p>
-        <p data-l="en">At Bosch I planned and ordered production materials in SAP and Excel, and a lot of that work was the same boring steps every week. So I started learning properly, mostly to get rid of them. What came out was a desktop app in Python and PyQt5 that plans more than 800 SKUs over 52 weeks, a VBA tool that splits capacity in Excel, and Power Query that feeds Power BI without anyone copying numbers around.</p>
-        <p data-l="sr">U Boschu sam planirao i naručivao materijal u SAP-u i Excelu, i dobar deo tog posla su bili isti dosadni koraci svake nedelje. Zato sam počeo ozbiljno da učim, uglavnom da bih ih se rešio. Od toga je nastala desktop aplikacija u Pythonu i PyQt5 koja planira više od 800 artikala na 52 nedelje, VBA alat koji deli kapacitet u Excelu i Power Query koji puni Power BI, a da niko ne prepisuje brojke.</p>
-      </div>
-      <div class="case-side">
-        <div class="dn-frame">
-          <p class="frame-k">stack</p>
-          <p>MATLAB, Excel, Python, PyQt5, VBA, Power Query, SAP</p>
-          <div class="frame-links"><a class="dn-btn" href="https://github.com/danilo-lazovic/production-planning" target="_blank" rel="noopener"><span data-l="en">matlab version on github</span><span data-l="sr">matlab verzija na githubu</span></a></div>
-        </div>
+        <p class="lead" data-l="en">This is where coding stopped being a school subject for me: weekly production plans that clear the backlog first.</p>
+        <p class="lead" data-l="sr">Ovde je kodiranje za mene prestalo da bude školski predmet: nedeljni planovi proizvodnje koji prvo skidaju backlog.</p>
+        <ul class="does" data-l="en">
+          <li>At uni, a planner in MATLAB: weekly demand and daily capacity go in, a release plan and nine charts come out.</li>
+          <li>At Bosch, a desktop app in Python and PyQt5 that plans more than 800 SKUs over 52 weeks.</li>
+          <li>A VBA tool that splits capacity in Excel, and Power Query that feeds Power BI without anyone copying numbers around.</li>
+        </ul>
+        <ul class="does" data-l="sr">
+          <li>Na faksu, planer u MATLAB-u: ulaze nedeljna tražnja i dnevni kapacitet, izlaze plan lansiranja i devet grafikona.</li>
+          <li>U Boschu, desktop aplikacija u Pythonu i PyQt5 koja planira više od 800 artikala kroz 52 nedelje.</li>
+          <li>VBA alat koji deli kapacitet u Excelu i Power Query koji puni Power BI bez prepisivanja brojeva.</li>
+        </ul>
+        <dl class="rows facts">
+          <dt>stack</dt><dd>MATLAB, Excel, Python, PyQt5, VBA, Power Query, SAP</dd>
+        </dl>
+        <div class="frame-links"><a class="dn-btn" href="https://github.com/danilo-lazovic/production-planning" target="_blank" rel="noopener"><span data-l="en">matlab version on github</span><span data-l="sr">matlab verzija na githubu</span></a></div>
       </div>
     </article>
 
@@ -1159,27 +1197,28 @@
           <figcaption data-l="sr">„Screenshot“ sa playtesta za brief 005: kolos, srušena kula i igrač :)</figcaption>
         </figure>
       <div class="case-text">
-        <p class="dn-card__meta">#11 · 2026 · <span data-l="en">game</span><span data-l="sr">igra</span></p>
+        <p class="dn-card__meta path"><b>:/</b><span data-l="en">games</span><span data-l="sr">igre</span>/2026</p>
         <h2 class="dn-heading">Colossus</h2>
         <p class="lead" data-l="en">A game about climbing giants in an empty land. I'm the creative director, and everyone else in the studio is a Claude agent.</p>
         <p class="lead" data-l="sr">Igra o penjanju na džinove u praznoj zemlji. Ja sam kreativni direktor, a svi ostali u studiju su Claude agenti.</p>
-        <p data-l="en">There's a programmer, a tech artist, a 3D artist, a 2D artist and a playtester, each working in Unity or Blender directly. I write a brief, they build it, the playtester plays it and sends me screenshots, and I write back what I think. Each phase has one question. Right now it's whether holding on to something that's trying to shake you off is actually fun.</p>
-        <p data-l="sr">Tu su programer, tehnički umetnik, 3D umetnik, 2D umetnik i tester, i svaki radi direktno u Unity-ju ili Blenderu. Ja napišem brief, oni ga naprave, tester ga odigra i pošalje mi screenshotove, a ja napišem šta mislim. Svaka faza ima jedno pitanje. Sada je to da li je stvarno zabavno držati se za nešto što pokušava da te strese.</p>
-        <p data-l="en">My verdicts so far, as I wrote them: running around "feels okay for now", climbing the tower is "okay, a bit clunky, I like it for now", and the moving colossus "feels okay". Okay isn't fun yet, so we keep going.</p>
-        <p data-l="sr">Moje ocene do sada, kako sam ih napisao: kretanje „deluje okej za sad“, penjanje po kuli „okej je osećaj, malo clunky, sviđa mi se za sad“, a kolos koji se kreće „deluje okej“. Okej još nije zabavno, pa idemo dalje.</p>
-        <p data-l="en">This is how I described the feeling in the design doc:</p>
+        <ul class="does" data-l="en">
+          <li>A programmer, a tech artist, a 3D artist, a 2D artist and a playtester, each working in Unity or Blender directly.</li>
+          <li>I write a brief, they build it, the playtester plays it and sends screenshots, and I write back what I think.</li>
+          <li>Each phase has one question. Right now: is holding on to something that's trying to shake you off actually fun?</li>
+        </ul>
+        <ul class="does" data-l="sr">
+          <li>Programer, tehnički umetnik, 3D umetnik, 2D umetnik i tester, svako radi direktno u Unityju ili Blenderu.</li>
+          <li>Ja napišem brief, oni ga naprave, tester ga odigra i pošalje slike ekrana, a ja odgovorim šta mislim.</li>
+          <li>Svaka faza ima jedno pitanje. Sada: da li je zabavno držati se za nešto što pokušava da te zbaci?</li>
+        </ul>
+        <p data-l="en">How I described the feeling in the design doc:</p>
         <p data-l="sr">Ovako sam opisao osećaj u dizajn dokumentu:</p>
         <blockquote data-l="en">"Like coming back to your hometown after a while, and everything that was supposed to wait for you is gone."</blockquote>
         <blockquote data-l="sr">„Kao kad se vratiš u rodni grad posle izvesnog vremena i imaš osećaj da nema ničega, jer sve što je trebalo da te sačeka fali.“</blockquote>
-      </div>
-      <div class="case-side">
-        <div class="dn-frame">
-          <p class="frame-k">stack</p>
-          <p>Unity 6, C#, Cinemachine, Blender, Claude Code, MCP</p>
-          <p class="frame-k">status</p>
-          <p data-l="en">Phase 3 of 5: climbing a colossus that moves.</p>
-          <p data-l="sr">Faza 3 od 5: penjanje po kolosu koji se kreće.</p>
-        </div>
+        <dl class="rows facts">
+          <dt>stack</dt><dd>Unity 6, C#, Cinemachine, Blender, Claude Code, MCP</dd>
+          <dt>status</dt><dd data-l="en">Phase 3 of 5: climbing a colossus that moves.</dd><dd data-l="sr">Faza 3 od 5: penjanje po kolosu koji se kreće.</dd>
+        </dl>
       </div>
     </article>
 
@@ -1188,8 +1227,11 @@
     <!-- ====== #12 ====== -->
     <article class="case" id="p12">
         <figure class="art">
-          <div class="art-box"><pre class="dn-ascii dn-ascii--ink" aria-label="A table from the terminal: six simple strategies play one test day, with what each collects officially and secretly, whether it meets the quota, how many of three bills it pays and what is left">
- $ tools/play.sh sweep         one test day, played by six simple strategies
+          <div class="art-box"><pre class="dn-ascii dn-ascii--ink" aria-label="A table from the terminal: seven simple strategies play one test day, with what each collects officially and secretly, whether it meets the quota, how many of three bills it pays and what is left">
+
+
+
+ $ tools/play.sh sweep         one test day, played by seven simple strategies
 
  quota 850 DM    salary 55.000 din    dealer takes 10%    1.851 din for 1 DM
 
@@ -1201,6 +1243,7 @@
  work it out, then steal         850      510   yes      3/3     317
  squeeze everyone                  0        0   no       0/3      26
  do nothing                        0        0   no       0/3      26
+ press, honestly                1020        0   yes      0/3      26
  ..........................................................................
  official   what the criminals paid into the service's book, in DM
  secret     collected above what was written down, recorded nowhere
@@ -1208,32 +1251,34 @@
  left       marks left after the chief and the bills
 
  a strategy only sees the files and papers that arrived, never the truth
-</pre></div>
-          <figcaption data-l="en">One test day played by six simple strategies, from the game's own comparison table :)</figcaption>
-          <figcaption data-l="sr">Jedan probni dan koji igra šest prostih strategija, iz tabele za poređenje u samoj igri :)</figcaption>
+</pre>
+            <span class="dn-note dn-note--coral" style="right:3%;top:45%" aria-hidden="true">krade!</span>
+          </div>
+          <figcaption data-l="en">One test day played by seven simple strategies, from the game's own comparison table :)</figcaption>
+          <figcaption data-l="sr">Jedan probni dan koji igra sedam prostih strategija, iz tabele za poređenje u samoj igri :)</figcaption>
         </figure>
       <div class="case-text">
-        <p class="dn-card__meta">#12 · 2026 · <span data-l="en">game</span><span data-l="sr">igra</span></p>
+        <p class="dn-card__meta path"><b>:/</b><span data-l="en">games</span><span data-l="sr">igre</span>/2026</p>
         <h2 class="dn-heading">Služba</h2>
-        <p class="lead" data-l="en">A narrative game set in one office. You're a clerk in a made-up intelligence service in Yugoslavia in the nineties, and your job is to decide how much each small-time criminal on your list pays. Služba means "the service".</p>
-        <p class="lead" data-l="sr">Narativna igra iz jedne kancelarije. Ti si službenik izmišljene obaveštajne službe u Jugoslaviji devedesetih, a posao ti je da odlučiš koliko svaki sitni kriminalac sa tvog spiska plaća.</p>
-        <p data-l="en">Two of us are making it: I lead the code and the story with AI agents, and the other author does the art. Every day a few files land on the desk. For each one you write an amount in marks and hit one of three stamps: tolerate, press, remove. You never know what the man really earns. You have the morning dispatch, the men in the field, the newspaper and the criminal's own envelope, and they don't agree. The game is in catching where they disagree.</p>
-        <p data-l="sr">Pravimo je nas dvojica: ja vodim kod i priču uz AI agente, a drugi autor radi grafiku. Svakog dana na sto stigne nekoliko kartona. Za svaki upišeš iznos u markama i udariš jedan od tri pečata: tolerisati, pritisnuti, ukloniti. Koliko čovek stvarno zarađuje, ne znaš. Imaš jutarnju depešu, ljude na terenu, novine i kovertu samog kriminalca, a oni se ne slažu. Igra je u hvatanju tih neslaganja.</p>
-        <p data-l="en">I've never built anything in Unity myself, I've only directed agents in it, so I wanted rules I could run and check without opening the editor. They live in plain C# that doesn't know Unity exists: money is whole numbers, time is minutes since midnight, and the core never reads the real clock. A whole working day can be played as text in a terminal, by me or by an agent, and one command plays it with a handful of simple strategies and prints what each of them ends the day with.</p>
-        <p data-l="sr">U samom Unityju nikad ništa nisam napravio, samo sam vodio agente u njemu, pa sam hteo pravila koja mogu da pokrenem i proverim bez otvaranja Editora. Zato žive u čistom C#-u koji ne zna da Unity postoji: novac su celi brojevi, vreme su minuti od ponoći, a jezgro nikad ne čita pravi sat. Ceo radni dan može da se odigra kao tekst u terminalu, bilo da igram ja ili agent, a jedna komanda ga odigra sa nekoliko prostih strategija i ispiše sa čim koja završi dan.</p>
-        <p data-l="en">That table is above. On the test day, the only strategy that pays for the heating, the medicine and the food is the one that works out the truth and then steals. The game never forces you to steal. In hyperinflation it just keeps raising the price of staying honest.</p>
-        <p data-l="sr">Ta tabela je gore. Na probnom danu jedina strategija koja plati grejanje, lekove i hranu jeste ona koja izvede istinu pa krade. Igra nikad ne tera na krađu. U hiperinflaciji samo stalno diže cenu poštenja.</p>
-        <p data-l="en">We also keep a list of ways the game could fail even if it works: if it glorified the criminals or the service, if you could recognise real people in the characters, if it had a triumphant ending.</p>
-        <p data-l="sr">Imamo i spisak načina na koje igra može da promaši čak i kad radi: da veliča kriminalce ili službu, da se u likovima prepoznaju stvarni ljudi, da ima trijumfalan kraj.</p>
-      </div>
-      <div class="case-side">
-        <div class="dn-frame">
-          <p class="frame-k">stack</p>
-          <p>Unity 6, C#, .NET, Claude Code</p>
-          <p class="frame-k">status</p>
-          <p data-l="en">Early. The rules and one test day play as text; the room in Unity is next.</p>
-          <p data-l="sr">Početak. Pravila i jedan probni dan se igraju kao tekst; sledeća je soba u Unityju.</p>
-        </div>
+        <p class="lead" data-l="en">A narrative game set in one office. You're a clerk in a made-up intelligence service in Yugoslavia in the nineties, and you decide what each small-time criminal pays.</p>
+        <p class="lead" data-l="sr">Narativna igra iz jedne kancelarije. Ti si službenik izmišljene obaveštajne službe u Jugoslaviji devedesetih i odlučuješ koliko koji sitni kriminalac plaća.</p>
+        <ul class="does" data-l="en">
+          <li>Every day a few files land on the desk. For each one: an amount in marks and one of three stamps, tolerate, press or remove.</li>
+          <li>You never know what the man really earns. The dispatch, the men in the field, the newspaper and his own envelope don't agree.</li>
+          <li>The rules are plain C# that doesn't know Unity exists, so a whole day plays as text in a terminal, by me or by an agent.</li>
+          <li>On the test day, the only strategy that pays all three bills is the one that works out the truth and then steals.</li>
+        </ul>
+        <ul class="does" data-l="sr">
+          <li>Svakog dana na sto stigne nekoliko kartona. Za svaki: iznos u markama i jedan od tri pečata, tolerisati, pritisnuti ili ukloniti.</li>
+          <li>Koliko čovek stvarno zarađuje, ne znaš. Depeša, terenci, novine i njegova koverta se ne slažu.</li>
+          <li>Pravila su čist C# koji ne zna da Unity postoji, pa se ceo dan igra kao tekst u terminalu, bilo da igram ja ili agent.</li>
+          <li>Na probnom danu jedina strategija koja plati sva tri računa jeste ona koja dođe do istine pa krade.</li>
+        </ul>
+        <dl class="rows facts">
+          <dt>stack</dt><dd>Unity 6, C#, .NET, Claude Code</dd>
+          <dt>status</dt><dd data-l="en">Early. The rules and one test day play as text; the room in Unity is next.</dd><dd data-l="sr">Rana faza. Pravila i jedan probni dan se igraju kao tekst; sledeća je soba u Unityju.</dd>
+          <dt><span data-l="en">team</span><span data-l="sr">tim</span></dt><dd data-l="en">Two of us: I lead the code and the story with AI agents, the other author does the art.</dd><dd data-l="sr">Nas dvojica: ja vodim kod i priču uz AI agente, drugi autor radi grafiku.</dd>
+        </dl>
       </div>
     </article>
 
@@ -1243,6 +1288,7 @@
     <article class="case" id="p13">
         <figure class="art">
           <div class="art-box"><pre class="dn-ascii dn-ascii--ink" aria-label="A log of one run: 59 sources read in 20 seconds, how many ads each of the busiest sources kept, the rules for merging and hiding ads, and the totals">
+
  $ ./poso.sh
 
  27.11.2026. 00:47     59 sources     architecture, belgrade
@@ -1261,7 +1307,7 @@
 
  same ad on two sites ............ one card, both links
  past its deadline ............... hidden
- no deadline ..................... gone after 45 days
+ no deadline ..................... gone with its source, or after 45 days
 
  active: 20      new since the last run: 1      new in the last 7 days: 14
 
@@ -1271,25 +1317,26 @@
           <figcaption data-l="sr">Jedno pokretanje, kao „log“ :)</figcaption>
         </figure>
       <div class="case-text">
-        <p class="dn-card__meta">#13 · 2026 · <span data-l="en">scraping</span><span data-l="sr">skrejping</span></p>
+        <p class="dn-card__meta path"><b>:/</b><span data-l="en">tools</span><span data-l="sr">alati</span>/2026</p>
         <h2 class="dn-heading">Job radar</h2>
-        <p class="lead" data-l="en">Architecture internships and junior jobs in Belgrade get posted in about sixty different places: job boards, the faculty's news, the professional associations, city and ministry pages, and the careers pages of around thirty studios.</p>
-        <p class="lead" data-l="sr">Prakse i junior poslovi za arhitekte u Beogradu izlaze na šezdesetak različitih mesta: sajtovi za posao, vesti fakulteta, strukovna udruženja, strane grada i ministarstva i strane „Karijera“ tridesetak studija.</p>
-        <p data-l="en">Nobody checks sixty pages every morning, so a script does. It reads all of them (the run above took twenty seconds), keeps only architecture and only Belgrade, and sorts by level: internships and junior jobs first, then ads that don't state a level, with senior ones folded away at the bottom.</p>
-        <p data-l="sr">Niko ne proverava šezdeset strana svako jutro, pa to radi skripta. Pročita ih sve (pokretanje odozgo trajalo je dvadeset sekundi), zadrži samo arhitekturu i samo Beograd, i poređa po nivou: prvo prakse i junior poslovi, zatim oglasi bez navedenog nivoa, a seniorski skupljeni na dnu.</p>
-        <p data-l="en">Most of the work went into what not to show. The same ad on two boards becomes one card with both links. Anything past its deadline disappears, and an ad with no deadline goes when its source stops listing it, or after 45 days. If a studio's careers page has no feed, the script just watches the page and says when the text changes.</p>
-        <p data-l="sr">Najviše posla otišlo je na ono što ne treba prikazati. Isti oglas na dva sajta postaje jedna kartica sa oba linka. Sve čemu je prošao rok nestaje, a oglas bez roka nestaje kad ga izvor više ne prikazuje ili posle 45 dana. Ako strana „Karijera“ nekog studija nema feed, skripta samo prati stranu i javi kad se tekst promeni.</p>
-        <p data-l="en">LinkedIn, Facebook and Instagram can't be read this way, so the report ends with ready-made links to check by hand, and with a table of which sources worked and which one broke because a site changed its layout.</p>
-        <p data-l="sr">LinkedIn, Facebook i Instagram ne mogu da se čitaju ovako, pa se izveštaj završava gotovim linkovima za ručnu proveru i tabelom koja pokazuje koji je izvor radio, a koji je pukao jer je sajt promenio izgled.</p>
-      </div>
-      <div class="case-side">
-        <div class="dn-frame">
-          <p class="frame-k">stack</p>
-          <p>Python, httpx, SQLite, YAML</p>
-          <p class="frame-k">status</p>
-          <p data-l="en">In use. One double click and the report opens in the browser.</p>
-          <p data-l="sr">U upotrebi. Dupli klik i izveštaj se otvori u pretraživaču.</p>
-        </div>
+        <p class="lead" data-l="en">Once a day a script reads about sixty places where architecture internships and junior jobs in Belgrade get posted, and puts what's new on top.</p>
+        <p class="lead" data-l="sr">Skripta jednom dnevno pročita šezdesetak mesta na kojima izlaze prakse i junior poslovi za arhitekte u Beogradu i na vrh stavi ono što je novo.</p>
+        <ul class="does" data-l="en">
+          <li>Keeps only architecture, in Belgrade or remote, sorted by level with internships and junior jobs first.</li>
+          <li>The same ad on two sites becomes one card with both links. Anything past its deadline disappears.</li>
+          <li>Watches studio careers pages that have no feed and says when the text changes.</li>
+          <li>Ends with a table of which sources worked and which one broke.</li>
+        </ul>
+        <ul class="does" data-l="sr">
+          <li>Zadrži samo arhitekturu, u Beogradu ili na daljinu, poređano po nivou, sa praksama i junior poslovima na vrhu.</li>
+          <li>Isti oglas na dva sajta postaje jedna kartica sa oba linka. Sve čemu je prošao rok nestaje.</li>
+          <li>Prati strane „Karijera“ studija koji nemaju feed i javi kad se tekst promeni.</li>
+          <li>Na kraju je tabela koja pokazuje koji je izvor radio, a koji je pukao.</li>
+        </ul>
+        <dl class="rows facts">
+          <dt>stack</dt><dd>Python, httpx, SQLite, YAML</dd>
+          <dt>status</dt><dd data-l="en">In use. One double click and the report opens in the browser.</dd><dd data-l="sr">U upotrebi. Dupli klik i izveštaj se otvori u pretraživaču.</dd>
+        </dl>
       </div>
     </article>
 
@@ -1334,29 +1381,33 @@
           <figcaption data-l="sr">Tura posle 2-opt, na „mapi“ Evrope :)</figcaption>
         </figure>
       <div class="case-text">
-        <p class="dn-card__meta">#14 · 2025 · <span data-l="en">heuristics</span><span data-l="sr">heuristike</span></p>
+        <p class="dn-card__meta path"><b>:/</b><span data-l="en">uni</span><span data-l="sr">faks</span>/2025</p>
         <h2 class="dn-heading">Travelling salesman</h2>
-        <p class="lead" data-l="en">Seventeen cities from Kosjerić to Minsk, four heuristics.</p>
-        <p class="lead" data-l="sr">Sedamnaest gradova od Kosjerića do Minska, četiri heuristike.</p>
-        <p data-l="en">I was sure the genetic algorithm would win. Plain 2-opt found a shorter tour (68.46 against 74.92), simulated annealing landed in between, and nearest neighbour came last at 79.75.</p>
-        <p data-l="sr">Bio sam siguran da će pobediti genetski algoritam. Obični 2-opt je našao kraću turu (68,46 prema 74,92), simulirano kaljenje je bilo između, a najbliži sused poslednji sa 79,75.</p>
-      </div>
-      <div class="case-side">
-        <div class="frame-links" style="margin-top:0"><a class="dn-btn" href="https://github.com/danilo-lazovic/tsp-optimization" target="_blank" rel="noopener"><span data-l="en">code on github</span><span data-l="sr">kod na githubu</span></a></div>
+        <p class="lead" data-l="en">Seventeen cities from Kosjerić to Minsk, four heuristics. I was sure the genetic algorithm would win.</p>
+        <p class="lead" data-l="sr">Sedamnaest gradova od Kosjerića do Minska, četiri heuristike. Bio sam siguran da će pobediti genetski algoritam.</p>
+        <ul class="does" data-l="en">
+          <li>Plain 2-opt found the shortest of the four tours: 68.46.</li>
+          <li>The genetic algorithm got 74.92, simulated annealing landed in between, and nearest neighbour came last at 79.75.</li>
+        </ul>
+        <ul class="does" data-l="sr">
+          <li>Obični 2-opt je našao najkraću od četiri ture: 68,46.</li>
+          <li>Genetski algoritam je stigao do 74,92, simulirano kaljenje je bilo između, a najbliži sused poslednji sa 79,75.</li>
+        </ul>
+        <div class="frame-links"><a class="dn-btn" href="https://github.com/danilo-lazovic/tsp-optimization" target="_blank" rel="noopener"><span data-l="en">code on github</span><span data-l="sr">kod na githubu</span></a></div>
       </div>
     </article>
 
     <!-- ====== INFO ====== -->
     <section class="sec" id="info">
       <div class="sec-head">
-        <span class="dn-label"><span class="dn-label__path">:/</span><span class="dn-label__name">&lt;info_&gt;</span></span>
+        <span class="dn-label"><span class="dn-label__path">:/</span><span class="dn-label__name">&lt;info<i class="cur">_</i>&gt;</span></span>
       </div>
       <div class="info">
         <div>
           <p class="lead" style="margin-top:0" data-l="en">I'm Danilo. I grew up in Čačak and live in Belgrade, where I study operations management at FON and work at Kafeterija on everything that has to do with data: sales, delivery platforms, reviews, and the agents that connect them.</p>
           <p class="lead" style="margin-top:0" data-l="sr">Ja sam Danilo. Odrastao sam u Čačku, a živim u Beogradu, gde studiram menadžment operacija na FON-u i radim u Kafeteriji na svemu što ima veze sa podacima: prodaji, platformama za dostavu, recenzijama i agentima koji ih povezuju.</p>
-          <p data-l="en">I didn't really start coding until Bosch. I'd done some MATLAB and Python at uni, but at work I was spending hours on the same boring steps in SAP and Excel, so I started teaching myself how to make them go away. That turned into a planning app, and I've kept doing the same thing at Kafeterija ever since: find the part of the day that's tedious or stuck, and build something so nobody has to do it by hand.</p>
-          <p data-l="sr">Ozbiljnije sam počeo da kodiram tek u Boschu. Na faksu sam radio nešto MATLAB-a i Pythona, ali na poslu sam provodio sate na istim dosadnim koracima u SAP-u i Excelu, pa sam sam počeo da učim kako da ih se rešim. Od toga je nastala aplikacija za planiranje, i od tada isto radim i u Kafeteriji: nađem deo dana koji je dosadan ili zapinje i napravim nešto da to niko više ne radi ručno.</p>
+          <p data-l="en">I didn't really start coding until Bosch. I'd done some MATLAB and Python at uni, but at work I was spending hours on the same boring steps in SAP and Excel, so I started teaching myself how to make them go away. That turned into a planning app, and I've kept doing the same thing at Kafeterija ever since.</p>
+          <p data-l="sr">Ozbiljnije sam počeo da kodiram tek u Boschu. Na faksu sam radio nešto MATLAB-a i Pythona, ali na poslu sam provodio sate na istim dosadnim koracima u SAP-u i Excelu, pa sam sam počeo da učim kako da ih se rešim. Od toga je nastala aplikacija za planiranje, i od tada isto radim i u Kafeteriji.</p>
           <p data-l="en">Away from the screen I follow basketball and football, and I like helping people learn. I spent a semester mentoring students at FON.</p>
           <p data-l="sr">Van ekrana pratim košarku i fudbal i volim da pomognem drugima da nauče. Semestar sam bio mentor studentima na FON-u.</p>
           <div class="hero-art flow-box">
@@ -1402,7 +1453,7 @@
     <!-- ====== CONTACT ====== -->
     <section class="contact" id="contact">
       <div class="sec-head" style="margin-bottom:0">
-        <span class="dn-label"><span class="dn-label__path">:/</span><span class="dn-label__name"><span data-l="en">&lt;contact_&gt;</span><span data-l="sr">&lt;kontakt_&gt;</span></span></span>
+        <span class="dn-label"><span class="dn-label__path">:/</span><span class="dn-label__name"><span data-l="en">&lt;contact<i class="cur">_</i>&gt;</span><span data-l="sr">&lt;kontakt<i class="cur">_</i>&gt;</span></span></span>
       </div>
       <a class="mail" href="mailto:dobrilazovic@gmail.com">dobrilazovic@gmail.com</a>
       <div class="frame-links">
@@ -1416,8 +1467,11 @@
   </main>
 
   <div class="dn-divider dn-divider--dots" role="separator" style="margin:0"></div>
-  <footer><p>:/ danilo · <span data-l="en">belgrade</span><span data-l="sr">beograd</span> · <span data-year>2026</span></p></footer>
+  <footer>
+    <p>:/ danilo, <span data-l="en">belgrade</span><span data-l="sr">beograd</span> <span data-belgrade></span>, <span data-year>2026</span></p>
+    <p class="keys"><kbd>j</kbd> <kbd>k</kbd> <span data-l="en">next / previous project</span><span data-l="sr">sledeći / prethodni rad</span></p>
+  </footer>
 </div>
-<script src="assets/js/main.js?v=9" defer></script>
+<script src="assets/js/main.js?v=10" defer></script>
 </body>
 </html>
